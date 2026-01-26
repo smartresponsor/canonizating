@@ -1,67 +1,91 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_ROOT="${1:-$(pwd)}"
-CONTRACT_JSON="$REPO_ROOT/.gate/contract/contract.json"
+REPO_ROOT="${1:-.}"
+REPO_ROOT="${REPO_ROOT%/}"
 
-if [[ ! -f "$CONTRACT_JSON" ]]; then
-  echo "contract.json not found: $CONTRACT_JSON" >&2
-  exit 2
-fi
+fail=0
+issues=()
 
-# Minimal portable parser: rely on jq if available, otherwise skip dot-folder allowlist
-if command -v jq >/dev/null 2>&1; then
-  mapfile -t required < <(jq -r '.root_contract.required_root_files[]' "$CONTRACT_JSON")
-  mapfile -t allowed_files < <(jq -r '.root_contract.allowed_root_files_exact[]' "$CONTRACT_JSON")
-  mapfile -t allowed_dots < <(jq -r '.allowed_root_dot_folders[]' "$CONTRACT_JSON")
-else
-  required=(".gitignore" "MANIFEST.json" "README.md")
-  allowed_files=(".gitignore" "MANIFEST.json" "README.md")
-  allowed_dots=()
-fi
+required_files=(".gitignore" "MANIFEST.json" "README.md")
+allowed_files=(".gitignore" "MANIFEST.json" "README.md" ".gitattributes")
 
-bad=()
+is_allowed_root_file() {
+  local name="$1"
+  for f in "${allowed_files[@]}"; do
+    if [[ "$name" == "$f" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
 
-while IFS= read -r -d '' entry; do
-  name="$(basename "$entry")"
-  [[ "$name" == ".git" ]] && continue
-  [[ "$name" == ".github" ]] && continue
-  [[ "$name" == ".gitmodules" ]] && true
-  if [[ -d "$entry" ]]; then
-    if [[ "${name:0:1}" != "." ]]; then
-      bad+=("Non-dot folder in root: $name")
-    else
-      if [[ ${#allowed_dots[@]} -gt 0 ]]; then
-        found=0
-        for d in "${allowed_dots[@]}"; do
-          [[ "$d" == "$name" ]] && found=1 && break
-        done
-        [[ $found -eq 0 ]] && bad+=("Unexpected dot-folder in root: $name")
-      fi
+is_allowed_root_dir() {
+  local name="$1"
+
+  # runner technical folder (always ignore)
+  if [[ "$name" == ".git" ]]; then
+    return 0
+  fi
+
+  # canonization root allows ONLY dot-folders (includes .github, .gate, .deploy, etc.)
+  if [[ "$name" == .* ]]; then
+    return 0
+  fi
+
+  return 1
+}
+
+# list root entries (names only)
+while IFS= read -r entry; do
+  [[ -n "$entry" ]] || continue
+
+  # ignore current/parent
+  if [[ "$entry" == "." || "$entry" == ".." ]]; then
+    continue
+  fi
+
+  # ignore .git technically, but do not validate contents
+  if [[ "$entry" == ".git" ]]; then
+    continue
+  fi
+
+  full="$REPO_ROOT/$entry"
+
+  if [[ -d "$full" ]]; then
+    if ! is_allowed_root_dir "$entry"; then
+      issues+=(" - Non-dot folder in root: $entry")
+      fail=1
     fi
   else
-    found=0
-    for f in "${allowed_files[@]}"; do
-      [[ "$f" == "$name" ]] && found=1 && break
-    done
-    [[ $found -eq 0 ]] && bad+=("Unexpected root file: $name")
+    if ! is_allowed_root_file "$entry"; then
+      issues+=(" - Unexpected root file: $entry")
+      fail=1
+    fi
   fi
-done < <(find "$REPO_ROOT" -maxdepth 1 -mindepth 1 -print0)
+done < <(cd "$REPO_ROOT" && ls -A)
 
-for rf in "${required[@]}"; do
-  [[ -e "$REPO_ROOT/$rf" ]] || bad+=("Missing required root file: $rf")
+# required root files must exist as regular files
+for req in "${required_files[@]}"; do
+  if [[ ! -f "$REPO_ROOT/$req" ]]; then
+    issues+=(" - Missing required root file: $req")
+    fail=1
+  fi
 done
 
-if [[ ${#bad[@]} -gt 0 ]]; then
+if [[ "$fail" == "1" ]]; then
+  echo ""
+  echo "Root contract FAILED:"
+  echo ""
+  for i in "${issues[@]}"; do
+    echo "$i"
+  done
+
   mkdir -p "$REPO_ROOT/.report"
   : > "$REPO_ROOT/.report/gate-flag-root-contract.fail"
-  echo ""
-  echo "Root contract FAILED:" >&2
-  for b in "${bad[@]}"; do
-    echo " - $b" >&2
-  done
-  echo ""
+
   exit 2
 fi
 
 echo "Root contract OK"
+exit 0

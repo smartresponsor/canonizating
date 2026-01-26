@@ -1,16 +1,23 @@
-proposal:
-  - op: file.ensure_exists
-    level: error
-    path: .gitignore
-    note: required gitignore
-
-  - op: file.append_lines
-    level: error
-    path: .gitignore
-    lines:
-      - .DS_Store
-      - Thumbs.db
-      - node_modules/
-      - /.env.local
-      - /.env.*.local
-    note: gitignore template
+{
+  "proposal": [
+    {
+      "op": "file.ensure_exists",
+      "level": "error",
+      "path": ".gitignore",
+      "note": "required gitignore"
+    },
+    {
+      "op": "file.append_lines",
+      "level": "error",
+      "path": ".gitignore",
+      "lines": [
+        ".DS_Store",
+        "Thumbs.db",
+        "node_modules/",
+        "/.env.local",
+        "/.env.*.local"
+      ],
+      "note": "gitignore template"
+    }
+  ]
+}
