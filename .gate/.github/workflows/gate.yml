@@ -6,7 +6,7 @@ on:
   pull_request:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: gate-${{ github.ref }}
@@ -52,3 +52,49 @@ jobs:
         shell: pwsh
         run: |
           pwsh -File .\.gate\contract\ps1\fail-fixer-run.ps1 -RepoRoot . -PrintOnly
+
+codex-dispatch:
+  name: codex-dispatch
+  runs-on: ubuntu-latest
+  needs: gate
+  if: failure()
+  permissions:
+    contents: read
+    issues: write
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+
+    - name: Create issue for Codex
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = '.report/gate-fix-proposal.ndjson';
+          
+          if (!fs.existsSync(path)) {
+            console.log('No proposal file found:', path);
+            return;
+          }
+          
+          const proposal = fs.readFileSync(path, 'utf8').trim();
+          const title = `gate: fix required (${context.repo.owner}/${context.repo.repo})`;
+          const body = [
+            'Gate failed.',
+            '',
+            'Proposal NDJSON:',
+            '```',
+            proposal || '(empty)',
+            '```',
+            '',
+            `Ref: ${context.sha}`,
+          ].join('\n');
+          
+          await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title,
+            body,
+            labels: ['codex', 'gate-fail'],
+          });
