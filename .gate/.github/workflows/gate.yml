@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: owner-gate-${{ github.ref }}
+  group: gate-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Run owner gate (Linux)
+      - name: Run gate (Linux)
         if: runner.os != 'Windows'
         shell: bash
         run: |
