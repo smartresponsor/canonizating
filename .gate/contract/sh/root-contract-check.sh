@@ -17,7 +17,7 @@ if command -v jq >/dev/null 2>&1; then
 else
   required=(".gitignore" "MANIFEST.json" "README.md")
   allowed_files=(".gitignore" "MANIFEST.json" "README.md")
-  allowed_dots=()
+  allowed_dots=(".git" ".gate")
 fi
 
 bad=()
