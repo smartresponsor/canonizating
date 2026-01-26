@@ -1,40 +1,53 @@
+\
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_ROOT="${1:-$(pwd)}"
-CONTRACT_JSON="$REPO_ROOT/.gate/contract/contract.json"
-GITIGNORE="$REPO_ROOT/.gitignore"
+ROOT="${1:-.}"
+POLICY_PATH="${GATE_GITIGNORE_POLICY:-$ROOT/.gate/policy/acceptable/gitignore-template.yml}"
 
-if [[ ! -f "$CONTRACT_JSON" ]]; then
-  echo "contract.json not found: $CONTRACT_JSON" >&2
-  exit 2
-fi
-if [[ ! -f "$GITIGNORE" ]]; then
-  echo ".gitignore not found: $GITIGNORE" >&2
-  exit 2
+if [[ ! -f "$POLICY_PATH" ]]; then
+  echo ".gitignore template FAILED:"
+  echo " - missing policy: $POLICY_PATH"
+  exit 3
 fi
 
-if command -v jq >/dev/null 2>&1; then
-  mapfile -t must < <(jq -r '.gitignore_template.must_include_all[]' "$CONTRACT_JSON")
-else
-  must=(".idea/" "*.iml" "/vendor/" "/var/" ".phpunit.result.cache" ".DS_Store" "Thumbs.db" "node_modules/" "/.env.local" "/.env.*.local")
+# policy file is JSON (valid YAML), so we can parse via python json
+REQ_LINES="$(python3 - "$POLICY_PATH" <<'PY'
+import json, sys
+p = sys.argv[1]
+with open(p, "r", encoding="utf-8") as f:
+  data = json.load(f)
+req = data.get("template", {}).get("required", [])
+for x in req:
+  print(x)
+PY
+)"
+
+GITIGNORE_PATH="$ROOT/.gitignore"
+if [[ ! -f "$GITIGNORE_PATH" ]]; then
+  echo ".gitignore template FAILED:"
+  echo ""
+  echo " - missing: .gitignore"
+  exit 3
 fi
 
-content="$(cat "$GITIGNORE")"
 missing=()
+while IFS= read -r line; do
+  [[ -n "$line" ]] || continue
+  if ! grep -Fxq -- "$line" "$GITIGNORE_PATH"; then
+    missing+=("$line")
+  fi
+done <<< "$REQ_LINES"
 
-for m in "${must[@]}"; do
-  grep -Fq "$m" <<<"$content" || missing+=("$m")
-done
-
-if [[ ${#missing[@]} -gt 0 ]]; then
+if [[ "${#missing[@]}" -gt 0 ]]; then
+  echo ".gitignore template FAILED:"
   echo ""
-  echo ".gitignore template FAILED:" >&2
-  for x in "${missing[@]}"; do
-    echo " - missing: $x" >&2
+  for m in "${missing[@]}"; do
+    echo " - missing: $m"
+    echo ""
   done
-  echo ""
   exit 3
 fi
 
 echo ".gitignore template OK"
+exit 0

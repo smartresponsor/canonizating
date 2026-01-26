@@ -1,33 +1,49 @@
+\
 param(
-  [Parameter(Mandatory=$false)][string]$RepoRoot = (Get-Location).Path
+  [Parameter(Mandatory = $false)]
+  [string]$RepoRoot = "."
 )
 
-$ErrorActionPreference = "Stop"
+$policyPath = $env:GATE_GITIGNORE_POLICY
+if ([string]::IsNullOrWhiteSpace($policyPath)) {
+  $policyPath = Join-Path $RepoRoot ".gate/policy/acceptable/gitignore-template.yml"
+}
 
-$contractPath = Join-Path $RepoRoot ".gate/contract/contract.json"
+if (!(Test-Path -LiteralPath $policyPath)) {
+  Write-Host ".gitignore template FAILED:`n"
+  Write-Host " - missing policy: $policyPath"
+  exit 3
+}
+
+# policy is JSON (valid YAML)
+$policyJson = Get-Content -LiteralPath $policyPath -Raw -Encoding UTF8
+$policy = $policyJson | ConvertFrom-Json
+
 $gitignorePath = Join-Path $RepoRoot ".gitignore"
+if (!(Test-Path -LiteralPath $gitignorePath)) {
+  Write-Host ".gitignore template FAILED:`n"
+  Write-Host " - missing: .gitignore`n"
+  exit 3
+}
 
-if (-not (Test-Path $contractPath)) { throw "contract.json not found: $contractPath" }
-if (-not (Test-Path $gitignorePath)) { throw ".gitignore not found: $gitignorePath" }
+$lines = Get-Content -LiteralPath $gitignorePath -Encoding UTF8
+$missing = New-Object System.Collections.Generic.List[string]
 
-$contract = Get-Content $contractPath -Raw | ConvertFrom-Json
-$must = @($contract.gitignore_template.must_include_all)
-
-$content = Get-Content $gitignorePath -Raw
-
-$missing = @()
-foreach ($m in $must) {
-  if ($content -notmatch [regex]::Escape($m)) {
-    $missing += $m
+foreach ($req in $policy.template.required) {
+  $found = $false
+  foreach ($l in $lines) {
+    if ($l -ceq $req) { $found = $true; break }
   }
+  if (-not $found) { $missing.Add($req) }
 }
 
 if ($missing.Count -gt 0) {
-  Write-Host ""
-  Write-Host ".gitignore template FAILED:" -ForegroundColor Red
-  $missing | ForEach-Object { Write-Host (" - missing: " + $_) -ForegroundColor Red }
-  Write-Host ""
+  Write-Host ".gitignore template FAILED:`n"
+  foreach ($m in $missing) {
+    Write-Host " - missing: $m`n"
+  }
   exit 3
 }
 
 Write-Host ".gitignore template OK"
+exit 0

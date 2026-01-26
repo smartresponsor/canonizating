@@ -11,6 +11,11 @@
       "level": "error",
       "path": ".gitignore",
       "lines": [
+        ".idea/",
+        "*.iml",
+        "/vendor/",
+        "/var/",
+        ".phpunit.result.cache",
         ".DS_Store",
         "Thumbs.db",
         "node_modules/",
@@ -18,6 +23,12 @@
         "/.env.*.local"
       ],
       "note": "gitignore template"
+    },
+    {
+      "op": "report.print",
+      "level": "warn",
+      "text": "Suggested: append missing .gitignore template lines (IDE + Symfony + OS + node + env locals)",
+      "note": "gate hint"
     }
   ]
 }
