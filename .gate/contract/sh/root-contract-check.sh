@@ -17,13 +17,16 @@ if command -v jq >/dev/null 2>&1; then
 else
   required=(".gitignore" "MANIFEST.json" "README.md")
   allowed_files=(".gitignore" "MANIFEST.json" "README.md")
-  allowed_dots=(".git" ".gate")
+  allowed_dots=()
 fi
 
 bad=()
 
 while IFS= read -r -d '' entry; do
   name="$(basename "$entry")"
+  [[ "$name" == ".git" ]] && continue
+  [[ "$name" == ".github" ]] && continue
+  [[ "$name" == ".gitmodules" ]] && true
   if [[ -d "$entry" ]]; then
     if [[ "${name:0:1}" != "." ]]; then
       bad+=("Non-dot folder in root: $name")
