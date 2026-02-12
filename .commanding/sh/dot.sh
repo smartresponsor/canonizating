@@ -12,6 +12,9 @@ dot_folder() {
 .gate
 .release
 .tool
+.consuming
+.deploy
+.intelligence
 "
 
   dot_have_cmd() { command -v "$1" >/dev/null 2>&1; }

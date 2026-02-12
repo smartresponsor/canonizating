@@ -1,18 +1,16 @@
+\
 param(
-    [Parameter(Mandatory = $false)][string]$Path = ".",
-    [Parameter(Mandatory = $false)][switch]$Quality
+  [Parameter(Mandatory=$false)]
+  [Alias('Path')]
+  [string]$RepoRoot = "."
 )
 
-$ErrorActionPreference = "Stop"
+$resolved = (Resolve-Path -Path $RepoRoot).Path
 
-$repoRoot = (Resolve-Path -LiteralPath $Path).Path
-$gateSh = Join-Path $repoRoot ".gate/gate.sh"
-
-$bash = Get-Command bash -ErrorAction SilentlyContinue
-if ($null -eq $bash) {
-    throw "bash not found. Install Git Bash or provide a native gate.ps1 implementation."
+if (-not (Get-Command bash -ErrorAction SilentlyContinue)) {
+  throw "bash not found. Install Git for Windows (Git Bash) or provide bash in PATH."
 }
 
-# Use bash gate as single source of truth (policy->proposal generation lives in gate.sh)
-& bash $gateSh $repoRoot
+# gate.sh auto-detects CI (GITHUB_ACTIONS/CI). RepoRoot is passed as an argument.
+bash "$resolved/.gate/gate.sh" "$resolved"
 exit $LASTEXITCODE
