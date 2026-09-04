@@ -8,7 +8,11 @@
         "README.md"
       ],
       "allowed_root_files_exact": [
+        ".editorconfig",
+        ".gitattributes",
         ".gitignore",
+        "composer.json",
+        "composer.lock",
         "MANIFEST.json",
         "README.md"
       ]
@@ -38,7 +42,11 @@
       "README.md"
     ],
     "allowed_root_files_exact": [
+      ".editorconfig",
+      ".gitattributes",
       ".gitignore",
+      "composer.json",
+      "composer.lock",
       "MANIFEST.json",
       "README.md"
     ],
@@ -49,6 +57,7 @@
       ".deploy",
       ".gate",
       ".github",
+      ".ide",
       ".intelligence",
       ".release",
       ".smoke"

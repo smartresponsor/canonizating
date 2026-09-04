@@ -1,46 +1,38 @@
-canon-clean
+# Canonization
 
-Cleaned, structured snapshot of the Canon domain aligned with SmartResponsor canon + industrial rules.
+Owner-side canonical tooling and policy pack for SmartResponsor repositories.
 
-Quick start
+## Repository contract
 
-- Windows: `pwsh -ExecutionPolicy Bypass -File canon.ps1 gate`
-- Linux/mac: `./canon.sh gate`
+The repository root is intentionally small. Canonization content is organized in dot-folders, primarily:
 
-Main commands (entrypoints)
+- `.canonization/` — canonization metadata and manifests
+- `.commanding/` — command helpers
+- `.consuming/` — consumer/update helpers
+- `.gate/` — executable contracts, linting, policy and quality checks
+- `.intelligence/` — automation/intelligence helpers
+- `.release/`, `.deploy/`, `.smoke/` — release/runtime support
 
-- `./canon.ps1 gate|validate|strict|matrix|test|pack|verify|fix|overlay`
-- `./canon.sh gate|validate|strict|matrix|test|pack|verify|fix|overlay`
+Standard repository files such as `.editorconfig`, `.gitattributes`, `.gitignore`, `composer.json`, `composer.lock`, `MANIFEST.json`, and `README.md` may live at root.
 
-Where the tools live (separated by runtime)
+## Gate
 
-- Node core checks: `tool/node/*.js`
-- PowerShell wrappers: `tool/ps1/*.ps1`
-- Bash wrappers: `tool/sh/*.sh`
+Run the canonical gate from the repository root:
 
-Examples
+- Windows: `pwsh -ExecutionPolicy Bypass -File .gate/gate.ps1 .`
+- Linux/macOS: `bash .gate/gate.sh .`
 
-- Validate schema: `node tool/node/canon-validate.js --root .`
-- Strict invariants: `node tool/node/canon-strict.js --root .`
-- Matrix completeness: `node tool/node/canon-matrix-check.js --root .`
-- Doc index check: `node tool/node/canon-doc-index.js --root . --check`
-- Safe fix plan: `pwsh tool/ps1/run-canon-fix.ps1 -Root . -DryRun`
-- Apply overlay to a target repo:
-    - Windows: `pwsh tool/ps1/run-canon-overlay-apply.ps1 -Target C:\path\to\repo -Apply`
-    - Linux/mac: `bash tool/sh/run-canon-overlay-apply.sh --target /path/to/repo --apply`
+The gate runs root-contract checks, gitignore checks, naming/lint checks, layer-mirror checks, and optional quality checks.
 
-Notes
+Set `QUALITY=1` to include the quality stage when invoking the shell gate.
 
-- Singular naming is enforced for custom folders (checker, lint, contract, event). Reserved ecosystem paths stay
-  unchanged.
-- Industrial rules live in `industrial-canon/**`.
-- Owner rules + consumer overlay live in `owner-canon/**`.
-- CI: `.github/workflows/canon.yml` runs `canon gate` on push/PR.
+## Canonical locations
 
+- Executable gate entrypoints: `.gate/gate.ps1`, `.gate/gate.sh`
+- Contracts: `.gate/contract/**`
+- Linting: `.gate/linting/**`
+- Policies: `.gate/policy/**`
+- Quality checks: `.gate/quality/**`
+- Distribution manifest: `.gate/MANIFEST.json`
 
-Root contract:
-- Root contains only dot-folders + .gitignore/MANIFEST.json/README.md
-- .gitignore is the consumer template
-
-Gate:
-- Run .gate/gate.ps1 (PowerShell) or .gate/gate.sh
+Do not duplicate canonical rules in component-specific prompts. Repository architecture rules belong in the gate/policy system and are evolved there.

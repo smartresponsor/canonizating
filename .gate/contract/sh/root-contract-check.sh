@@ -8,7 +8,15 @@ fail=0
 issues=()
 
 required_files=(".gitignore" "MANIFEST.json" "README.md")
-allowed_files=(".gitignore" "MANIFEST.json" "README.md" ".gitattributes")
+allowed_files=(
+  ".editorconfig"
+  ".gitattributes"
+  ".gitignore"
+  "composer.json"
+  "composer.lock"
+  "MANIFEST.json"
+  "README.md"
+)
 
 is_allowed_root_file() {
   local name="$1"
@@ -23,12 +31,10 @@ is_allowed_root_file() {
 is_allowed_root_dir() {
   local name="$1"
 
-  # runner technical folder (always ignore)
   if [[ "$name" == ".git" ]]; then
     return 0
   fi
 
-  # canonization root allows ONLY dot-folders (includes .github, .gate, .deploy, etc.)
   if [[ "$name" == .* ]]; then
     return 0
   fi
@@ -36,17 +42,10 @@ is_allowed_root_dir() {
   return 1
 }
 
-# list root entries (names only)
 while IFS= read -r entry; do
   [[ -n "$entry" ]] || continue
 
-  # ignore current/parent
-  if [[ "$entry" == "." || "$entry" == ".." ]]; then
-    continue
-  fi
-
-  # ignore .git technically, but do not validate contents
-  if [[ "$entry" == ".git" ]]; then
+  if [[ "$entry" == "." || "$entry" == ".." || "$entry" == ".git" ]]; then
     continue
   fi
 
@@ -65,7 +64,6 @@ while IFS= read -r entry; do
   fi
 done < <(cd "$REPO_ROOT" && ls -A)
 
-# required root files must exist as regular files
 for req in "${required_files[@]}"; do
   if [[ ! -f "$REPO_ROOT/$req" ]]; then
     issues+=(" - Missing required root file: $req")

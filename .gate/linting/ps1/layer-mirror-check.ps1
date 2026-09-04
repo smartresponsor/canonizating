@@ -5,8 +5,9 @@ param(
   [switch]$NoWrite
 )
 $ErrorActionPreference = "Stop"
-$root = Resolve-Path -Path $Path
+$root = (Resolve-Path -Path $Path).Path
 $arg = @("--path", $root, "--report", $Report)
 if ($NoWrite) { $arg += "--no-write" }
-node (Join-Path $PSScriptRoot "layer-mirror-check.js") @arg
+$checker = Join-Path (Split-Path $PSScriptRoot -Parent) "js/layer-mirror-check.js"
+node $checker @arg
 exit $LASTEXITCODE

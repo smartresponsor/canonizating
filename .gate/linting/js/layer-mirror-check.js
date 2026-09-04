@@ -42,17 +42,18 @@ function main() {
   const args = parseArgs(process.argv.slice(2));
   const root = path.resolve(args.path);
 
+  // Keep only the established generic mirror pair here.
+  // Additional Symfony-oriented pairs are added from consolidated canon policy,
+  // not from historical component-specific assumptions.
   const pairs = [
     { impl: 'src/Service', api: 'src/ServiceInterface', suffix: 'Interface' },
-    { impl: 'src/Infra', api: 'src/InfraInterface', suffix: 'Interface' },
-    { impl: 'src/Http', api: 'src/HttpInterface', suffix: 'Interface' },
   ];
 
   const report = {
     root,
     ok: true,
     missing: [],
-    note: 'Checks that Service/Infra/Http PHP classes have matching *Interface.php in mirrored Interface layer.',
+    note: 'Checks established implementation/interface mirror pairs without legacy Domain/Infra/Http assumptions.',
   };
 
   for (const pair of pairs) {
@@ -65,7 +66,6 @@ function main() {
       const rel = path.relative(implDir, f);
       const base = path.basename(rel, '.php');
 
-      // Skip obvious non-contract files.
       if (base.endsWith('Test')) continue;
       if (base.endsWith('Trait')) continue;
       if (base.endsWith('Exception')) continue;
