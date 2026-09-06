@@ -35,6 +35,7 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon028 | `Canon028DualDoctrineConnectionRule.php` | hard + semantic | implemented; checks `data`/PostgreSQL and `infra`/MySQL roles when persistence is present |
 | Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard | implemented; requires PHP-CS-Fixer + PHPStan dependencies, configs, and Composer execution scripts |
 | Canon030 | `Canon030DoctrineSchemaParityRule.php` | hard + runtime | implemented; requires an executable Doctrine schema-parity contract for ORM+migrations repositories |
+| Canon031 | `Canon031PhpDocCoverageRule.php` | warning | implemented; measures meaningful class/method PHPDoc coverage separately with a 70% threshold |
 
 ## Classification
 

@@ -71,3 +71,9 @@ Canon029 enforces the presence and executable integration of the standard qualit
 Materialized rule: Canon030.
 
 Doctrine Entity mapping/metadata is the relational schema source of truth. The complete migration chain must reproduce the current metadata schema from a clean database, and after migrations there must be no remaining Doctrine schema diff. Gating itself does not recreate a developer database destructively; it verifies that ORM+migrations repositories expose an executable schema-parity contract using `doctrine:schema:validate` plus migration-currentness/diff verification suitable for an isolated or disposable database in CI/container validation.
+
+## 2026-09-05 — PHPDoc coverage warning gate
+
+Materialized rule: Canon031.
+
+Classes and methods are measured separately. A PHPDoc block counts as covered only when it contains a minimally meaningful human-readable description; tags alone do not count. The executable threshold is at least five words and 30 non-markup characters, with obvious placeholders rejected. Coverage below 70% in either class or method category produces a warning and representative weak symbols for semantic follow-up by ChatGPT/agent execution. Gating deliberately does not judge full correctness or freshness of prose.
