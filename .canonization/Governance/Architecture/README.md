@@ -26,3 +26,7 @@ Gating:       Canon003DtoIsExplicitRule.php
 ```
 
 The shared foreign key is `Canon003`; the mirrored semantic name makes human navigation immediate. File paths and repository-relative links are not part of the cross-repository identity contract.
+
+## Canon admission boundary
+
+Canonization does not duplicate stable commodity checks already owned by standard ecosystem tooling. Formatting/style belongs to tools such as PHP-CS-Fixer or PHPCS; analyzable type/code defects belong to PHPStan/Rector-class tooling. A SmartResponsor Canon rule is justified when it defines platform-specific architecture, topology, ownership, lifecycle, or semantic behavior that ordinary tooling cannot determine from language syntax/types alone.

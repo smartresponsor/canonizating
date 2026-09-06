@@ -27,3 +27,13 @@ Validation completed successfully: changed-PHP lint, calibration tests, PHPStan,
 Profile-dependent semantic rules intentionally return `skipped` when their required vocabulary, dependency, boundary, or migration inputs are not declared rather than guessing.
 
 Closing the first batch also exposed and corrected two existing Gating topology violations: `RoutePolicy` moved into the `Policy/Route` role tree and `GatingRunner` into the `Runner` role tree.
+
+## 2026-09-05 — Second owner-canon batch
+
+Materialized rules: Canon011 through Canon017.
+
+This batch intentionally excludes commodity formatting, ordinary unused-code checks, and standard analyzable type defects that are already owned by PHP-CS-Fixer/PHPCS/PHPStan/Rector-class tooling. Canonization admits a rule only when it defines SmartResponsor-specific architecture, topology, ownership, lifecycle, or semantic behavior beyond those standard tools.
+
+The batch covers observable failures, typed internal boundaries, production placeholder readiness, executable responsibility, tooling/runtime separation, compatibility lifecycle, and documentation/runtime consistency.
+
+All seven rules have mirrored Gating implementations. Hard deterministic patterns fail; semantic heuristics warn; rules that require repository-specific vocabulary or stale-token knowledge are profile-gated rather than guessed.

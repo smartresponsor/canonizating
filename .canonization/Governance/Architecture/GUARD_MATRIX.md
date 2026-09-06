@@ -15,6 +15,13 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon008 | `Canon008ComposerDependencyIntegrityRule.php` | hard | implemented; profile-gated by `namespace_packages` |
 | Canon009 | `Canon009ComponentHostBoundaryRule.php` | hard + semantic | implemented; profile-gated by `host_namespaces` |
 | Canon010 | `Canon010ArchitectureMigrationCompletenessRule.php` | composite | implemented; profile-gated by `forbidden_legacy_tokens` |
+| Canon011 | `Canon011NoSilentFailureRule.php` | hard + semantic | implemented; hard swallow patterns fail, ambiguous fallback warns |
+| Canon012 | `Canon012TypedBoundaryContractRule.php` | semantic + hard candidates | implemented; profile-gated by `typed_boundary_internal_roots` |
+| Canon013 | `Canon013NoPlaceholderProductionLogicRule.php` | hard + semantic | implemented; explicit placeholders fail, TODO/FIXME comments review |
+| Canon014 | `Canon014ExecutableResponsibilityRule.php` | semantic/advisory | implemented as executable-size review heuristic |
+| Canon015 | `Canon015NoToolingArchitectureLeakRule.php` | hard + semantic | implemented as namespaced-type tooling detector |
+| Canon016 | `Canon016ExplicitCompatibilityLifecycleRule.php` | semantic + hard metadata candidates | implemented as lifecycle-metadata review |
+| Canon017 | `Canon017DocumentationMatchesRuntimeRule.php` | composite | implemented; profile-gated by `stale_documentation_tokens` |
 
 ## Classification
 
