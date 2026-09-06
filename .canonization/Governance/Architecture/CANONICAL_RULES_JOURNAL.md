@@ -65,3 +65,9 @@ The canonical relational engine stack is PostgreSQL plus MySQL. PostgreSQL is th
 Materialized rule: Canon029.
 
 Canon029 enforces the presence and executable integration of the standard quality tools that remain responsible for commodity code-quality concerns: `friendsofphp/php-cs-fixer` and `phpstan/phpstan` must be development dependencies, each tool must have repository-owned configuration, and Composer scripts must expose runnable fixer and static-analysis commands. This preserves the admission boundary: Canonization requires the tooling contract but does not duplicate the tools' own formatting or static-analysis rule sets.
+
+## 2026-09-05 — Doctrine Entity/migration schema parity
+
+Materialized rule: Canon030.
+
+Doctrine Entity mapping/metadata is the relational schema source of truth. The complete migration chain must reproduce the current metadata schema from a clean database, and after migrations there must be no remaining Doctrine schema diff. Gating itself does not recreate a developer database destructively; it verifies that ORM+migrations repositories expose an executable schema-parity contract using `doctrine:schema:validate` plus migration-currentness/diff verification suitable for an isolated or disposable database in CI/container validation.
