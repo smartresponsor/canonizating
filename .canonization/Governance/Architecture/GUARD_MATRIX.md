@@ -33,6 +33,7 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon026 | `Canon026PlatformVersionBaselineRule.php` | hard | implemented; PHP 8.4+ and Symfony 8.1+ within Symfony 8.x |
 | Canon027 | `Canon027DatabaseEngineBaselineRule.php` | hard + contextual | implemented; rejects known non-canonical Doctrine relational drivers |
 | Canon028 | `Canon028DualDoctrineConnectionRule.php` | hard + semantic | implemented; checks `data`/PostgreSQL and `infra`/MySQL roles when persistence is present |
+| Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard | implemented; requires PHP-CS-Fixer + PHPStan dependencies, configs, and Composer execution scripts |
 
 ## Classification
 

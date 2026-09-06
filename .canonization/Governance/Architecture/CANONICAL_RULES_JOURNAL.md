@@ -59,3 +59,9 @@ Components remain dual-mode: self-bootable Symfony applications for build, verif
 The platform version floor is PHP 8.4+ and Symfony 8.1+ within Symfony 8.x. The Symfony minor floor is deliberately movable as the maintained 8.x baseline advances.
 
 The canonical relational engine stack is PostgreSQL plus MySQL. PostgreSQL is the primary/data engine and MySQL the infrastructure/system engine. This batch declares engine and connection-role topology only; detailed ownership of menus, comments, messages, social metadata, or other entity families remains outside this rule set for now.
+
+## 2026-09-05 — Mandatory PHP quality tooling
+
+Materialized rule: Canon029.
+
+Canon029 enforces the presence and executable integration of the standard quality tools that remain responsible for commodity code-quality concerns: `friendsofphp/php-cs-fixer` and `phpstan/phpstan` must be development dependencies, each tool must have repository-owned configuration, and Composer scripts must expose runnable fixer and static-analysis commands. This preserves the admission boundary: Canonization requires the tooling contract but does not duplicate the tools' own formatting or static-analysis rule sets.
