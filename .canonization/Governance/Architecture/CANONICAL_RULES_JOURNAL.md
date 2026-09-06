@@ -47,3 +47,15 @@ The batch was deliberately narrowed before materialization. Earlier proposals fo
 Canon018 makes `composer.json:name` an executable identity contract: `<component-token>/<subject-token>` maps the first token to `App\\<ComponentToken>\\ => src/` and the second token to the PHP subject prefix. The subject token is not inferred by trimming `-ing`.
 
 Canon021 keeps generic application CRUD in `cruding/crud`, while explicitly allowing EasyAdmin CRUD controllers/routes for standalone back-office/admin surfaces. Canon022 requires standalone Symfony applications to declare direct runtime dependencies on `cruding/crud`, `viewing/view`, `interfacing/interface`, `objecting/object`, and `easycorp/easyadmin-bundle`; standalone status is detected from Symfony boot surfaces rather than Composer `type`.
+
+## 2026-09-05 — Environment, runtime, version and database stack batch
+
+Materialized rules: Canon023 through Canon028.
+
+Development and production dependency resolution are intentionally different. `composer.json` is the development manifest and local sibling SmartResponsor packages use Composer `path` repositories with `symlink: true`. `composer.prod.json` is the production/container-build manifest and must resolve packaged dependencies without sibling path/symlink repositories.
+
+Components remain dual-mode: self-bootable Symfony applications for build, verification, testing and debugging, and reusable Symfony bundles for Host composition.
+
+The platform version floor is PHP 8.4+ and Symfony 8.1+ within Symfony 8.x. The Symfony minor floor is deliberately movable as the maintained 8.x baseline advances.
+
+The canonical relational engine stack is PostgreSQL plus MySQL. PostgreSQL is the primary/data engine and MySQL the infrastructure/system engine. This batch declares engine and connection-role topology only; detailed ownership of menus, comments, messages, social metadata, or other entity families remains outside this rule set for now.

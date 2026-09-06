@@ -27,6 +27,12 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon020 | `Canon020TypedSymfonyRoleRootRule.php` | hard + semantic | implemented for known generic responsibility roots |
 | Canon021 | `Canon021CrudingOwnsGenericCrudRule.php` | semantic + hard candidates | implemented; EasyAdmin CRUD explicitly exempt |
 | Canon022 | `Canon022StandaloneApplicationDependencyBaselineRule.php` | hard | implemented; standalone detected by Symfony boot surfaces |
+| Canon023 | `Canon023DevelopmentComposerSymlinkRule.php` | hard | implemented; local sibling `path` repositories require `symlink: true` |
+| Canon024 | `Canon024ProductionComposerBundleRule.php` | hard | implemented; requires `composer.prod.json` for canonical App components and forbids path/symlink repos |
+| Canon025 | `Canon025ComponentDualRuntimeModeRule.php` | hard | implemented; verifies standalone boot surfaces plus bundle class |
+| Canon026 | `Canon026PlatformVersionBaselineRule.php` | hard | implemented; PHP 8.4+ and Symfony 8.1+ within Symfony 8.x |
+| Canon027 | `Canon027DatabaseEngineBaselineRule.php` | hard + contextual | implemented; rejects known non-canonical Doctrine relational drivers |
+| Canon028 | `Canon028DualDoctrineConnectionRule.php` | hard + semantic | implemented; checks `data`/PostgreSQL and `infra`/MySQL roles when persistence is present |
 
 ## Classification
 
