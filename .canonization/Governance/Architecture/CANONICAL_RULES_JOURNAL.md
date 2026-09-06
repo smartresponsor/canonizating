@@ -77,3 +77,9 @@ Doctrine Entity mapping/metadata is the relational schema source of truth. The c
 Materialized rule: Canon031.
 
 Classes and methods are measured separately. A PHPDoc block counts as covered only when it contains a minimally meaningful human-readable description; tags alone do not count. The executable threshold is at least five words and 30 non-markup characters, with obvious placeholders rejected. Coverage below 70% in either class or method category produces a warning and representative weak symbols for semantic follow-up by ChatGPT/agent execution. Gating deliberately does not judge full correctness or freshness of prose.
+
+## 2026-09-06 — Bundle, manifest identity, ignore baseline, and Symfony container reuse
+
+Materialized rules: Canon032 through Canon035.
+
+Canon032 requires the reusable component Bundle to be actually registered by standalone mode; component-specific bundle config files are valid and the filename itself is not canonical. Canon033 keeps `composer.json` and `composer.prod.json` aligned on package identity, PSR-4 identity, and PHP/Symfony platform baseline while explicitly allowing different dependency sets and environment-specific repositories/scripts. Canon034 evaluates `.gitignore` quality by coverage category rather than one literal template: absence is a failure and incomplete categories warn. Canon035 states the performance/runtime invariant that unchanged HTTP requests reuse a stable Symfony compiled-container/cache identity; request-time cache clear/warmup, Kernel reboot, hardcoded dev/debug runtime, or request/time/random-derived cache identity are non-canonical. A two-request container probe remains an ordinary validation operation rather than a Canon rule.

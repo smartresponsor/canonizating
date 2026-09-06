@@ -36,6 +36,10 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard | implemented; requires PHP-CS-Fixer + PHPStan dependencies, configs, and Composer execution scripts |
 | Canon030 | `Canon030DoctrineSchemaParityRule.php` | hard + runtime | implemented; requires an executable Doctrine schema-parity contract for ORM+migrations repositories |
 | Canon031 | `Canon031PhpDocCoverageRule.php` | warning | implemented; measures meaningful class/method PHPDoc coverage separately with a 70% threshold |
+| Canon032 | `Canon032BundleRegistrationRule.php` | hard | implemented; requires reusable component bundle registration in standalone mode |
+| Canon033 | `Canon033ComposerManifestIdentityParityRule.php` | hard | implemented; compares development/production Composer identity without requiring identical dependencies |
+| Canon034 | `Canon034GitignoreBaselineRule.php` | hard + warning | implemented; missing `.gitignore` fails and incomplete ignore categories warn |
+| Canon035 | `Canon035SymfonyContainerReuseRule.php` | hard + warning | implemented; blocks request-time container invalidation and reviews custom container identity |
 
 ## Classification
 
