@@ -37,3 +37,13 @@ This batch intentionally excludes commodity formatting, ordinary unused-code che
 The batch covers observable failures, typed internal boundaries, production placeholder readiness, executable responsibility, tooling/runtime separation, compatibility lifecycle, and documentation/runtime consistency.
 
 All seven rules have mirrored Gating implementations. Hard deterministic patterns fail; semantic heuristics warn; rules that require repository-specific vocabulary or stale-token knowledge are profile-gated rather than guessed.
+
+## 2026-09-05 — Third owner/Symfony architecture batch
+
+Materialized rules: Canon018 through Canon022.
+
+The batch was deliberately narrowed before materialization. Earlier proposals for CLI ownership, route ownership, Host integration orchestration, DI integration ownership, Entity-first persistence, and Symfony extension-point ownership were not accepted and are not part of the canon.
+
+Canon018 makes `composer.json:name` an executable identity contract: `<component-token>/<subject-token>` maps the first token to `App\\<ComponentToken>\\ => src/` and the second token to the PHP subject prefix. The subject token is not inferred by trimming `-ing`.
+
+Canon021 keeps generic application CRUD in `cruding/crud`, while explicitly allowing EasyAdmin CRUD controllers/routes for standalone back-office/admin surfaces. Canon022 requires standalone Symfony applications to declare direct runtime dependencies on `cruding/crud`, `viewing/view`, `interfacing/interface`, `objecting/object`, and `easycorp/easyadmin-bundle`; standalone status is detected from Symfony boot surfaces rather than Composer `type`.

@@ -22,6 +22,11 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon015 | `Canon015NoToolingArchitectureLeakRule.php` | hard + semantic | implemented as namespaced-type tooling detector |
 | Canon016 | `Canon016ExplicitCompatibilityLifecycleRule.php` | semantic + hard metadata candidates | implemented as lifecycle-metadata review |
 | Canon017 | `Canon017DocumentationMatchesRuntimeRule.php` | composite | implemented; profile-gated by `stale_documentation_tokens` |
+| Canon018 | `Canon018ComposerIdentityMappingRule.php` | hard | implemented; derives namespace and subject identity from `composer.json:name` |
+| Canon019 | `Canon019NoAlternativeLayerTaxonomyRule.php` | hard + semantic | implemented for forbidden `src/` layer roots |
+| Canon020 | `Canon020TypedSymfonyRoleRootRule.php` | hard + semantic | implemented for known generic responsibility roots |
+| Canon021 | `Canon021CrudingOwnsGenericCrudRule.php` | semantic + hard candidates | implemented; EasyAdmin CRUD explicitly exempt |
+| Canon022 | `Canon022StandaloneApplicationDependencyBaselineRule.php` | hard | implemented; standalone detected by Symfony boot surfaces |
 
 ## Classification
 
