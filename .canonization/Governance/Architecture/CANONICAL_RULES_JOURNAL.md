@@ -85,3 +85,11 @@ Classes and methods are measured separately. A PHPDoc block counts as covered on
 Materialized rules: Canon032 through Canon035.
 
 Canon032 requires the reusable component Bundle to be actually registered by standalone mode; component-specific bundle config files are valid and the filename itself is not canonical. Canon033 keeps `composer.json` and `composer.prod.json` aligned on package identity, PSR-4 identity, and PHP/Symfony platform baseline while explicitly allowing different dependency sets and environment-specific repositories/scripts. Canon034 evaluates `.gitignore` quality by coverage category rather than one literal template: absence is a failure and incomplete categories warn. Canon035 states the performance/runtime invariant that unchanged HTTP requests reuse a stable Symfony compiled-container/cache identity; request-time cache clear/warmup, Kernel reboot, hardcoded dev/debug runtime, or request/time/random-derived cache identity are non-canonical. A two-request container probe remains an ordinary validation operation rather than a Canon rule.
+
+## 2026-09-09 — Documentation producer ownership
+
+Materialized rule: Canon036.
+
+Ordinary component repositories are documentation producers rather than independent Antora site owners. Repository-facing Markdown remains valid, and Antora-compatible AsciiDoc belongs under the component `docs/` producer surface such as `docs/antora.yml` and `docs/modules/ROOT/**`. The central Antora playbook, UI/assets, aggregation, publishing workflow, and publication ownership belong to Documentating.
+
+Canon036 also records the semantic anti-drift rule: Markdown and AsciiDoc must not become two independently maintained peer copies of the same narrative. Thin wrappers/includes are valid where one surface is canonical. Gating enforces only deterministic site-ownership topology and does not hard-fail semantic content similarity.

@@ -40,6 +40,7 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon033 | `Canon033ComposerManifestIdentityParityRule.php` | hard | implemented; compares development/production Composer identity without requiring identical dependencies |
 | Canon034 | `Canon034GitignoreBaselineRule.php` | hard + warning | implemented; missing `.gitignore` fails and incomplete ignore categories warn |
 | Canon035 | `Canon035SymfonyContainerReuseRule.php` | hard + warning | implemented; blocks request-time container invalidation and reviews custom container identity |
+| Canon036 | `Canon036DocumentationProducerOwnershipRule.php` | hard + semantic | implemented; blocks component-owned root Antora site descriptors while leaving narrative duplication to semantic review |
 
 ## Classification
 
