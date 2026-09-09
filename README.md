@@ -39,7 +39,7 @@ Notes
 
 
 Root contract:
-- Root contains only dot-folders + .gitignore/MANIFEST.json/README.md
+- Root contains only allowed dot-folders + `.gitignore`/`AGENTS.md`/`MANIFEST.json`/`README.md`; `AGENTS.md` is an agent-facing projection, not normative canon
 - .gitignore is the consumer template
 
 Gate:
