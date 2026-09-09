@@ -1,35 +1,25 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LOG_FILE="logs/action.log"
-ERR_FILE="logs/error.log"
-mkdir -p logs
-timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-EXIT_CODE=0
+printf '\nComposer\n--------\n'
+printf '%s\n' '1) install'
+printf '%s\n' '2) update'
+printf '%s\n' '3) validate'
+printf '%s\n' '4) dump-autoload'
+printf '%s\n' 'Space/Enter) Exit'
+printf '%s' 'Choice: '
+IFS= read -rsn1 action || true
+printf '\n\n'
 
-clear
-echo "Composer Menu"
-echo "-------------"
-echo "1) Install"
-echo "2) Update"
-echo "3) Dump autoload"
-echo "Space) Exit"
+if ! command -v composer >/dev/null 2>&1; then
+  echo 'composer not found.'
+  exit 1
+fi
 
-read -r -n 1 -s -p "Choice: " action
-echo
-
-case $action in
-  1) echo "[$timestamp] Composer install" >> "$LOG_FILE"
-  composer install 2>>"$ERR_FILE" || EXIT_CODE=$? ;;
-  2) echo "[$timestamp] Composer update" >> "$LOG_FILE"
-  composer update 2>>"$ERR_FILE" || EXIT_CODE=$? ;;
-  3) echo "[$timestamp] Composer dump-autoload" >> "$LOG_FILE"
-  composer dump-autoload 2>>"$ERR_FILE" || EXIT_CODE=$? ;;
-  0) echo -e "Go back to main menu"
-  exit 0;;
-  *) echo "[$timestamp] Exit from Composer menu" >> "$LOG_FILE"
-  echo "Bye"; return 1 ;;
-esac
-
-echo "[$timestamp] Exit code: $EXIT_CODE" >> "$LOG_FILE"
-exit $EXIT_CODE
+case "$action" in
+  1) composer install ;;
+  2) composer update ;;
+  3) composer validate ;;
+  4) composer dump-autoload -o ;;
+  *) exit 0 ;;
+ esac

@@ -4,6 +4,7 @@
 # Load Git Bash environment (colors/prompt) BEFORE strict mode
 [ -f /etc/profile ] && . /etc/profile
 [ -f ~/.bashrc ] && . ~/.bashrc
+
 set -euo pipefail
 
 COMMANDING_DIR="${COMMANDING_DIR:-"$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"}"
@@ -27,19 +28,21 @@ resolve_script() {
   local action="${1:-}"
 
   case "$action" in
-    1) printf "%s" "$COMMANDING_SH_DIR/route.sh" ;;
-    2) printf "%s" "$COMMANDING_SH_DIR/server.sh" ;;
-    3) printf "%s" "$COMMANDING_SH_DIR/fixture.sh" ;;
-    4) printf "%s" "$COMMANDING_SH_DIR/schema.sh" ;;
-    5) printf "%s" "$COMMANDING_DIR/patch_zipper.sh" ;;
-    6) printf "%s" "$COMMANDING_SH_DIR/test.sh" ;;
-    7) printf "%s" "$COMMANDING_SH_DIR/docker.sh" ;;
-    8) printf "%s" "$COMMANDING_SH_DIR/migration.sh" ;;
-    9) printf "%s" "$COMMANDING_SH_DIR/composer.sh" ;;
-    g|G) printf "%s" "$COMMANDING_DIR/git/commanding.sh" ;;
-    l|L) printf "%s" "$COMMANDING_SH_DIR/log.sh" ;;
-    c|C) printf "%s" "$COMMANDING_SH_DIR/cache.sh" ;;
-    d|D) printf "%s" "$COMMANDING_SH_DIR/dot.sh" ;;
+    1) printf '%s' "$COMMANDING_SH_DIR/route.sh" ;;
+    2) printf '%s' "$COMMANDING_SH_DIR/server.sh" ;;
+    3) printf '%s' "$COMMANDING_SH_DIR/fixture.sh" ;;
+    4) printf '%s' "$COMMANDING_SH_DIR/schema.sh" ;;
+    5) printf '%s' "$COMMANDING_DIR/patch_zipper.sh" ;;
+    6) printf '%s' "$COMMANDING_SH_DIR/test.sh" ;;
+    7) printf '%s' "$COMMANDING_SH_DIR/docker.sh" ;;
+    8) printf '%s' "$COMMANDING_SH_DIR/migration.sh" ;;
+    9) printf '%s' "$COMMANDING_SH_DIR/composer.sh" ;;
+
+    g|G) printf '%s' "$COMMANDING_DIR/git/commanding.sh" ;;
+    l|L) printf '%s' "$COMMANDING_SH_DIR/log.sh" ;;
+    c|C) printf '%s' "$COMMANDING_SH_DIR/cache.sh" ;;
+    d|D) printf '%s' "$COMMANDING_SH_DIR/dot.sh" ;;
+
     *) return 1 ;;
   esac
 }
@@ -53,13 +56,14 @@ ensure_target() {
 
 is_long_running() {
   case "${1:-}" in
-    2|w|W) return 0 ;; # server/worker
-    *)     return 1 ;;
+    2) return 0 ;; # server
+    *) return 1 ;;
   esac
 }
 
 run_short() {
-  local target="$1"; shift || true
+  local target="$1"
+  shift || true
 
   set +e
   bash "$target" "$@"
@@ -75,15 +79,17 @@ run_short() {
 }
 
 run_long() {
-  local target="$1"; shift || true
+  local target="$1"
+  shift || true
   bash "$target" "$@" || true
   return 0
 }
 
 single() {
-  local action="${1:-}"; shift || true
-  local target
+  local action="${1:-}"
+  shift || true
 
+  local target
   if ! target="$(resolve_script "$action")"; then
     fail "Unknown input: $action"
     return 0
@@ -105,16 +111,15 @@ single() {
 
 chain() {
   local digits="${1:-}"
-  [ -n "$digits" ] || fail "Empty chain"
+  [ -n "$digits" ] || fail 'Empty chain'
 
   local i ch target status
   local len="${#digits}"
 
-  for (( i=0; i<len; i++ )); do
+  for ((i=0; i<len; i++)); do
     ch="${digits:i:1}"
 
-    if [[ "$ch" == "0" ]]; then
-      # stop chain and return to menu
+    if [[ "$ch" == '0' ]]; then
       return 0
     fi
 
@@ -155,7 +160,8 @@ main() {
 
   case "$cmd" in
     chain) chain "${1:-}" ;;
-    *)     single "$cmd" "$@" ;;
+    '') bash "$COMMANDING" ;;
+    *) single "$cmd" "$@" ;;
   esac
 }
 

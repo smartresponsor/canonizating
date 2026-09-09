@@ -6,7 +6,7 @@ Canon: `Canon028`
 Gating mirror: `Canon028DualDoctrineConnectionRule.php`
 
 ## Requirement
-A standalone Symfony application that owns relational persistence declares distinct Doctrine DBAL connections for primary data and infrastructure/system storage. Canonical connection role names are `data` and `infra`, with PostgreSQL and MySQL respectively.
+A standalone Symfony application that owns relational persistence declares distinct Doctrine DBAL connections for primary data and infrastructure/system storage. Canonical connection role names are `data` and `infra`, with PostgreSQL and SQLite respectively. The `infra` connection is file-backed SQLite unless a later canon explicitly defines another storage form.
 
 ## Prohibited
 Do not collapse both storage roles into one universal production connection when the application participates in both platform data and infrastructure persistence.

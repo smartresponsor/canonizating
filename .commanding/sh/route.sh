@@ -1,63 +1,37 @@
-while true; do
-  clear
-  echo -e "\e[1m"
-  echo -e "   Routes Checker:"
-  echo -e "   -------------------"
-  echo -e "\e[0m \e[32m"
-  echo -e "   1 All routs"
-  echo -e "   2 Check Route access just by RouteName (guest access)"
-  echo -e "   3 Check Route access by RouteName and userName"
-  echo -e "   ------------------------"
-  echo -e "   4 All routs by filtering (partial) RouteName"
-  echo -e "   5 All routs by filtering (exact) RouteName"
-  echo -e '\e[0m \e[1m'
-  echo -e "   ------------------------"
-  echo -e "   0 Go back to main menu"
-  echo -e '\e[0m \e[32m'
+#!/usr/bin/env bash
+set -euo pipefail
 
-  read -r -n 1 -s -p "    Enter action number or press Space for Exit:" action
+menu() {
+  printf '\nRoutes\n------\n'
+  printf '%s\n' '1) List all routes'
+  printf '%s\n' '2) Show route details (by name)'
+  printf '%s\n' '3) Search routes (grep by pattern)'
+  printf '%s\n' 'Space/Enter) Exit'
+  printf '%s' 'Choice: '
+}
 
-  trimmed_action=$(echo $action | xargs)
-
-  if [ -z "$trimmed_action" ]; then
-    bash
+run_console() {
+  if [ -f bin/console ]; then
+    php bin/console "$@"
+    return 0
   fi
+  printf '%s\n' 'bin/console not found (run from repo root).'
+  return 1
+}
 
-  case $action in
-  1)
-    echo -e "    Routes..."
-    php bin/console debug:router
-    ;;
+menu
+IFS= read -rsn1 action || true
+printf '\n\n'
+
+case "$action" in
+  1) run_console debug:router ;;
   2)
-    echo -e "    Check Route access by routeName (guest access)..."
-    read -p "    Enter Route Name: " routeName
-    php bin/console debug:router --format=md --show-controllers $routeName
-    read -p "   Press Enter to continue..."
+    read -r -p 'Route name: ' route
+    run_console debug:router --show-controllers "$route"
     ;;
   3)
-    echo -e "    Check Route access by routeName and user..."
-    read -p "    Enter Route Name: " routeName
-    read -p "    Enter User Name: " userName
-    php bin/console debug:router --format=md --show-controllers $routeName $userName
+    read -r -p 'Pattern (grep -E): ' pattern
+    run_console debug:router --format=txt | grep -E "${pattern}" || true
     ;;
-  4)
-    echo ''
-    read -p "    Enter part of Route Name: " partialRouteName
-    php bin/console debug:router --format=md --show-controllers | grep -E "($partialRouteName)|(^ --------------)|(^ Name)"
-    ;;
-  5)
-    echo -e "Search Route by exact name..."
-    read -p "Enter exact Route Name: " exactRouteName
-    php bin/console debug:router --format=md --show-controllers | grep -E "($exactRouteName)|(^ --------------)|(^ Name)" | awk '{if (/^ /) {print "\t" $0} else if (/^ -/) {print "\n\t" $0} else {print}}'
-    ;;
-  0)
-    echo -e "Go back to main menu"
-    exit 0;
-    ;;
-
-  *) echo -e "\e[31m Incorrect\e[0m" ;;
-  esac
-  if [ $? -ne 0 ]; then
-    continue
-  fi
-done
+  *) exit 0 ;;
+ esac

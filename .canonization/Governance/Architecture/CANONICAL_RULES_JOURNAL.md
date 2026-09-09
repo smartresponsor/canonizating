@@ -58,7 +58,9 @@ Components remain dual-mode: self-bootable Symfony applications for build, verif
 
 The platform version floor is PHP 8.4+ and Symfony 8.1+ within Symfony 8.x. The Symfony minor floor is deliberately movable as the maintained 8.x baseline advances.
 
-The canonical relational engine stack is PostgreSQL plus MySQL. PostgreSQL is the primary/data engine and MySQL the infrastructure/system engine. This batch declares engine and connection-role topology only; detailed ownership of menus, comments, messages, social metadata, or other entity families remains outside this rule set for now.
+The canonical relational engine stack is PostgreSQL plus SQLite. PostgreSQL is the primary/data engine and SQLite the file-backed infrastructure/system engine. This batch declares engine and connection-role topology only; detailed ownership of menus, comments, messages, social metadata, or other entity families remains outside this rule set for now.
+
+Amendment 2026-09-09: the original materialization incorrectly named MySQL as the canonical infrastructure/system engine. Canon027 and Canon028 are corrected to the intended PostgreSQL + SQLite topology, with canonical Doctrine drivers `pdo_pgsql` and `pdo_sqlite`.
 
 ## 2026-09-05 — Mandatory PHP quality tooling
 

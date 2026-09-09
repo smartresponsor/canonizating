@@ -1,46 +1,23 @@
-while true; do
-  clear
-  echo -e "\e[1m"
-  echo -e " Schema PowerCycle:"
-  echo -e " -------------------"
-  echo -e "\e[0m \e[32m"
-  echo -e " 1 Schema validation"
-  echo -e " 2 Schema update"
-  echo -e '\e[0m \e[1m'
-  echo -e " ------------------------"
-  echo -e " 0 Exit to main menu... "
-  echo -e "   Press Space for exit"
-  echo -e '\e[0m \e[32m'
+#!/usr/bin/env bash
+set -euo pipefail
 
-  read -r -n 1 -s -p " Enter action number or press Space for Exit:" action
+printf '\nSchema\n------\n'
+printf '%s\n' '1) doctrine:schema:validate'
+printf '%s\n' '2) doctrine:migrations:status'
+printf '%s\n' '3) doctrine:migrations:diff'
+printf '%s\n' 'Space/Enter) Exit'
+printf '%s' 'Choice: '
+IFS= read -rsn1 action || true
+printf '\n\n'
 
-  trimmed_action=$(echo $action | xargs)
+if [ ! -f bin/console ]; then
+  echo 'bin/console not found.'
+  exit 1
+fi
 
-  if [ -z "$trimmed_action" ]; then
-    bash
-  fi
-
-  case $action in
-  1)
-    clear
-    echo -e "Schema validation..."
-    symfony console doctrine:schema:validate
-    ;;
-  2)
-    clear
-    echo -e "Schema update..."
-    symfony console doctrine:schema:update --complete --force
-    symfony console doctrine:schema:validate
-    ;;
-  0)
-    echo 'go back'
-    bash "$COMMANDING_DIR/commanding.sh" || true
-    return 0
-    ;;
-  *) echo -e "\e[31m Incorrect\e[0m" ;;
-  esac
-  if [ $? -ne 0 ]; then
-    # read -p "Произошла ошибка. Нажмите Enter для продолжения."
-      bash || true
-  fi
-done
+case "$action" in
+  1) php bin/console doctrine:schema:validate ;;
+  2) php bin/console doctrine:migrations:status ;;
+  3) php bin/console doctrine:migrations:diff ;;
+  *) exit 0 ;;
+ esac
