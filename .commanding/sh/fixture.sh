@@ -1,57 +1,21 @@
-while true; do
-  clear
-  echo -e "\e[1m"
-  echo -e " Fixture setCycle:"
-  echo -e " -------------------"
-  echo -e "\e[0m \e[32m"
-  echo -e " 1 Fixture PowerCycle"
-  echo -e " 2 Append new Fixture"
-  echo -e " 3 Profile avatars downloader"
-  echo -e '\e[0m \e[1m'
-  echo -e " ------------------------"
-  echo -e " 0 Exit to main menu... "
-  echo -e '\e[0m \e[32m'
+#!/usr/bin/env bash
+set -euo pipefail
 
-  read -r -n 1 -s -p " Enter action number or press Space for Exit:" action
+printf '\nFixture\n-------\n'
+printf '%s\n' '1) doctrine:fixtures:load (no purge)'
+printf '%s\n' '2) doctrine:fixtures:load (purge)'
+printf '%s\n' 'Space/Enter) Exit'
+printf '%s' 'Choice: '
+IFS= read -rsn1 action || true
+printf '\n\n'
 
-  trimmed_action=$(echo $action | xargs)
+if [ ! -f bin/console ]; then
+  echo 'bin/console not found.'
+  exit 1
+fi
 
-  if [ -z "$trimmed_action" ]; then
-    bash
-  fi
-
-  case $action in
-  1)
-    echo -e "Fixture Restarting..."
-    symfony console doctrine:fixtures:load --purge-with-truncate --no-interaction
-    ;;
-  2)
-    echo -e "Fixture append..."
-    symfony console doctrine:fixtures:load --append --no-interaction
-    ;;
-
-  3)
-    echo 'Profile avatars downloading process... Input the Count of avatars'
-    read COUNT
-
-    if ! [[ "$COUNT" =~ ^[0-9]+$ ]]; then
-      echo -e "\e[31m Incorrect\e[0m"
-      exit 1
-    fi
-
-    php bin/console app:avatar-download --count=$COUNT
-    ;;
-
-  0)
-    echo -e "Go back to main menu"
-    bash "$COMMANDING_DIR/commanding.sh" || true
-    return 0
-    ;;
-
-  *) echo -e "\e[31m Incorrect\e[0m" ;;
-  esac
-    if [ $? -ne 0 ]; then
-      # read -p "Произошла ошибка. Нажмите Enter для продолжения."
-    exec bash
-    fi
-done
+case "$action" in
+  1) php bin/console doctrine:fixtures:load --no-interaction --append ;;
+  2) php bin/console doctrine:fixtures:load --no-interaction ;;
+  *) exit 0 ;;
+ esac

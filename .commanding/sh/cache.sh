@@ -1,30 +1,28 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LOG_FILE="logs/action.log"
-ERR_FILE="logs/error.log"
-mkdir -p logs
-timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-EXIT_CODE=0
+printf '\nCache\n-----\n'
+printf '%s\n' '1) Symfony cache:clear'
+printf '%s\n' '2) rm -rf var/cache/*'
+printf '%s\n' 'Space/Enter) Exit'
+printf '%s' 'Choice: '
+IFS= read -rsn1 action || true
+printf '\n\n'
 
-clear
-echo "Symfony Cache Management"
-echo "------------------------"
-echo "1) Clear cache"
-echo "2) Warmup cache"
-echo "Space) Exit"
-
-read -r -n 1 -s -p "Choice: " action
-echo
-
-case $action in
-  1) echo "[$timestamp] Cache clear" >> "$LOG_FILE"
-     php bin/console cache:clear 2>>"$ERR_FILE" || EXIT_CODE=$? ;;
-  2) echo "[$timestamp] Cache warmup" >> "$LOG_FILE"
-     php bin/console cache:warmup 2>>"$ERR_FILE" || EXIT_CODE=$? ;;
-  *) echo "[$timestamp] Exit from Cache menu" >> "$LOG_FILE"
-     echo "Bye"; return 1 ;;
-esac
-
-echo "[$timestamp] Exit code: $EXIT_CODE" >> "$LOG_FILE"
-exit $EXIT_CODE
+case "$action" in
+  1)
+    if [ -f bin/console ]; then
+      php bin/console cache:clear
+    else
+      echo 'bin/console not found.'
+      exit 1
+    fi
+    ;;
+  2)
+    if [ -d var/cache ]; then
+      rm -rf var/cache/*
+    fi
+    echo 'OK'
+    ;;
+  *) exit 0 ;;
+ esac

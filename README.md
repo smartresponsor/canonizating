@@ -13,7 +13,7 @@ The repository root is intentionally small. Canonization content is organized in
 - `.intelligence/` — automation/intelligence helpers
 - `.release/`, `.deploy/`, `.smoke/` — release/runtime support
 
-Standard repository files such as `.editorconfig`, `.gitattributes`, `.gitignore`, `composer.json`, `composer.lock`, `MANIFEST.json`, and `README.md` may live at root.
+Standard repository files such as `.editorconfig`, `.gitattributes`, `.gitignore`, `AGENTS.md`, `composer.json`, `composer.lock`, `MANIFEST.json`, and `README.md` may live at root. `AGENTS.md` is an agent-facing projection of the canon; normative meaning remains in `.canonization/Governance/Architecture/Rule/`.
 
 ## Gate
 

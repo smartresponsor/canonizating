@@ -263,3 +263,6 @@ phpcs.xml
 
 .automation/.tmp/
 .automation/.cache/
+
+# Local code-memory graph/index artifacts
+.codebase-memory/

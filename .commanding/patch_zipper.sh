@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
-# Copyright (c) 2025 Oleksandr Tishchenko / Marketing America Corp
 set -euo pipefail
 
-ZIP_NAME="patch-$(date +%Y-%m-%d-%H-%M-%S).zip"
+# Create patch artifacts under .commanding/patch/
+# Output: .commanding/patch/patch.diff and patch.zip
 
-if [ $# -eq 0 ]; then
-  echo "No files provided."
-  exit 1
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+OUT_DIR="$ROOT/.commanding/patch"
+mkdir -p "$OUT_DIR"
+
+DIFF_FILE="$OUT_DIR/patch.diff"
+ZIP_FILE="$OUT_DIR/patch.zip"
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  git diff >"$DIFF_FILE"
+else
+  echo 'Not a git repo; patch.diff will be empty.' >"$DIFF_FILE"
 fi
 
-zip "$ZIP_NAME" "$@"
-echo "Created archive: $ZIP_NAME"
+( cd "$OUT_DIR" && zip -q -9 -r "${ZIP_FILE}" "patch.diff" )
+
+echo "OK: $DIFF_FILE"
+echo "OK: $ZIP_FILE"

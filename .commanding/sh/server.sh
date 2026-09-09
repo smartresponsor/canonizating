@@ -1,52 +1,39 @@
-while true; do
-  clear
-  echo -e "\e[1m"
-  echo -e " Server PowerCycle:"
-  echo -e " -------------------"
-  echo -e "\e[0m \e[32m"
-  echo -e " 1 Just Server PowerCycle"
-  echo -e " 2 Server, CacheClean and CacheWarmUp PowerCycle"
-  echo -e " 3 Server, Schema Delete, CacheClean and CacheWarmUp PowerCycle"
-  echo -e '\e[0m \e[1m'
-  echo -e " ------------------------"
-  echo -e " 0 Exit to main menu... "
-  echo -e "   Press Space for exit"
-  echo -e '\e[0m \e[32m'
+#!/usr/bin/env bash
+set -euo pipefail
 
-  read -r -n 1 -s -p " Enter action number or press Space for Exit:" action
+printf '\nServer\n------\n'
+printf '%s\n' '1) Symfony CLI (symfony server:start)'
+printf '%s\n' '2) PHP built-in server (public/)'
+printf '%s\n' '3) Messenger worker (messenger:consume async)'
+printf '%s\n' 'Space/Enter) Exit'
+printf '%s' 'Choice: '
+IFS= read -rsn1 action || true
+printf '\n\n'
 
-  trimmed_action=$(echo $action | xargs)
-
-  if [ -z "$trimmed_action" ]; then
-    bash
-  fi
-
-  case $action in
+case "$action" in
   1)
-    echo -e "Server Restarting..."
-    symfony server:stop
-    symfony server:start -d
+    if command -v symfony >/dev/null 2>&1; then
+      symfony server:start
+    else
+      echo 'symfony CLI not found.'
+      exit 1
+    fi
     ;;
   2)
-    echo -e "Server Restarting and CacheCleaning..."
-    symfony server:stop
-    php bin/console cache:clear
-    php bin/console cache:warmup --env=dev
-    symfony server:start -d
+    if [ -d public ]; then
+      php -S 127.0.0.1:8000 -t public
+    else
+      echo 'public/ not found.'
+      exit 1
+    fi
     ;;
   3)
-    echo -e "Server PowerCircle with SchemaUpdate..."
-    symfony server:stop
-    symfony console doctrine:schema:update --complete --force
-    symfony server:start -d
+    if [ -f bin/console ]; then
+      php bin/console messenger:consume async -vv
+    else
+      echo 'bin/console not found.'
+      exit 1
+    fi
     ;;
-  0)
-    echo 'go back'
-    exit 0
-    ;;
-  *) echo -e "\e[31m Incorrect\e[0m" ;;
-  esac
-  if [ $? -ne 0 ]; then
-    continue
-  fi
-done
+  *) exit 0 ;;
+ esac

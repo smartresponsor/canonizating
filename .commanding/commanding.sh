@@ -10,38 +10,39 @@ repo_root() {
 }
 
 banner() {
-  printf '%s\n' ""
-  printf '%s\n' " Commanding"
+  printf '\n'
+  printf '%s\n' ' Commanding'
 
   local root
   root="$(repo_root)"
   if [ -n "${root:-}" ]; then
     printf '%s\n' " Repo: $root"
   else
-    printf '%s\n' " Repo: not resolved"
+    printf '%s\n' ' Repo: not resolved'
   fi
   printf '\n'
 }
 
 print_menu() {
-  printf '%s\n' " 1 Route      |"
-  printf '%s\n' " 2 Server     |"
-  printf '%s\n' " 3 Fixture    |"
-  printf '%s\n' " 4 Schema     |"
-  printf '%s\n' " 5 Patch(zip) |"
-  printf '%s\n' " 6 Test       |"
-  printf '%s\n' " 7 Docker     |  d) Dot"
-  printf '%s\n' " 8 Migration  |  g) Git"
-  printf '%s\n' " 9 Composer   |  c) Cache"
-  printf '%s\n' " 0 Exit       |  l) Log"
-  printf '%s\n' "              |  r) Repeat"
-  printf '%s\n' " --------------------------"
-  printf '%s\n' " Enter/space = exit"
+  printf '%s\n' ' 1 Route      |'
+  printf '%s\n' ' 2 Server     |'
+  printf '%s\n' ' 3 Fixture    |'
+  printf '%s\n' ' 4 Schema     |'
+  printf '%s\n' ' 5 Patch(zip) |'
+  printf '%s\n' ' 6 Test       |'
+  printf '%s\n' ' 7 Docker     |  d) Dot'
+  printf '%s\n' ' 8 Migration  |  g) Git'
+  printf '%s\n' ' 9 Composer   |  c) Cache'
+  printf '%s\n' ' 0 Exit       |  l) Log'
+  printf '%s\n' '              |  r) Repeat'
+  printf '%s\n' ' --------------------------'
+  printf '%s\n' ' Enter/space = exit'
 }
 
 read_choice() {
   local first="" k="" buf=""
 
+  # one key without Enter
   IFS= read -rsn1 first 2>/dev/null || return 1
 
   # Enter / Space => exit
@@ -94,14 +95,13 @@ dispatch() {
 
 menu_loop() {
   while true; do
-    clear
+    command -v clear >/dev/null 2>&1 && clear || true
     banner
     print_menu
-    printf '%s' " Select: "
 
+    printf '%s' ' Select: '
     local line=""
     line="$(read_choice || true)"
-
     printf '\n\n'
 
     dispatch "${line:-}" || break

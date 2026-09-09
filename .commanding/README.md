@@ -1,12 +1,10 @@
-# Shell Scripts Menu
+# Commanding
 
-This folder contains grouped shell scripts with menu navigation.
+Windows:
+- Run `run.cmd` from repo root, or `.commanding\\commanding.cmd`.
 
-- **Backup**: scripts related to backup
-- **Database**: scripts related to database
-- **Dependencies**: scripts related to dependencies
-- **Deploy**: scripts related to deploy
-- **Docker**: scripts related to docker
-- **Git**: scripts related to git
-- **Misc**: scripts related to misc
-- **Tests**: scripts related to tests
+Git Bash:
+- `bash .commanding/commanding.sh`
+
+Notes:
+- Put this folder into `<repo>/.commanding/`.
