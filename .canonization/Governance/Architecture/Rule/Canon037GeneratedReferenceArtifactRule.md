@@ -1,13 +1,15 @@
 # Canon037GeneratedReferenceArtifactRule — Generated Reference Artifacts Are Not Repository Source
 
 ## Requirement
-Reproducible generated reference/configuration artifacts are derived technical output, not source of truth, and must not be committed as repository source.
-
-The first canonical prohibited artifact is:
+Within the current scope of Canon037, the canonical prohibited artifact is:
 
 - `config/reference.php`
 
-When tooling can regenerate this file from authoritative configuration, container metadata, bundle configuration, or another canonical source, the generated reference must stay outside versioned source history.
+`config/reference.php` is reproducible generated technical output, not repository source of truth, and must not be tracked/versioned as repository source.
+
+When tooling regenerates this file from authoritative configuration, container metadata, bundle configuration, or another canonical source, the generated reference must stay outside versioned source history.
+
+Canon037 does not infer the same prohibition for unrelated generated artifacts. Additional generated paths enter this deny-list only through an explicit canon decision.
 
 ## Allowed
 A repository may generate `config/reference.php` temporarily during local tooling, diagnostics, documentation generation, or framework inspection when the file remains untracked and disposable.
@@ -17,7 +19,7 @@ The canonical source remains the configuration and code from which the reference
 A repository should ignore the generated artifact when its normal tooling creates it persistently in the working tree.
 
 ## Prohibited
-A canonical repository must not treat `config/reference.php` as authored or authoritative source when it is reproducible generated output.
+A canonical repository must not treat `config/reference.php` as authored or authoritative source.
 
 Non-canonical states include:
 
