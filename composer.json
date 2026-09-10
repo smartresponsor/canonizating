@@ -1,4 +1,7 @@
 {
+    "name": "smartresponsor/canonization",
+    "description": "Authoritative textual canon and owner-side policy tooling for SmartResponsor repositories.",
+    "license": "proprietary",
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.94"
     }
