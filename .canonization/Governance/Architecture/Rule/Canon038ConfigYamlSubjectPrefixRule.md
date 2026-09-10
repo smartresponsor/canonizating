@@ -51,6 +51,9 @@ Canonical shared bootstrap examples include:
 - `api_platform.yaml`;
 - `nelmio_api_doc.yaml`;
 - `scheb_2fa.yaml`;
+- `easyadmin.yaml`;
+- `web_profiler.yaml`;
+- `controllers.yaml` and `annotations.yaml` when they are Symfony route bootstrap files;
 - `reset_password.yaml`;
 - `verify_email.yaml`.
 
