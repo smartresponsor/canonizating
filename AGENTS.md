@@ -70,6 +70,18 @@
 - Владеет разбором URI и выбором CRUD operation.
 - Владеет канонической CRUD route grammar.
 
+### Collectioning
+
+- Владеет provider-neutral семантикой collection query: search, filters, sorting, pagination/cursor, projection, counts и collection result contracts.
+- Не владеет CRUD mutations, HTML или конкретным data-grid provider.
+- Cruding, Tabling и другие consumers используют Collectioning через публичные контракты.
+
+### Tabling
+
+- Владеет PHP/Symfony backend table-definition contracts: columns, filter metadata, row/bulk actions, default ordering, capabilities и Symfony Security visibility.
+- Не владеет CRUD mutations, collection persistence/query execution или JavaScript data-grid implementation.
+- UI providers Ant Design/Pro Components и PrimeReact являются consumers Tabling contracts.
+
 ### Objecting
 
 - Владеет повторно используемыми системными полями.
@@ -157,13 +169,15 @@ composer.lock
 ```text
 Objecting
 Cruding
+Collectioning
+Tabling
 Viewing
 Interfacing
 ```
 
 Для каждого application перед выводами и изменениями обязательно:
 
-- проверить, что `Objecting`, `Cruding`, `Viewing` и `Interfacing` объявлены как реальные Composer dependencies;
+- проверить, что `Objecting`, `Cruding`, `Collectioning`, `Tabling`, `Viewing` и `Interfacing` объявлены как реальные Composer dependencies;
 - проверить локальное development-подключение через Composer path repository/symlink там, где оно используется;
 - проверить production package/bundle dependency contract;
 - прочитать и применить актуальные `AGENTS.md`, `README.md`, `composer.json`, manifests и связанные контракты каждого из четырёх helper-пакетов;
