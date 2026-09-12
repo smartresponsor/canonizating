@@ -45,6 +45,8 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon038 | `Canon038ConfigYamlSubjectPrefixRule.php` | hard + semantic exception | implemented; namespaces component-owned YAML filenames while exempting framework/vendor bootstrap conventions |
 | Canon039 | `Canon039PhpTestToolingRule.php` | hard | PHPUnit dependency/config/source/branch/persistent text-summary execution contract |
 | Canon040 | `Canon040PhpTestCoverageRule.php` | runtime + warning | line >=80%, method >=80%, branch >=70%; HIGH_TEST_DEBT below 50/50/40 |
+| Canon041 | `Canon041BehavioralUiTestToolingRule.php` | hard | Symfony Test Pack + Panther + Playwright dependencies/config/execution contract |
+| Canon042 | `Canon042BehavioralUiCoverageRule.php` | runtime + warning | functional >=80%, behavioral >=80%, UI >=70%, critical =100%; HIGH_BEHAVIORAL_TEST_DEBT below 50/50/40 or critical <100% |
 
 ## Classification
 

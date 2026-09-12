@@ -105,3 +105,13 @@ Canon040 defines independent executable-coverage targets: line coverage >=80%, m
 Coverage below target is warning-level remediation debt so the ecosystem can adopt the new standard incrementally. Coverage below 50% line, 50% method/function, or 40% branch is classified as `HIGH_TEST_DEBT` and may be admitted to an automated remediation queue. Queue priority remains an engine concern rather than a Canon rule.
 
 The canonical measurement source is the persistent PHPUnit/php-code-coverage text summary. Gating must require `Lines`, `Methods`, and `Branches` counters from that tool-owned report instead of approximating coverage with source/test counting heuristics.
+
+## 2026-09-12 — Functional, browser, and UI testing contract
+
+Materialized rules: Canon041 and Canon042.
+
+Canon041 extends the executable testing baseline for standalone Symfony applications. `symfony/test-pack` provides the standard Symfony application-testing stack, `symfony/panther` provides real-browser Symfony end-to-end testing, and `@playwright/test` provides repository-local UI/browser testing. The rule requires dependencies, Playwright configuration, and reproducible repository execution scripts rather than relying on globally installed tooling.
+
+Canon042 deliberately separates behavioral/UI coverage from Canon040 PHP executable coverage. Passing test counts are not treated as coverage. Instead, a repository-owned coverage producer must write explicit `covered`/`total` counters for functional application surfaces, behavioral workflows, interactive UI surfaces, and critical workflows to `var/coverage/behavioral-ui.json`. Gating consumes those counters but does not infer denominators from test files, routes, controllers, or Playwright spec counts.
+
+Initial targets are functional >=80%, behavioral >=80%, UI >=70%, and critical workflow coverage =100%. `HIGH_BEHAVIORAL_TEST_DEBT` is raised below 50% functional, 50% behavioral, 40% UI, or whenever critical workflow coverage is below 100%. Missing, stale, or invalid evidence is warning-level debt so repositories can be brought into compliance incrementally.
