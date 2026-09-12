@@ -41,6 +41,10 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon034 | `Canon034GitignoreBaselineRule.php` | hard + warning | implemented; missing `.gitignore` fails and incomplete ignore categories warn |
 | Canon035 | `Canon035SymfonyContainerReuseRule.php` | hard + warning | implemented; blocks request-time container invalidation and reviews custom container identity |
 | Canon036 | `Canon036DocumentationProducerOwnershipRule.php` | hard + semantic | implemented; blocks component-owned root Antora site descriptors while leaving narrative duplication to semantic review |
+| Canon037 | `Canon037GeneratedReferenceArtifactRule.php` | hard | implemented; blocks tracked `config/reference.php` generated source artifacts |
+| Canon038 | `Canon038ConfigYamlSubjectPrefixRule.php` | hard + semantic exception | implemented; namespaces component-owned YAML filenames while exempting framework/vendor bootstrap conventions |
+| Canon039 | `Canon039PhpTestToolingRule.php` | hard | PHPUnit dependency/config/source/branch/persistent text-summary execution contract |
+| Canon040 | `Canon040PhpTestCoverageRule.php` | runtime + warning | line >=80%, method >=80%, branch >=70%; HIGH_TEST_DEBT below 50/50/40 |
 
 ## Classification
 

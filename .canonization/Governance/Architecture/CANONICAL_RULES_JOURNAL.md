@@ -93,3 +93,15 @@ Materialized rule: Canon036.
 Ordinary component repositories are documentation producers rather than independent Antora site owners. Repository-facing Markdown remains valid, and Antora-compatible AsciiDoc belongs under the component `docs/` producer surface such as `docs/antora.yml` and `docs/modules/ROOT/**`. The central Antora playbook, UI/assets, aggregation, publishing workflow, and publication ownership belong to Documentating.
 
 Canon036 also records the semantic anti-drift rule: Markdown and AsciiDoc must not become two independently maintained peer copies of the same narrative. Thin wrappers/includes are valid where one surface is canonical. Gating enforces only deterministic site-ownership topology and does not hard-fail semantic content similarity.
+
+## 2026-09-11 — PHPUnit tooling and executable coverage adequacy
+
+Materialized rules: Canon039 and Canon040.
+
+Canon039 makes PHPUnit/php-code-coverage the standard executable testing contract for canonical PHP repositories. Repositories with executable production PHP code declare `phpunit/phpunit`, own PHPUnit configuration, explicitly include production source in the coverage population, preserve uncovered files in that population, enable branch instrumentation, and expose Composer execution paths for ordinary tests and persistent standard text coverage summaries. Canonization deliberately does not duplicate PHPUnit's own execution or collection logic.
+
+Canon040 defines independent executable-coverage targets: line coverage >=80%, method/function coverage >=80%, and branch coverage >=70%. No metric may mask debt in another. Test counts are expressly non-normative: the number of test methods/classes/files relative to production methods/classes/files is diagnostic information only and is not a quality gate.
+
+Coverage below target is warning-level remediation debt so the ecosystem can adopt the new standard incrementally. Coverage below 50% line, 50% method/function, or 40% branch is classified as `HIGH_TEST_DEBT` and may be admitted to an automated remediation queue. Queue priority remains an engine concern rather than a Canon rule.
+
+The canonical measurement source is the persistent PHPUnit/php-code-coverage text summary. Gating must require `Lines`, `Methods`, and `Branches` counters from that tool-owned report instead of approximating coverage with source/test counting heuristics.
