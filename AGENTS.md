@@ -20,7 +20,7 @@
 - Symfony `8.x+`.
 - Код использует возможности текущих PHP ^8.4 и Symfony ^8.*.
 - Обратная совместимость с PHP ниже 8.4 и Symfony 7 не является целью.
-- Основной namespace приложений и компонентов: `App\`.
+- `App\` является корнем namespace платформы; код компонента размещается под `App\<ComponentToken>\...`, где `<ComponentToken>` — имя компонента из первого token `composer.json:name` (например, `ordering/order` → `App\Ordering\...`).
 - Каждый PHP-файл использует `declare(strict_types=1);`.
 - Комментарии, docblock и технические тексты в коде пишутся на английском.
 
@@ -421,6 +421,8 @@ Generated `.codebase-memory/` artifacts являются локальным cach
 
 prod composer.prod.json
 dev composer.json
+
+For development `composer.json`, first-party sibling components resolved through local Composer `path` repositories use the exact dependency constraint `dev-master`. Unbounded `*@dev`/`*`, `dev-main`, arbitrary feature-branch constraints, and invented semver ranges are non-canonical for these local sibling dependencies. Third-party dependency versioning is outside this rule.
 
 ## App Runtime
 

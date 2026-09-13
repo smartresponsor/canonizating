@@ -2,7 +2,7 @@
 
 This directory is the authoritative non-executable architecture canon for the SmartResponsor platform.
 
-The platform baseline is Symfony 8, PHP 8.4, and the default Symfony `App\\` namespace model. Alternative domain namespace roots are not part of the canon. `src/Domain/` and Port/Adapter/Adaptor taxonomies are not default platform structures.
+The platform baseline is Symfony 8 and PHP 8.4. `App\\` is the platform namespace root; canonical component code is scoped beneath it as `App\\<ComponentToken>\\...`, where `<ComponentToken>` is the component identity from the first token of `composer.json:name` (for example, `ordering/order` maps to `App\\Ordering\\...`). Bare `App\\...` component code is not the component identity model, except for framework bootstrap types explicitly exempted by the canon. Alternative domain namespace roots are not part of the canon. `src/Domain/` and Port/Adapter/Adaptor taxonomies are not default platform structures.
 
 ## Contents
 

@@ -47,6 +47,7 @@ This matrix describes enforcement opportunities. It does not define normative me
 | Canon040 | `Canon040PhpTestCoverageRule.php` | runtime + warning | line >=80%, method >=80%, branch >=70%; HIGH_TEST_DEBT below 50/50/40 |
 | Canon041 | `Canon041BehavioralUiTestToolingRule.php` | hard | Symfony Test Pack + Panther + Playwright dependencies/config/execution contract |
 | Canon042 | `Canon042BehavioralUiCoverageRule.php` | runtime + warning | functional >=80%, behavioral >=80%, UI >=70%, critical =100%; HIGH_BEHAVIORAL_TEST_DEBT below 50/50/40 or critical <100% |
+| Canon043 | `Canon043DevelopmentComposerDependencyVersionRule.php` | hard | local sibling Composer path dependencies must use exact `dev-master` constraints |
 
 ## Classification
 
