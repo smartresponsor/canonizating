@@ -48,3 +48,14 @@ Executable PHP code coverage alone cannot demonstrate that routing, forms, secur
 ## Guardability
 
 Hard. Gating can deterministically verify the required Composer and npm development dependencies, Playwright configuration, Symfony applicability, and repository execution scripts.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "Symfony applicability metadata, composer.json, package.json, Playwright config path, and repository scripts"
+  extraction: [framework_dependency, symfony_boot_surfaces, php_test_dependencies, playwright_dependency, playwright_config_presence, execution_scripts]
+  body_read: prohibited
+  reasoning: none
+  escalation: [nonstandard_script_indirection, custom_symfony_bootstrap]
+  executable_evidence: ["Gating Canon041 findings"]
+```

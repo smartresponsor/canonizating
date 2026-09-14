@@ -19,3 +19,14 @@ Canonical components expose standalone Symfony boot surfaces such as `bin/consol
 
 ## Guardability
 Hard for expected boot/bundle surfaces where the repository is recognized as a canonical SmartResponsor Symfony component.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "standalone boot surfaces and reusable bundle declaration/registration surfaces"
+  extraction: [bin_console_presence, bundles_config_presence, kernel_surface, bundle_declarations]
+  body_read: candidates_only
+  reasoning: none
+  escalation: [custom_kernel_or_bundle_bootstrap]
+  executable_evidence: ["Gating Canon025 findings"]
+```

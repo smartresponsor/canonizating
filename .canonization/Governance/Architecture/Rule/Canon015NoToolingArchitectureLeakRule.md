@@ -19,3 +19,14 @@ One-shot migration helpers, repository automation, build/release scripts, diagno
 
 ## Guardability
 Hard for namespaced reusable PHP types in tooling roots; semantic for deciding whether a tool has become stable runtime behavior.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all PHP files under repository tooling roots"
+  extraction: [relative_path, namespace, declared_type_name, role_suffix, imports]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [namespaced_reusable_type_candidate, runtime_usage_reference, tooling_vs_runtime_role_ambiguous]
+  executable_evidence: ["Gating Canon015 findings"]
+```

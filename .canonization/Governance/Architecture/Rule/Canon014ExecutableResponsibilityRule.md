@@ -19,3 +19,14 @@ Small cohesive executable objects may directly perform trivial local transformat
 
 ## Guardability
 Semantic. Gating may flag unusually large executable objects or excessive collaborator/implementation breadth for review but cannot prove responsibility boundaries from size alone.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "command, handler, runner, invoker, and executable-entry PHP declarations"
+  extraction: [relative_path, declaration_name, method_count, size_metrics, collaborator_types, responsibility_markers]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [size_or_breadth_outlier, multiple_stable_responsibility_markers]
+  executable_evidence: ["Gating Canon014 candidates"]
+```

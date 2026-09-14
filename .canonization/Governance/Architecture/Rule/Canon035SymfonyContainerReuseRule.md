@@ -17,5 +17,16 @@ A two-request probe comparing container/cache artifacts is a useful validation o
 ## Guardability
 Hard for deterministic request-time invalidators and request/time/random-derived cache identity; warning for custom container identity requiring semantic review.
 
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "PHP/config candidates capable of rebuilding or varying Symfony container identity"
+  extraction: [cache_clear_patterns, kernel_reboot_patterns, container_identity_overrides, cache_directory_overrides]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [custom_container_identity, custom_cache_directory, request_or_time_dependent_candidate]
+  executable_evidence: ["Gating Canon035 findings", "optional two-request container/cache probe"]
+```
+
 ## Rationale
 Container compilation is application initialization work. Repeating it during ordinary unchanged requests converts framework boot work into request-path latency and is non-canonical.

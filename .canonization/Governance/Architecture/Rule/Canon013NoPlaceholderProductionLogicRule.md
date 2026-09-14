@@ -19,3 +19,14 @@ Abstract contracts, explicit test doubles, examples, fixtures, generated stubs, 
 
 ## Guardability
 Hard for known placeholder constructs; semantic for TODO/FIXME context and fake-success behavior.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all production implementation PHP and repository-owned runtime scripts"
+  extraction: [placeholder_exception_patterns, todo_fixme_markers, fake_success_patterns, commented_replacement_candidates]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [todo_fixme_hit, suspicious_success_fallback, test_double_or_example_ambiguity]
+  executable_evidence: ["Gating Canon013 findings"]
+```

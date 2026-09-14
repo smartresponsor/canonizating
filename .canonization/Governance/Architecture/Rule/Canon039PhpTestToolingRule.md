@@ -38,3 +38,14 @@ Test adequacy must be reproducibly measured by standard industry tooling rather 
 
 ## Guardability
 Hard. Gating validates the PHPUnit development dependency, supported PHPUnit configuration, explicit source coverage population, branch-coverage capability, and Composer execution scripts.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.json, PHPUnit config, and test/coverage execution scripts"
+  extraction: [phpunit_dependency, source_include_paths, uncovered_files_setting, branch_coverage_setting, coverage_output_path, composer_scripts]
+  body_read: prohibited
+  reasoning: none
+  escalation: [nonstandard_phpunit_config_or_script_indirection]
+  executable_evidence: ["Gating Canon039 findings"]
+```

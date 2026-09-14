@@ -19,3 +19,14 @@ The floor may move upward as newer maintained Symfony 8.x minors become the plat
 
 ## Guardability
 Hard for Composer constraints; current baseline: PHP `>=8.4`, Symfony `>=8.1` and `<9`.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.json PHP and Symfony constraints only"
+  extraction: [php_constraint, symfony_constraints]
+  body_read: prohibited
+  reasoning: none
+  escalation: [nonstandard_constraint_expression_parse_failure]
+  executable_evidence: ["Gating Canon026 findings", "Composer constraint validation"]
+```

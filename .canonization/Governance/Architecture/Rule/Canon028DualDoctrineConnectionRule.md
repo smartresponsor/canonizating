@@ -19,3 +19,14 @@ Pure libraries and components with no relational persistence are outside this ru
 
 ## Guardability
 Hard for applications declaring both roles; semantic/profile-aware for deciding whether a persistence-owning component legitimately needs only one role.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "Doctrine applicability and connection-role configuration metadata"
+  extraction: [persistence_applicability, connection_names, drivers, database_urls_or_paths]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [single_role_persistence_claim, connection_role_ownership_ambiguous]
+  executable_evidence: ["Gating Canon028 findings"]
+```

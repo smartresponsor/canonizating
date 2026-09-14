@@ -19,3 +19,14 @@ None for canonical production dependency resolution. Build tooling may generate 
 
 ## Guardability
 Hard. Gating validates presence of `composer.prod.json` for canonical SmartResponsor components and rejects path/symlink repositories in that manifest.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.prod.json package and repositories metadata only"
+  extraction: [manifest_presence, repository_type, repository_url, symlink_option]
+  body_read: prohibited
+  reasoning: none
+  escalation: [production_manifest_invalid]
+  executable_evidence: ["Gating Canon024 findings"]
+```

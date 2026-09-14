@@ -25,3 +25,14 @@ Natural words are not stemmed mechanically. `Billing` must not be forced into `B
 
 ## Guardability
 Semantic with partial hard enforcement through a component vocabulary profile.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all component-owned PHP declarations under canonical source roots"
+  extraction: [relative_path, declared_type_name, composer_subject_identity, configured_subject_vocabulary]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [ambiguous_natural_vocabulary, multiple_competing_subject_prefixes, declaration_parse_failure]
+  executable_evidence: ["Gating Canon000 findings"]
+```

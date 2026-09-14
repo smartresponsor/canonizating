@@ -93,3 +93,14 @@ For `cataloging/catalog`, PHP subject types use `Catalog*` while component-owned
 
 ## Rationale
 Standalone components are also assembled into larger applications and monolith-style distributions. Generic component-owned filenames can collide when configuration trees are copied, merged, imported, indexed, or aggregated. A stable left-edge subject namespace keeps ownership visible and prevents one component's configuration artifact from overwriting or shadowing another component's artifact.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer subject identity plus all config/**/*.yaml and config/**/*.yml filenames"
+  extraction: [composer_subject_token, relative_path, filename, conventional_bootstrap_name_match]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [generic_conventional_filename_with_ambiguous_ownership, unknown_vendor_bootstrap_convention]
+  executable_evidence: ["Gating Canon038 findings"]
+```

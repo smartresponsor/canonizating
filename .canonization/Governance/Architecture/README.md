@@ -30,3 +30,24 @@ The shared foreign key is `Canon003`; the mirrored semantic name makes human nav
 ## Canon admission boundary
 
 Canonization does not duplicate stable commodity checks already owned by standard ecosystem tooling. Formatting/style belongs to tools such as PHP-CS-Fixer or PHPCS; analyzable type/code defects belong to PHPStan/Rector-class tooling. A SmartResponsor Canon rule is justified when it defines platform-specific architecture, topology, ownership, lifecycle, or semantic behavior that ordinary tooling cannot determine from language syntax/types alone.
+
+## Evidence and read contour contract
+
+Every Canon rule carries an inline `Evidence Contract`. It is normative execution guidance for repository-reading automation and is part of the rule rather than a second registry.
+
+The contract separates concerns that must not be conflated:
+
+- **coverage** — the complete repository population that must be checked so the rule cannot become false-green;
+- **extraction** — the minimum facts that may be deterministically extracted from that population;
+- **body_read** — whether full artifact bodies may be exposed to semantic agent/LLM reading (`prohibited`, `candidates_only`, or a rule-specific targeted condition); deterministic parsers may still read bytes needed to extract the explicitly declared facts;
+- **reasoning** — whether semantic agent/LLM reasoning is permitted (`none` or `candidates_only` unless the rule explicitly says otherwise);
+- **escalation** — concrete evidence that invalidates the cheap contour and permits broader reading;
+- **executable_evidence** — deterministic gate/tool output that should replace semantic reasoning when available.
+
+Full coverage does not imply full semantic reading. Repository-wide deterministic traversal is valid when the rule needs complete population coverage, but automation must extract only the fields named by the rule and must not broaden the read contour merely "just in case".
+
+`body_read: prohibited` is a hard prohibition for ordinary evaluation of that rule. `body_read: candidates_only` permits reading only artifacts surfaced by the extraction/gate stage. Semantic reasoning must not be performed when `reasoning: none`.
+
+Automation may broaden beyond the declared contour only after observing a rule-specific escalation condition. Parse failure, ambiguous ownership, unknown extension points, custom source roots/bootstrap, cross-component call-chain dependence, or another explicit escalation signal may justify broader reading; repository familiarity or uncertainty alone does not.
+
+When executable evidence is declared, applicability must be established cheaply first, then the executable evidence should be run. Semantic inspection follows only when that evidence fails, is unavailable, or is explicitly classified as ambiguous by the rule.

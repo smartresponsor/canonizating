@@ -25,3 +25,14 @@ Compound names are allowed when the compound responsibility is real and evidence
 
 ## Guardability
 Semantic with hard checks for known conflicting suffix/path combinations.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all component-owned PHP declarations under src/"
+  extraction: [relative_path, declared_type_name, role_root, role_suffixes, extends_implements]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [compound_role_name, suffix_root_conflict, ambiguous_real_responsibility]
+  executable_evidence: ["Gating Canon006 findings"]
+```

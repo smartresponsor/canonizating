@@ -29,3 +29,14 @@ Production dependency constraints belong to the production Composer contract and
 
 ## Guardability
 Hard. Gating can resolve each local sibling `path` repository, read its `composer.json:name`, and compare the consumer's matching `require` or `require-dev` constraint with the exact canonical value `dev-master`.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "development composer.json local path repositories and directly referenced sibling composer.json identity only"
+  extraction: [repository_type, repository_url, sibling_composer_name, consumer_require_constraint]
+  body_read: prohibited
+  reasoning: none
+  escalation: [unresolvable_sibling_path, missing_or_invalid_sibling_composer_identity]
+  executable_evidence: ["Gating Canon043 findings"]
+```

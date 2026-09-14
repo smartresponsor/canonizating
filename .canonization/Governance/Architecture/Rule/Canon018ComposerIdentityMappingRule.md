@@ -19,3 +19,14 @@ Framework bootstrap types whose canonical names are imposed by Symfony conventio
 
 ## Guardability
 Hard. Gating derives both expected identities directly from `composer.json:name` and verifies the PSR-4 mapping plus subject-prefixed component types without a duplicate profile vocabulary.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.json identity and canonical PSR-4 mapping"
+  extraction: [composer_name, component_token, subject_token, psr4_namespace_root, psr4_path]
+  body_read: prohibited
+  reasoning: none
+  escalation: [invalid_composer_identity_shape, multiple_src_psr4_mappings, non_component_tooling_package]
+  executable_evidence: ["Gating Canon018 findings"]
+```

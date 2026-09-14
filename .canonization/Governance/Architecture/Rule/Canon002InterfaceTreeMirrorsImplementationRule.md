@@ -25,3 +25,14 @@ Mirrored trees make implementation/contract pairs predictable and avoid a second
 
 ## Guardability
 Hard where pairing is discoverable; semantic for standalone contracts.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all typed implementation and interface role paths"
+  extraction: [relative_path, technical_role_root, declaration_name, mirror_relative_path]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [standalone_contract_without_pair, ambiguous_role_family, declaration_parse_failure]
+  executable_evidence: ["Gating Canon002 findings"]
+```

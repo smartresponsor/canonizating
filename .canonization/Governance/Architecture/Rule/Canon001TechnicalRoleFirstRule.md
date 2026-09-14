@@ -25,3 +25,14 @@ No general subject-first exception is accepted. Infrastructure exceptions must b
 
 ## Guardability
 Hard for approved role roots; semantic where a repository introduces a legitimate new role root.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all paths below src/"
+  extraction: [relative_path, first_semantic_directory]
+  body_read: prohibited
+  reasoning: candidates_only
+  escalation: [unknown_role_root, framework_required_root_not_in_canon]
+  executable_evidence: ["Gating Canon001 findings"]
+```

@@ -14,5 +14,16 @@ Production may not silently become a differently named package, different compon
 ## Guardability
 Hard when both manifests exist. Existence and production repository mode remain owned by Canon024.
 
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.json and composer.prod.json identity fields only"
+  extraction: [name, type, psr4_autoload, php_constraint, symfony_constraints]
+  body_read: prohibited
+  reasoning: none
+  escalation: [manifest_parse_failure, multiple_identity_mappings]
+  executable_evidence: ["Gating Canon033 findings"]
+```
+
 ## Rationale
 Two manifests are two resolution modes of one component, not two independent package definitions.

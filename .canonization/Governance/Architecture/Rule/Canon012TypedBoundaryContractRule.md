@@ -19,3 +19,14 @@ Configuration readers, decoded external payloads, framework metadata, generic se
 
 ## Guardability
 Semantic with hard candidates. Gating may identify public mixed/array contracts in selected internal role roots, while profiles define legitimate dynamic boundaries.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "public and protected signatures in configured internal role roots"
+  extraction: [relative_path, declared_type, method_signature, parameter_types, return_type, phpdoc_shape_types]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [mixed_or_unshaped_array_candidate, framework_boundary_ambiguity, intentionally_dynamic_extension_point]
+  executable_evidence: ["Gating Canon012 findings"]
+```

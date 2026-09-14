@@ -105,3 +105,14 @@ The shared rule identity is `Canon036`; Gating enforces only the deterministic o
 
 ## Rationale
 Component repositories should stay focused on producing documentation alongside the code they own. Centralizing Antora assembly and publication in Documentating prevents fragmented portals, duplicated publishing infrastructure, inconsistent UI, and narrative drift while preserving component-local ownership of documentation content.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "documentation descriptor/playbook/UI/publishing paths plus narrative-duplication candidates"
+  extraction: [antora_descriptor_paths, playbook_paths, publishing_surface_paths, duplicate_narrative_candidates]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [possible_thin_wrapper_vs_duplicate_narrative, documentating_ownership_ambiguity]
+  executable_evidence: ["Gating Canon036 topology findings"]
+```

@@ -2,6 +2,8 @@
 
 This matrix describes enforcement opportunities. It does not define normative meaning; the corresponding `Rule/` file does.
 
+Repository-reading automation must also use the inline `## Evidence Contract` in that same `Rule/` file. The matrix intentionally does not duplicate coverage, extraction, body-read, reasoning, escalation, or executable-evidence contours; `CanonNNN` is the join key between Gating output and the normative rule-level contract.
+
 | Canon | Gating mirror | Guardability | Current status |
 | --- | --- | --- | --- |
 | Canon000 | `Canon000ComponentPrefixRule.php` | semantic + partial hard | implemented; profile-gated by `subject_prefix` |

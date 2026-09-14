@@ -25,3 +25,14 @@ A generic-looking token is not forbidden by spelling alone. `Value/` can be vali
 
 ## Guardability
 Primarily semantic/advisory; automation may detect known dumping patterns, redundant tokens, or ceremonial single-file folders.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "complete src/ namespace and directory tree"
+  extraction: [relative_path, namespace_tokens, sibling_counts, known_redundant_tokens]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [unknown_generic_token, single_file_folder_candidate, context_meaning_ambiguous]
+  executable_evidence: ["Gating Canon005 candidates"]
+```

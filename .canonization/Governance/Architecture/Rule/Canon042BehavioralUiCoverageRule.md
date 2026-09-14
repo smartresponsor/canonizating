@@ -77,3 +77,14 @@ Canon040 owns executable PHP line/method/branch coverage. Canon042 owns behavior
 ## Guardability
 
 Deterministic runtime warning gate over the canonical behavioral/UI coverage evidence file.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "var/coverage/behavioral-ui.json plus applicability and freshness metadata"
+  extraction: [functional_counters, behavioral_counters, ui_counters, critical_counters, evidence_timestamp, relevant_source_timestamp]
+  body_read: prohibited
+  reasoning: none
+  escalation: [missing_or_malformed_dimension, stale_evidence]
+  executable_evidence: ["Gating Canon042 parsed counters"]
+```

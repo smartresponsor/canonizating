@@ -48,3 +48,14 @@ PHPUnit/php-code-coverage owns collection and coverage semantics. Gating consume
 
 ## Guardability
 Deterministic runtime warning gate over standard PHPUnit text coverage summaries.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "persistent PHPUnit/php-code-coverage text summary plus production-source freshness metadata"
+  extraction: [lines_counter, methods_counter, branches_counter, evidence_timestamp, production_source_timestamp]
+  body_read: prohibited
+  reasoning: none
+  escalation: [missing_metric, malformed_or_stale_summary]
+  executable_evidence: ["Gating Canon040 parsed coverage counters"]
+```

@@ -19,3 +19,14 @@ Explicit compatibility surfaces may remain only when compatibility is an active 
 
 ## Guardability
 Composite: many subchecks are hard, while semantic completion across consumers may require cross-repository review.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all tracked source, configuration, test, template, fixture, tooling, and current-documentation text surfaces"
+  extraction: [configured_legacy_tokens, path_names, namespace_references, class_references, configuration_keys]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [legacy_token_hit, explicit_compatibility_surface, cross_repository_consumer_reference]
+  executable_evidence: ["Gating Canon010 findings", "repository text search results"]
+```

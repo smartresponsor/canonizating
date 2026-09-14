@@ -25,3 +25,14 @@ A genuine ValueObject, Entity, message contract, or view model must keep its act
 
 ## Guardability
 Hard for path/casing/suffix consistency; semantic for classifying arbitrary `Payload`, `Data`, or `Result` objects.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all PHP paths and declarations that are DTOs or DTO-like candidates"
+  extraction: [relative_path, declared_type_name, directory_tokens, type_suffix]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [payload_data_result_candidate, ambiguous_transport_role, declaration_parse_failure]
+  executable_evidence: ["Gating Canon003 findings"]
+```

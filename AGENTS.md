@@ -376,13 +376,17 @@ Doctrine mapping/schema validation
 
 ## 16. Порядок работы Codex
 
-1. Прочитай текущие инструкции и код.
-2. Составь краткий inventory.
-3. Определи целевую каноническую модель.
-4. Обнови implementation, callers, configuration и tests.
-5. Удали подтверждённые obsolete files.
-6. Запусти доступные проверки.
-7. Дай итоговый отчёт с командами и результатами.
+1. Прочитай repository-level инструкции и минимальные identity/applicability surfaces, необходимые для определения роли репозитория.
+2. Запусти дешёвый deterministic inventory/Gating contour до широкого чтения implementation.
+3. Для каждого failed/warning/suspicious `CanonNNN` прочитай соответствующий `Rule/CanonNNN...md` и его `## Evidence Contract`.
+4. Проверь полный `coverage` contour правила, но извлекай только перечисленные `extraction` facts. Полный deterministic scan не означает полный semantic body read.
+5. Соблюдай `body_read` и `reasoning` как ограничения: `prohibited`/`none` запрещают broad reading/reasoning для обычной проверки; `candidates_only` разрешает чтение/semantic review только доказанных candidates.
+6. Расширяй read contour только после появления одного из rule-specific `escalation` signals. Не расширяй его «на всякий случай».
+7. Если правило объявляет `executable_evidence`, сначала установи applicability дешёвыми фактами и используй executable gate/tool output вместо semantic reasoning; глубокое чтение выполняй только после failure/unavailable/ambiguous evidence.
+8. Определи целевую каноническую модель и выполни точечные изменения implementation, callers, configuration и tests.
+9. Удали только подтверждённые obsolete files.
+10. Запусти targeted verification, затем дешёвый complete rescan/Gating.
+11. Дай итоговый отчёт с командами и результатами.
 
 Изменение считается полным, когда старое имя или модель удалены не только из Entity, но также из runtime, Doctrine, YAML, serializer, Form, DTO, template, fixture, test и локальной документации.
 

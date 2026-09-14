@@ -19,3 +19,14 @@ Words such as Domain or Application may appear deeper in a path when they are ge
 
 ## Guardability
 Hard at `src/` root; semantic only for suspicious deeper reuse of layer vocabulary.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "complete src/ path tree"
+  extraction: [top_level_directory_names, deeper_layer_vocabulary_hits]
+  body_read: prohibited
+  reasoning: candidates_only
+  escalation: [deeper_layer_token_with_contextual_meaning]
+  executable_evidence: ["Gating Canon019 findings"]
+```

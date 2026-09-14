@@ -21,3 +21,14 @@ An individual migration is normally a historical delta. The invariant applies to
 Persistence-owning repositories must expose an executable Composer/CI schema-parity command that performs Doctrine mapping/schema validation and migration-currentness/diff verification against an isolated or disposable database environment.
 
 ## Guardability
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "Doctrine applicability metadata and executable schema-parity contract"
+  extraction: [orm_dependency_presence, migrations_dependency_presence, parity_script_capabilities]
+  body_read: targeted_on_failure
+  reasoning: none_until_executable_failure
+  escalation: [executable_parity_failure, custom_doctrine_factory, custom_metadata_mapping, parity_command_unavailable]
+  executable_evidence: ["Doctrine schema validation and migration parity command output", "Gating Canon030 findings"]
+```

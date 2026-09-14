@@ -19,3 +19,14 @@ Historical records, migration notes, changelogs, and explicitly versioned docume
 
 ## Guardability
 Composite: hard for configured stale tokens and broken examples/references; semantic for prose that is technically valid but architecturally obsolete.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "authoritative current documentation, README examples, PHPDoc, and operational/configuration examples"
+  extraction: [configured_stale_tokens, namespace_references, path_references, command_names, configuration_keys]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [stale_token_hit, runtime_documentation_mismatch, historical_vs_current_status_ambiguous]
+  executable_evidence: ["Gating Canon017 findings"]
+```

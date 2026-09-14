@@ -19,3 +19,14 @@ Third-party packages and SmartResponsor packages not present as local sibling wo
 
 ## Guardability
 Hard for declared local SmartResponsor `path` repositories: each must explicitly enable `symlink: true`.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.json repositories section only"
+  extraction: [repository_type, repository_url, options_symlink]
+  body_read: prohibited
+  reasoning: none
+  escalation: [local_path_repository_shape_invalid]
+  executable_evidence: ["Gating Canon023 findings"]
+```

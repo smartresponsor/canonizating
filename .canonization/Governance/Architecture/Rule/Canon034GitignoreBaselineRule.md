@@ -14,5 +14,16 @@ This rule does not require one literal shared `.gitignore` template and does not
 ## Guardability
 Deterministic. Gating classifies recognized ignore patterns by baseline category and reports uncovered categories.
 
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: ".gitignore plus minimal stack/tool presence metadata"
+  extraction: [ignore_patterns, stack_presence, generated_surface_categories]
+  body_read: prohibited
+  reasoning: none
+  escalation: [nonstandard_equivalent_ignore_pattern]
+  executable_evidence: ["Gating Canon034 findings"]
+```
+
 ## Rationale
 The architectural contract is that generated/local state stays outside source history; exact ignore syntax remains repository-specific.

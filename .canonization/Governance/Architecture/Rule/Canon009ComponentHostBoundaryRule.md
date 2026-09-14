@@ -25,3 +25,14 @@ The Host repository itself is not subject to the standalone side of this boundar
 
 ## Guardability
 Hard plus semantic profile configuration identifying Host-owned namespaces.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer metadata plus all component PHP namespace dependencies"
+  extraction: [imports, fully_qualified_names, extends_implements, host_namespace_profile]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [unknown_host_ownership, extension_point_ambiguity, indirect_cross_component_call_chain]
+  executable_evidence: ["Gating Canon009 findings"]
+```

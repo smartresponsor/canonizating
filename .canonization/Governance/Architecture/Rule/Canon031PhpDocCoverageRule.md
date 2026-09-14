@@ -24,3 +24,14 @@ Gating measures presence and minimal semantic substance only. It does not decide
 
 ## Guardability
 Deterministic warning gate. Eligible classes and methods are counted from PHP source; DocBlocks are classified as `missing`, `tags_only`, `placeholder`, `too_short`, or `covered`.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all PHP class-like declarations and named methods under production source roots"
+  extraction: [relative_path, declaration_kind, declaration_name, adjacent_docblock, minimal_description_classification]
+  body_read: prohibited
+  reasoning: none
+  escalation: [token_parse_failure, questionable_documentation_quality_after_threshold_measurement]
+  executable_evidence: ["Gating Canon031 coverage counters", "representative weak symbols"]
+```

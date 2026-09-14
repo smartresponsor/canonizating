@@ -13,5 +13,16 @@ Having a decorative Bundle class that is never registered by standalone mode is 
 ## Guardability
 Hard. Gating resolves `src/*Bundle.php` identities and verifies registration through Kernel/component PHP bundle configuration.
 
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "bundle declarations plus standalone bundle-registration surfaces"
+  extraction: [bundle_class_names, registration_references, kernel_bundle_config_surface]
+  body_read: candidates_only
+  reasoning: none
+  escalation: [custom_bundle_registration_loader]
+  executable_evidence: ["Gating Canon032 findings"]
+```
+
 ## Rationale
 Dual runtime mode requires the reusable bundle surface to be executable architecture, not merely a packaging artifact.

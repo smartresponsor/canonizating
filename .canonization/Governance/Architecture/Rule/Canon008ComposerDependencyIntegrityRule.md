@@ -25,3 +25,14 @@ Dev-only tests/tools may use dev dependencies when the referenced code is not lo
 
 ## Guardability
 Hard when Gating has a namespace-to-package ownership map/profile.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer dependency metadata plus all production PHP namespace references"
+  extraction: [composer_require_packages, imports, fully_qualified_foreign_names, namespace_ownership_map]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [unknown_namespace_owner, optional_integration_ambiguity, dynamic_class_reference]
+  executable_evidence: ["Gating Canon008 findings"]
+```

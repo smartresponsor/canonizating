@@ -19,3 +19,14 @@ Best-effort telemetry, optional enrichment, probing, and other explicitly non-au
 
 ## Guardability
 Hard for empty catches and known swallow patterns; semantic for deciding whether a fallback is contractually valid.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all production PHP files"
+  extraction: [catch_blocks, exception_suppression_patterns, fallback_return_patterns, error_handling_candidates]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [fallback_contract_ambiguous, candidate_behavior_depends_on_callee, indirect_error_translation]
+  executable_evidence: ["Gating Canon011 candidate paths and patterns"]
+```

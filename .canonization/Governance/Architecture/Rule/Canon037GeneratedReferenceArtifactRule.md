@@ -82,3 +82,14 @@ The shared rule identity is `Canon037`.
 
 ## Rationale
 Generated reference/configuration output duplicates information already owned by authoritative configuration and framework metadata. Versioning such derivatives creates noisy diffs, stale snapshots, merge churn, and the risk that developers mistake generated output for editable source. Canonical repositories keep reproducible technical output disposable and keep one authoritative configuration source.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "Git tracking state for config/reference.php"
+  extraction: [artifact_presence, git_tracking_state]
+  body_read: prohibited
+  reasoning: none
+  escalation: [git_tracking_state_unavailable]
+  executable_evidence: ["Gating Canon037 Git tracking evidence"]
+```

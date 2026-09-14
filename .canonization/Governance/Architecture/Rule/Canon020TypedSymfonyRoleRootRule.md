@@ -19,3 +19,14 @@ True framework/bootstrap roots with their own stable technical meaning, such as 
 
 ## Guardability
 Hard for known generic root folders and known suffix/root mismatches; semantic for newly invented generic buckets.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all src/ top-level paths plus declaration role suffixes"
+  extraction: [relative_path, top_level_role_root, declared_type_name, role_suffix, extends_implements]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [unknown_generic_root, framework_bootstrap_exception_candidate, suffix_root_ambiguity]
+  executable_evidence: ["Gating Canon020 findings"]
+```

@@ -19,3 +19,14 @@ EasyAdmin CRUD controllers and routes used for administrative/back-office surfac
 
 ## Guardability
 Semantic with hard candidates. Gating may flag local `*Crud*` machinery outside Cruding while suppressing EasyAdmin-derived/configured CRUD surfaces.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all non-Cruding PHP declarations, routes, and CRUD-named configuration surfaces"
+  extraction: [relative_path, declared_type_name, crud_vocabulary, route_names, route_paths, extends_implements]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [crud_candidate_not_easyadmin, generic_vs_business_operation_ambiguous, route_ownership_ambiguous]
+  executable_evidence: ["Gating Canon021 candidates"]
+```

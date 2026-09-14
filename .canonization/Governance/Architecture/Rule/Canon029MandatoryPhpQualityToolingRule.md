@@ -23,3 +23,14 @@ Canonization does not duplicate formatter or static-analysis rules. It guarantee
 
 ## Guardability
 Hard. Gating validates dev dependencies, discovers supported config files, and inspects Composer scripts for executable PHP-CS-Fixer and PHPStan commands.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.json require-dev/scripts plus supported quality-config path existence"
+  extraction: [dev_dependencies, composer_scripts, php_cs_fixer_config_presence, phpstan_config_presence]
+  body_read: prohibited
+  reasoning: none
+  escalation: [nonstandard_repository_owned_tool_config]
+  executable_evidence: ["Gating Canon029 findings"]
+```

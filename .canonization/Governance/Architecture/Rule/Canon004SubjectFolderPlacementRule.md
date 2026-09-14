@@ -24,3 +24,14 @@ Use platform vocabulary rather than mechanical stemming: `Faceting -> Facet`, `C
 
 ## Guardability
 Hard with a component vocabulary profile and explicit Entity exception; semantic for judging legitimate contextual meaning.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all src/ directory paths"
+  extraction: [relative_path, directory_tokens, component_subject_identity, technical_role_root]
+  body_read: prohibited
+  reasoning: candidates_only
+  escalation: [early_subject_token_with_possible_semantic_context, entity_infrastructure_exception_candidate]
+  executable_evidence: ["Gating Canon004 findings"]
+```

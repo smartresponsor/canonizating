@@ -19,3 +19,14 @@ Long-lived public backward compatibility may remain when it is an intentional su
 
 ## Guardability
 Semantic with hard metadata candidates. Gating may flag compatibility/legacy/deprecated surfaces that lack an accepted lifecycle marker.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "all tracked current source and configuration surfaces capable of carrying compatibility APIs or mappings"
+  extraction: [deprecated_markers, legacy_aliases, wrappers, transitional_mappings, lifecycle_metadata]
+  body_read: candidates_only
+  reasoning: candidates_only
+  escalation: [compatibility_candidate_without_lifecycle, public_backward_compatibility_claim, removal_condition_ambiguous]
+  executable_evidence: ["Gating Canon016 candidates"]
+```

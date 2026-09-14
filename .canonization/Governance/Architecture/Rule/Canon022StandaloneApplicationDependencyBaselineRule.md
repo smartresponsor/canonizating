@@ -21,3 +21,14 @@ A repository is treated as a standalone Symfony application when it has Symfony 
 Pure libraries, infrastructure tooling, and non-standalone component packages without Symfony application boot surfaces are outside this baseline unless explicitly promoted to standalone applications.
 
 ## Guardability
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "composer.json plus standalone Symfony boot-surface presence"
+  extraction: [composer_require_packages, bin_console_presence, bundles_config_presence]
+  body_read: prohibited
+  reasoning: none
+  escalation: [custom_symfony_bootstrap, standalone_applicability_ambiguous]
+  executable_evidence: ["Gating Canon022 findings"]
+```
