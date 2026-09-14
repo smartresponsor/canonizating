@@ -19,7 +19,7 @@ The canonical behavioral/UI coverage evidence contains four independent dimensio
 - `ui`: interactive user-interface surfaces exercised in a real browser;
 - `critical`: workflows explicitly classified as critical and exercised end-to-end.
 
-Each dimension records `covered` and `total` counts. No dimension may compensate for debt in another.
+Each dimension records explicit stable identifiers for the eligible surface inventory and the covered subset. Gating derives `covered` and `total` counters from those inventories; a repository may not supply opaque percentages or unverifiable counters. No dimension may compensate for debt in another.
 
 ## Canonical Thresholds
 
@@ -43,26 +43,34 @@ The classification is intended for remediation-queue admission. Queue ordering a
 
 The executable contract is a persistent repository-local JSON evidence file at `var/coverage/behavioral-ui.json`.
 
-The file is produced by the repository's test/coverage workflow and consumed by Gating. It must contain integer `covered` and `total` counters for all four dimensions. Gating must not infer those counters by counting test files, test methods, routes, controllers, DOM nodes, or Playwright specs.
+The file is produced by a repository-owned package script and consumed by Gating. Canonical evidence uses schema `behavioral-ui-coverage-v2`, identifies the producing Composer/npm script, records `generatedAt`, and provides explicit `eligible` and `covered` identifier lists for all four dimensions. Gating derives counters from those inventories, rejects duplicate identifiers or covered identifiers outside the denominator, and does not accept legacy counter-only JSON as verified coverage.
 
 Example semantic shape:
 
 ```json
 {
-  "functional": {"covered": 8, "total": 10},
-  "behavioral": {"covered": 4, "total": 5},
-  "ui": {"covered": 7, "total": 10},
-  "critical": {"covered": 3, "total": 3}
+  "schema": "behavioral-ui-coverage-v2",
+  "generatedAt": "2026-09-13T21:00:00-05:00",
+  "producer": {
+    "kind": "repository_script",
+    "script": "test:behavioral-coverage"
+  },
+  "dimensions": {
+    "functional": {"eligible": ["route:retail_new"], "covered": ["route:retail_new"]},
+    "behavioral": {"eligible": ["workflow:need_to_order"], "covered": ["workflow:need_to_order"]},
+    "ui": {"eligible": ["surface:retail_form"], "covered": ["surface:retail_form"]},
+    "critical": {"eligible": ["workflow:checkout"], "covered": ["workflow:checkout"]}
+  }
 }
 ```
 
-The producer that establishes the denominator is intentionally outside Canon042. It may use route inventory, declared workflow manifests, UI action inventories, Playwright metadata/reporters, Panther/PHPUnit metadata, or another deterministic repository-owned mechanism. What is canonical is that the resulting counters are explicit, reproducible, and not guessed by Gating.
+The producer that establishes the denominator remains repository-owned and intentionally outside Canon042. It may use route inventory, declared workflow manifests, UI action inventories, Playwright metadata/reporters, Panther/PHPUnit metadata, or another deterministic mechanism. The producer script itself must be declared in `composer.json` or `package.json` so another execution can reproduce the evidence path. Canon042 validates the resulting explicit inventories; it does not invent the denominator.
 
 ## Missing or Stale Evidence
 
 If Canon041 applies but no valid behavioral/UI coverage evidence exists, Gating reports a warning rather than fabricating a percentage.
 
-If evidence is malformed, internally inconsistent, or stale relative to application source/UI files, Gating reports incomplete/invalid evidence.
+If evidence is malformed, internally inconsistent, uses the legacy counter-only shape, references a producer script that is not declared by the repository, or is stale relative to application source/UI files according to `generatedAt`, Gating reports incomplete/invalid evidence.
 
 ## Relationship to Framework-Owned Metrics
 
@@ -72,7 +80,7 @@ Playwright JSON/JUnit reports are valid execution evidence and may be inputs to 
 
 ## Responsibility Boundary
 
-Canon040 owns executable PHP line/method/branch coverage. Canon042 owns behavioral/application-surface coverage evidence. Gating validates the persistent counters and thresholds but does not invent a proprietary crawler-based coverage metric.
+Canon040 owns executable PHP line/method/branch coverage. Canon042 owns behavioral/application-surface coverage evidence. Gating validates the persistent inventories, derives counters, validates provenance/freshness, and applies thresholds but does not invent a proprietary crawler-based coverage metric.
 
 ## Guardability
 
@@ -81,10 +89,10 @@ Deterministic runtime warning gate over the canonical behavioral/UI coverage evi
 ## Evidence Contract
 ```yaml
 evidence_contract:
-  coverage: "var/coverage/behavioral-ui.json plus applicability and freshness metadata"
-  extraction: [functional_counters, behavioral_counters, ui_counters, critical_counters, evidence_timestamp, relevant_source_timestamp]
+  coverage: "schema-versioned var/coverage/behavioral-ui.json with declared repository producer, explicit eligible/covered inventories, applicability and generatedAt freshness metadata"
+  extraction: [schema, producer_kind, producer_script, generated_at, functional_inventory, behavioral_inventory, ui_inventory, critical_inventory, relevant_source_timestamp]
   body_read: prohibited
   reasoning: none
-  escalation: [missing_or_malformed_dimension, stale_evidence]
-  executable_evidence: ["Gating Canon042 parsed counters"]
+  escalation: [legacy_or_unknown_schema, undeclared_producer_script, missing_or_malformed_inventory, covered_identifier_outside_denominator, stale_evidence]
+  executable_evidence: ["Gating Canon042 inventory-derived counters and provenance verdict"]
 ```

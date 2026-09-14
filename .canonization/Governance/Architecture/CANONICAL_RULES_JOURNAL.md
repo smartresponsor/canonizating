@@ -123,3 +123,9 @@ Materialized rule: Canon044.
 Objecting ownership vocabulary and persisted field vocabulary are now explicitly separated. Logical field-pack identifiers and reusable PHP ownership types retain `object_*` / `Object*` names, while Doctrine-mapped system fields and physical database columns use flat entity-native names such as `created_at`, `uuid`, `status`, and `version`. `object_*`, `objecting_*`, `$object...`, and `$objecting...` field names are non-canonical in both `objecting/object` itself and its Composer consumers.
 
 Historical migrations, archives, schema mirrors, generated artifacts, or previous implementations do not authorize restoration of prefixed active fields. Gating provides the executable hard check for current Doctrine mapping.
+
+## 2026-09-13 — Canon031/Canon042 denominator calibration
+
+Canon031 was narrowed from all named methods to contract-significant public/protected behavior. Private helpers, PHP magic methods, constructors/destructors, and conventional `get*`/`set*`/`is*`/`has*` accessors are excluded from the method denominator and reported separately. This prevents the rule from rewarding ceremonial comments on self-describing accessors while preserving the 70% requirement for classes and meaningful callable contracts.
+
+Canon042 moved from trusted `covered`/`total` counters to `behavioral-ui-coverage-v2`. A repository-owned Composer/npm script now identifies itself as the evidence producer; each dimension publishes explicit `eligible` and `covered` stable identifiers plus `generatedAt`. Gating derives percentages from those inventories, rejects duplicate/out-of-denominator claims, rejects undeclared producers, and treats legacy counter-only JSON as unverifiable warning-level evidence.

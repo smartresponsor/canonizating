@@ -37,7 +37,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon028 | `Canon028DualDoctrineConnectionRule.php` | hard + semantic | implemented; checks `data`/PostgreSQL and `infra`/SQLite roles when persistence is present |
 | Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard | implemented; requires PHP-CS-Fixer + PHPStan dependencies, configs, and Composer execution scripts |
 | Canon030 | `Canon030DoctrineSchemaParityRule.php` | hard + runtime | implemented; requires an executable Doctrine schema-parity contract for ORM+migrations repositories |
-| Canon031 | `Canon031PhpDocCoverageRule.php` | warning | implemented; measures meaningful class/method PHPDoc coverage separately with a 70% threshold |
+| Canon031 | `Canon031PhpDocCoverageRule.php` | warning | meaningful class + contract-method PHPDoc coverage >=70%; private helpers, magic methods, constructors/destructors, and conventional accessors excluded and reported separately |
 | Canon032 | `Canon032BundleRegistrationRule.php` | hard | implemented; requires reusable component bundle registration in standalone mode |
 | Canon033 | `Canon033ComposerManifestIdentityParityRule.php` | hard | implemented; compares development/production Composer identity without requiring identical dependencies |
 | Canon034 | `Canon034GitignoreBaselineRule.php` | hard + warning | implemented; missing `.gitignore` fails and incomplete ignore categories warn |
@@ -48,7 +48,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon039 | `Canon039PhpTestToolingRule.php` | hard | PHPUnit dependency/config/source/branch/persistent text-summary execution contract |
 | Canon040 | `Canon040PhpTestCoverageRule.php` | runtime + warning | line >=80%, method >=80%, branch >=70%; HIGH_TEST_DEBT below 50/50/40 |
 | Canon041 | `Canon041BehavioralUiTestToolingRule.php` | hard | Symfony Test Pack + Panther + Playwright dependencies/config/execution contract |
-| Canon042 | `Canon042BehavioralUiCoverageRule.php` | runtime + warning | functional >=80%, behavioral >=80%, UI >=70%, critical =100%; HIGH_BEHAVIORAL_TEST_DEBT below 50/50/40 or critical <100% |
+| Canon042 | `Canon042BehavioralUiCoverageRule.php` | runtime + warning | schema-v2 repository-script provenance + explicit eligible/covered inventories; functional >=80%, behavioral >=80%, UI >=70%, critical =100%; legacy counter-only evidence is unverifiable |
 | Canon043 | `Canon043DevelopmentComposerDependencyVersionRule.php` | hard | local sibling Composer path dependencies must use exact `dev-master` constraints |
 | Canon044 | `Canon044ObjectingSystemFieldNamingRule.php` | hard | Objecting system fields use entity-native Doctrine field/column names without `object` or `objecting` ownership prefixes |
 
