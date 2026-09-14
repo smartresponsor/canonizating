@@ -87,6 +87,8 @@
 - Владеет повторно используемыми системными полями.
 - Владеет их Doctrine mapping, traits, interfaces и публичным API.
 - Consumer Entity подключает Objecting pack вместо локальной копии системного поля.
+- Имена самих системных полей и физических Doctrine columns являются entity-native и не имеют префикса `object`/`objecting`: `created_at`, `uuid`, `status`, `version`, а не `object_created_at`, `object_uuid`, `object_status`, `object_version`.
+- Префикс `Object`/`object_` остаётся допустимым для ownership/type vocabulary (`ObjectAuditEmbeddable`, `object_audit`, traits/interfaces/packs), но не для persisted field names.
 
 ### Gating
 

@@ -50,6 +50,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon041 | `Canon041BehavioralUiTestToolingRule.php` | hard | Symfony Test Pack + Panther + Playwright dependencies/config/execution contract |
 | Canon042 | `Canon042BehavioralUiCoverageRule.php` | runtime + warning | functional >=80%, behavioral >=80%, UI >=70%, critical =100%; HIGH_BEHAVIORAL_TEST_DEBT below 50/50/40 or critical <100% |
 | Canon043 | `Canon043DevelopmentComposerDependencyVersionRule.php` | hard | local sibling Composer path dependencies must use exact `dev-master` constraints |
+| Canon044 | `Canon044ObjectingSystemFieldNamingRule.php` | hard | Objecting system fields use entity-native Doctrine field/column names without `object` or `objecting` ownership prefixes |
 
 ## Classification
 

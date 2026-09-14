@@ -115,3 +115,11 @@ Canon041 extends the executable testing baseline for standalone Symfony applicat
 Canon042 deliberately separates behavioral/UI coverage from Canon040 PHP executable coverage. Passing test counts are not treated as coverage. Instead, a repository-owned coverage producer must write explicit `covered`/`total` counters for functional application surfaces, behavioral workflows, interactive UI surfaces, and critical workflows to `var/coverage/behavioral-ui.json`. Gating consumes those counters but does not infer denominators from test files, routes, controllers, or Playwright spec counts.
 
 Initial targets are functional >=80%, behavioral >=80%, UI >=70%, and critical workflow coverage =100%. `HIGH_BEHAVIORAL_TEST_DEBT` is raised below 50% functional, 50% behavioral, 40% UI, or whenever critical workflow coverage is below 100%. Missing, stale, or invalid evidence is warning-level debt so repositories can be brought into compliance incrementally.
+
+## 2026-09-13 — Objecting system-field naming boundary
+
+Materialized rule: Canon044.
+
+Objecting ownership vocabulary and persisted field vocabulary are now explicitly separated. Logical field-pack identifiers and reusable PHP ownership types retain `object_*` / `Object*` names, while Doctrine-mapped system fields and physical database columns use flat entity-native names such as `created_at`, `uuid`, `status`, and `version`. `object_*`, `objecting_*`, `$object...`, and `$objecting...` field names are non-canonical in both `objecting/object` itself and its Composer consumers.
+
+Historical migrations, archives, schema mirrors, generated artifacts, or previous implementations do not authorize restoration of prefixed active fields. Gating provides the executable hard check for current Doctrine mapping.
