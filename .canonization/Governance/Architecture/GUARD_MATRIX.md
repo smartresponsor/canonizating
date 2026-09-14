@@ -49,8 +49,9 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon040 | `Canon040PhpTestCoverageRule.php` | runtime + warning | line >=80%, method >=80%, branch >=70%; HIGH_TEST_DEBT below 50/50/40 |
 | Canon041 | `Canon041BehavioralUiTestToolingRule.php` | hard | Symfony Test Pack + Panther + Playwright dependencies/config/execution contract |
 | Canon042 | `Canon042BehavioralUiCoverageRule.php` | runtime + warning | schema-v2 repository-script provenance + explicit eligible/covered inventories; functional >=80%, behavioral >=80%, UI >=70%, critical =100%; legacy counter-only evidence is unverifiable |
-| Canon043 | `Canon043DevelopmentComposerDependencyVersionRule.php` | hard | local sibling Composer path dependencies must use exact `dev-master` constraints |
+| Canon043 | `Canon043DevelopmentComposerDependencyVersionRule.php` | hard | local sibling Composer path dependencies must use exact `dev-master` constraints and path-version identity |
 | Canon044 | `Canon044ObjectingSystemFieldNamingRule.php` | hard | Objecting system fields use entity-native Doctrine field/column names without `object` or `objecting` ownership prefixes |
+| Canon045 | `Canon045DevelopmentComposerRepositoryClosureRule.php` | hard | root development Composer manifest must expose the complete reachable local first-party path-repository closure |
 
 ## Classification
 

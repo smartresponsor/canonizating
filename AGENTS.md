@@ -428,7 +428,7 @@ Generated `.codebase-memory/` artifacts являются локальным cach
 prod composer.prod.json
 dev composer.json
 
-For development `composer.json`, first-party sibling components resolved through local Composer `path` repositories use the exact dependency constraint `dev-master`. Unbounded `*@dev`/`*`, `dev-main`, arbitrary feature-branch constraints, and invented semver ranges are non-canonical for these local sibling dependencies. Third-party dependency versioning is outside this rule.
+For development `composer.json`, roots that use first-party sibling Composer `path` repositories declare `"minimum-stability": "dev"` and `"prefer-stable": true`. First-party sibling components use the exact dependency constraint `dev-master`. Each such path repository also pins `options.versions[package]` to `dev-master`, so feature-branch checkouts do not change Composer package identity. Unbounded `*@dev`/`*`, `dev-main`, arbitrary feature-branch constraints, and invented semver ranges are non-canonical for these local sibling dependencies. Because Composer ignores dependency-owned `repositories`, the root development manifest also exposes the complete reachable first-party local path-repository closure. Transitive repository visibility does not by itself make the transitive package a direct root dependency. Third-party dependency versioning is outside these rules.
 
 ## App Runtime
 

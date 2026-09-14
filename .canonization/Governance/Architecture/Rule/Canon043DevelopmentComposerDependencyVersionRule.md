@@ -6,7 +6,7 @@ Canon: `Canon043`
 Gating mirror: `Canon043DevelopmentComposerDependencyVersionRule.php`
 
 ## Requirement
-When a development `composer.json` connects a sibling SmartResponsor component through a local Composer `path` repository, the corresponding package dependency in `require` or `require-dev` must use the exact constraint `dev-master`.
+When a development `composer.json` connects sibling SmartResponsor components through local Composer `path` repositories, the root manifest uses `"minimum-stability": "dev"` with `"prefer-stable": true`. Any matching package dependency in `require` or `require-dev` must use the exact constraint `dev-master`. Each local first-party path repository must declare `options.versions[<package-name>] = "dev-master"` so Composer keeps the canonical package identity even when the sibling working tree is checked out on a feature branch.
 
 This is the canonical development branch contract for first-party sibling components. The local `path` repository provides the working tree, `options.symlink=true` provides live source linkage under Canon023, and `dev-master` provides a bounded, explicit Composer branch identity instead of an unbounded development constraint.
 
@@ -28,7 +28,7 @@ A local repository entry points to `../Objecting`, while the consumer declares `
 Production dependency constraints belong to the production Composer contract and are not governed by this development-only rule. A local path repository that does not resolve to a valid sibling Composer package is reported as a repository/configuration defect rather than silently assigned a guessed package identity.
 
 ## Guardability
-Hard. Gating can resolve each local sibling `path` repository, read its `composer.json:name`, and compare the consumer's matching `require` or `require-dev` constraint with the exact canonical value `dev-master`.
+Hard. Gating can resolve each local sibling `path` repository, read its `composer.json:name`, verify `options.versions[package] = dev-master`, and compare any matching consumer `require` or `require-dev` constraint with the exact canonical value `dev-master`.
 
 ## Evidence Contract
 ```yaml
