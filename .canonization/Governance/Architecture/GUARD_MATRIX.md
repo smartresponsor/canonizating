@@ -52,6 +52,13 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon043 | `Canon043DevelopmentComposerDependencyVersionRule.php` | hard | local sibling Composer path dependencies must use exact `dev-master` constraints and path-version identity |
 | Canon044 | `Canon044ObjectingSystemFieldNamingRule.php` | hard | Objecting system fields use entity-native Doctrine field/column names without `object` or `objecting` ownership prefixes |
 | Canon045 | `Canon045DevelopmentComposerRepositoryClosureRule.php` | hard | root development Composer manifest must expose the complete reachable local first-party path-repository closure |
+| Canon046 | `Canon046VendorIdentityRule.php` | hard + semantic | active platform identity uses `VendorEntity.id`, `vendorId`, and `vendor_id`; tenant identity aliases are non-canonical |
+| Canon047 | `Canon047RepositoryOwnsDoctrineManagerRule.php` | hard | direct Doctrine manager infrastructure is repository-owned |
+| Canon048 | `Canon048EntityDoesNotCrossAsyncBoundaryRule.php` | hard | project Entity types do not cross asynchronous Message transport boundaries; Symfony Console Command is not transport |
+| Canon049 | `Canon049EntityHasNoOrchestrationDependencyRule.php` | hard | Entity classes do not depend on orchestration/runtime side-effect roles |
+| Canon050 | `Canon050NoRuntimeContainerAccessRule.php` | hard | runtime container/service-locator access is restricted to bootstrap integration |
+| Canon051 | `Canon051RepositoryHasNoOrchestrationDependencyRule.php` | hard | Repository classes do not depend on application orchestration roles |
+| Canon052 | `Canon052GatingIntegrationRule.php` | hard | canonical consumers install Gating, symlink it in development, package it in production metadata, and include it in aggregate quality verification |
 
 ## Classification
 
