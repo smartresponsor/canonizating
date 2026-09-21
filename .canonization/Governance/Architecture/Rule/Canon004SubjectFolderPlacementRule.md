@@ -17,7 +17,7 @@ Flat terminal classes such as `src/Entity/Facet.php` and `src/Enum/FacetType.php
 The repository already supplies component context. Repeating the component too early competes with technical-role-first topology.
 
 ## E1 — Entity infrastructure exception
-`src/Entity/<Component>/...` is the only currently accepted early component-folder exception because multiple Doctrine connections/entity managers, mappings, and aliases can require grouping directly below `Entity/`. This does not extend to `Service`, `Form`, `DTO`, `Repository`, `Policy`, `Builder`, `Responder`, or other technical roots.
+`src/Entity/<DomainToken>/<EntityClass>.php` is the only currently accepted early domain-folder exception because multiple Doctrine connections/entity managers, mappings, and aliases can require one mapping/domain token directly below `Entity/`. The token is the Doctrine/entity-domain grouping (for example `Entity/Attachment/`), not an architectural layer such as `Persistence`. Entity paths must not introduce another directory below that domain token: `src/Entity/<DomainToken>/<Direction>/<EntityClass>.php` is non-canonical. Flat terminal entities such as `src/Entity/Facet.php` remain valid. This exception does not extend to `Service`, `Form`, `DTO`, `Repository`, `Policy`, `Builder`, `Responder`, or other technical roots.
 
 ## E2 — Natural component vocabulary
 Use platform vocabulary rather than mechanical stemming: `Faceting -> Facet`, `Cataloging -> Catalog`, `Carting -> Cart`. Natural words such as `Billing` must not be forced into `Bill`. A redundant `src/Service/Billing/...` bucket inside Billing is still non-canonical if it adds no distinction.
