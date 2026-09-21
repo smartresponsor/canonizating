@@ -12,8 +12,12 @@ The contract complements Canon039 rather than replacing it. Canon039 continues t
 
 ## Required PHP Development Dependencies
 
-- `symfony/test-pack` in `composer.json:require-dev` for the standard Symfony application-testing stack used by `WebTestCase` and related BrowserKit assertions.
+- The standard Symfony application-testing stack used by `WebTestCase` and BrowserKit assertions must be present in `composer.json:require-dev`. Either of these manifest forms is canonical:
+  - packed: `symfony/test-pack`;
+  - Symfony Flex-unpacked: both `symfony/browser-kit` and `symfony/css-selector` declared directly.
 - `symfony/panther` in `composer.json:require-dev` for real-browser Symfony end-to-end testing.
+
+Symfony Flex normally unpacks packs into their concrete dependencies. Canon041 therefore verifies the testing capability rather than requiring the transient pack metapackage to survive Flex normalization.
 
 `phpunit/phpunit` remains independently required by Canon039.
 
