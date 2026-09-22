@@ -6,7 +6,7 @@ Canon: `Canon001`
 Gating mirror: `Canon001TechnicalRoleFirstRule.php`
 
 ## Requirement
-Inside `src/`, the first semantic directory must identify the technical role of the PHP type. Business context, family, specialization, or subject comes after that role. Canonical role roots include `Controller/`, `Service/`, `ServiceInterface/`, `Repository/`, `RepositoryInterface/`, `Entity/`, `DTO/`, `Form/`, `FormInterface/`, `Policy/`, `Builder/`, `BuilderInterface/`, `Responder/`, `Command/`, `Enum/`, `Event/`, `Snapshot/`, and `ValueObject/`.
+Inside `src/`, the first semantic directory must identify the technical role of the PHP type. Business context, family, specialization, or subject comes after that role. Canonical role roots include `Controller/`, `Service/`, `ServiceInterface/`, `Repository/`, `RepositoryInterface/`, `Entity/`, `DTO/`, `Form/`, `FormInterface/`, `Policy/`, `Builder/`, `BuilderInterface/`, `Responder/`, `Command/`, `Enum/`, `Event/`, `Snapshot/`, `Voter/`, `VoterInterface/`, and `ValueObject/`.
 
 ## Prohibited
 Do not use business-subject-first trees that hide the technical role behind an early context directory.
