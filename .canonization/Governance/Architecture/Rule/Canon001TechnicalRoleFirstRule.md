@@ -6,7 +6,7 @@ Canon: `Canon001`
 Gating mirror: `Canon001TechnicalRoleFirstRule.php`
 
 ## Requirement
-Inside `src/`, the first semantic directory must identify the technical role of the PHP type. Business context, family, specialization, or subject comes after that role. Canonical role roots include `Controller/`, `Service/`, `ServiceInterface/`, `Repository/`, `RepositoryInterface/`, `Entity/`, `DTO/`, `Form/`, `FormInterface/`, `Policy/`, `Builder/`, `BuilderInterface/`, `Responder/`, `Command/`, `Enum/`, `Event/`, `Snapshot/`, `Voter/`, `VoterInterface/`, and `ValueObject/`.
+Inside `src/`, the first semantic directory must identify the technical role of the PHP type. Business context, family, specialization, or subject comes after that role. Canonical role roots include `Controller/`, `Service/`, `ServiceInterface/`, `Repository/`, `RepositoryInterface/`, `Entity/`, `DTO/`, `Form/`, `FormInterface/`, `Policy/`, `Builder/`, `BuilderInterface/`, `Responder/`, `Command/`, `Enum/`, `Event/`, `Snapshot/`, `Voter/`, `VoterInterface/`, `ValueObject/`, and other explicit technical-role roots such as `Accessor/`, `Cache/`, `Configurator/`, `Discovery/`, `Extractor/`, `Filter/`, `Formatter/`, `Generator/`, `Inspector/`, `Reader/`, `Renderer/`, `Scorer/`, `Stringifier/`, `Workflow/`, and `Writer/`. The list is not a closed catalog; an unknown root is an escalation candidate, not evidence by itself that the tree is business-subject-first.
 
 ## Prohibited
 Do not use business-subject-first trees that hide the technical role behind an early context directory.
