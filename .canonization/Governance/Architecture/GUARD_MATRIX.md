@@ -59,6 +59,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon050 | `Canon050NoRuntimeContainerAccessRule.php` | hard | runtime container/service-locator access is restricted to bootstrap integration |
 | Canon051 | `Canon051RepositoryHasNoOrchestrationDependencyRule.php` | hard | Repository classes do not depend on application orchestration roles |
 | Canon052 | `Canon052GatingIntegrationRule.php` | hard | canonical consumers install Gating, symlink it in development, package it in production metadata, and include it in aggregate quality verification |
+| Canon053 | `Canon053SiblingComposerSymlinkIsolationRule.php` | hard | only Gating, Cruding, Viewing, and Interfacing may be exposed as symlinked sibling Composer path repositories |
 
 ## Classification
 

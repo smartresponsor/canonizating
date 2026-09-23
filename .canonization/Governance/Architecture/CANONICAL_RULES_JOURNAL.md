@@ -2,6 +2,14 @@
 
 This journal records how recurring architecture patterns are consolidated into the SmartResponsor canon. The normative wording itself lives in `Rule/`.
 
+## 2026-09-22 — Closed sibling Composer symlink contour
+
+Materialized rule: Canon053.
+
+Canonical component development now treats sibling Composer symlinks as a closed contour rather than a growing allow-list of platform capabilities. Only Gating, Cruding, Viewing, and Interfacing may be exposed through sibling `path` repositories with `options.symlink: true`. Any newly introduced component is therefore isolated by default without requiring Gating to know its name.
+
+Canon053 is intentionally narrow: it checks only the existence of prohibited sibling Composer symlinks. It does not require the four exceptions to be installed, infer architectural roles, inspect PHP references, or analyze the Symfony container. Those concerns remain independent rules.
+
 ## 2026-09-05 — First consolidated architecture batch
 
 Status: accepted for materialization.
