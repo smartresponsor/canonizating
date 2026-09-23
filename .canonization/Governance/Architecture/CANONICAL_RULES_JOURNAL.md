@@ -12,7 +12,7 @@ Historical product abbreviations are not database ownership namespaces. The `sr_
 
 Plurality, SQL reserved-word handling, FK semantics, and identifier-type strategy remain outside Canon054 pending separate evidence/exception contracts.
 
-Amendment 2026-09-23: reusable system-field ownership remains with the defining component. Objecting now supplies deterministic table-level identity constraints through an Objecting-owned Doctrine metadata listener, producing names such as `uniq_<table>_uuid` and `uniq_<table>_slug` without consumer duplication. Doctrine hash-derived application constraint/index names are migration debt rather than the intended current contract; column-level `unique: true` must not be used when it delegates physical constraint naming to Doctrine.
+Amendment 2026-09-23: reusable system-field ownership remains with the defining component. Objecting now supplies deterministic table-level identity constraints through an Objecting-owned Doctrine metadata listener, producing names such as `uniq_<table>_uuid` and `uniq_<table>_slug` without consumer duplication. Doctrine hash-derived application constraint/index names are migration debt rather than the intended current contract; column-level `unique: true` must not be used when it delegates physical constraint naming to Doctrine. Standalone Objecting identity consumers activate `App\\Objecting\\ObjectBundle`; bundle-only consumers inherit that activation from the composing Host.
 
 ## 2026-09-22 — Closed sibling Composer symlink contour
 

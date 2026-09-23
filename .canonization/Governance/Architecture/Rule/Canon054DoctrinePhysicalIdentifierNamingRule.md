@@ -13,7 +13,7 @@ Standalone Doctrine ORM configuration MUST use `doctrine.orm.naming_strategy.und
 
 Explicit current Doctrine metadata names for tables, columns, join columns, indexes, and unique constraints MUST match `^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$`.
 
-Application-owned index and constraint names MUST be deterministic lower_snake_case semantic identifiers. Column-level `unique: true` is non-canonical when it delegates the physical constraint name to Doctrine and produces hash-derived schema objects. Reusable system-field owners such as Objecting MUST express table-level invariants through owner-controlled Doctrine metadata policy so consumers do not duplicate those constraints.
+Application-owned index and constraint names MUST be deterministic lower_snake_case semantic identifiers. Column-level `unique: true` is non-canonical when it delegates the physical constraint name to Doctrine and produces hash-derived schema objects. Reusable system-field owners such as Objecting MUST express table-level invariants through owner-controlled Doctrine metadata policy so consumers do not duplicate those constraints. A standalone repository that consumes Objecting identity metadata MUST register `App\\Objecting\\ObjectBundle`; bundle-only consumers rely on the composing Host to activate Objecting once for the runtime.
 
 Examples:
 
@@ -44,6 +44,7 @@ Singular/plural table vocabulary, reserved SQL words, foreign-key semantics, and
 - current Doctrine table names beginning with `sr_`;
 - application-owned hash-derived `uniq_<hash>` / `idx_<hash>` schema-object names as the intended current contract;
 - column-level `unique: true` where Doctrine owns the physical unique-constraint name;
+- standalone Objecting identity consumers that do not activate `App\\Objecting\\ObjectBundle`;
 - treating a historical product abbreviation as a component/domain namespace.
 
 ## Rationale
