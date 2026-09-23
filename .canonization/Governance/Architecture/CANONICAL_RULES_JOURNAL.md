@@ -12,7 +12,7 @@ Historical product abbreviations are not database ownership namespaces. The `sr_
 
 Plurality, SQL reserved-word handling, FK semantics, and identifier-type strategy remain outside Canon054 pending separate evidence/exception contracts.
 
-Amendment 2026-09-23: Doctrine-generated hash-style index/constraint names are accepted as implementation details when they originate from canonical metadata and clean schema parity. `unique: true` remains valid for Objecting-owned reusable system fields such as `uuid` and `slug`; semantic renaming of generated schema objects is optional rather than canonical. Explicit application-authored physical names remain lower_snake_case.
+Amendment 2026-09-23: reusable system-field ownership remains with the defining component. Objecting now supplies deterministic table-level identity constraints through an Objecting-owned Doctrine metadata listener, producing names such as `uniq_<table>_uuid` and `uniq_<table>_slug` without consumer duplication. Doctrine hash-derived application constraint/index names are migration debt rather than the intended current contract; column-level `unique: true` must not be used when it delegates physical constraint naming to Doctrine.
 
 ## 2026-09-22 — Closed sibling Composer symlink contour
 
