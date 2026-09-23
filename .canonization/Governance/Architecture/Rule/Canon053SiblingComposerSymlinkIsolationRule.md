@@ -7,12 +7,15 @@ Gating mirror: `Canon053SiblingComposerSymlinkIsolationRule.php`
 
 ## Requirement
 
-A canonical component's development `composer.json` must not expose symlinked sibling component repositories except for the four canonical infrastructure/helper exceptions:
+A canonical component's development `composer.json` must not expose symlinked sibling component repositories except for the seven canonical infrastructure/foundation/helper exceptions:
 
 - `../Gating`
 - `../Cruding`
 - `../Viewing`
 - `../Interfacing`
+- `../Collectioning`
+- `../Objecting`
+- `../Tabling`
 
 This rule is intentionally negative and atomic. It does not require any exception to be present, does not classify component roles, and does not inspect PHP code, the Symfony container, runtime service graphs, or transitive package semantics.
 
@@ -26,13 +29,13 @@ The local symlink contour is a deterministic representation of direct cross-repo
 
 ## Exceptions
 
-Only `Gating`, `Cruding`, `Viewing`, and `Interfacing` are exempt. The exception list is deliberately small and canonical.
+Only `Gating`, `Cruding`, `Viewing`, `Interfacing`, `Collectioning`, `Objecting`, and `Tabling` are exempt. The exception list is deliberately explicit and canonical.
 
 This rule does not assert that an exception must exist. Presence/installation requirements belong to their own independent rules.
 
 ## Guardability
 
-Hard. Gating reads only the development `composer.json` repositories section and rejects local sibling `path` repositories whose `options.symlink` value is `true` unless their sibling directory is one of the four exceptions.
+Hard. Gating reads only the development `composer.json` repositories section and rejects local sibling `path` repositories whose `options.symlink` value is `true` unless their sibling directory is one of the seven exceptions.
 
 ## Evidence Contract
 ```yaml
