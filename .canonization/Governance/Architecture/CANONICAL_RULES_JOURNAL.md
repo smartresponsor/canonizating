@@ -12,6 +12,8 @@ Historical product abbreviations are not database ownership namespaces. The `sr_
 
 Plurality, SQL reserved-word handling, FK semantics, and identifier-type strategy remain outside Canon054 pending separate evidence/exception contracts.
 
+Amendment 2026-09-23: Doctrine-generated hash-style index/constraint names are accepted as implementation details when they originate from canonical metadata and clean schema parity. `unique: true` remains valid for Objecting-owned reusable system fields such as `uuid` and `slug`; semantic renaming of generated schema objects is optional rather than canonical. Explicit application-authored physical names remain lower_snake_case.
+
 ## 2026-09-22 — Closed sibling Composer symlink contour
 
 Materialized rule: Canon053.

@@ -13,7 +13,7 @@ Standalone Doctrine ORM configuration MUST use `doctrine.orm.naming_strategy.und
 
 Explicit current Doctrine metadata names for tables, columns, join columns, indexes, and unique constraints MUST match `^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$`.
 
-Column-level implicit uniqueness (`unique: true`) is non-canonical because Doctrine materializes unstable/hash-derived schema-object names. Persistent uniqueness MUST be declared with an explicit semantic `ORM\\UniqueConstraint(name: 'uniq_<owner>_<purpose>', ...)` contract.
+Doctrine-generated index and constraint names are allowed implementation details when they arise from canonical current metadata and schema parity remains stable. Application-authored explicit names must still follow lower_snake_case; generated hash-style names are not required to be rewritten solely for readability.
 
 Examples:
 
@@ -42,7 +42,6 @@ Singular/plural table vocabulary, reserved SQL words, foreign-key semantics, and
 - camelCase, PascalCase, kebab-case, uppercase, or mixed-case physical identifiers in current Doctrine metadata;
 - standalone ORM metadata using Doctrine's default naming strategy when it owns persisted Entity mappings;
 - current Doctrine table names beginning with `sr_`;
-- column-level `unique: true` without an explicitly named semantic unique constraint;
 - treating a historical product abbreviation as a component/domain namespace.
 
 ## Rationale
@@ -51,7 +50,7 @@ The Host application already uses Doctrine's underscore-number-aware naming stra
 
 ## Guardability
 
-Hard for current Doctrine metadata and standalone Doctrine configuration. Gating inspects Doctrine ORM applicability, repository Doctrine configuration, and explicit current ORM metadata names under `src/`. Historical migrations are deliberately excluded from direct naming failure.
+Hard for current Doctrine metadata and standalone Doctrine configuration. Gating inspects Doctrine ORM applicability, repository Doctrine configuration, and explicit application-authored ORM metadata names under `src/`. Doctrine-generated schema-object names are exempt from direct naming failure and are instead covered by Canon030 schema parity. Historical migrations are deliberately excluded from direct naming failure.
 
 ## Evidence Contract
 ```yaml
