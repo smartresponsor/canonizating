@@ -7,7 +7,11 @@ Gating mirror: `Canon053SiblingComposerSymlinkIsolationRule.php`
 
 ## Requirement
 
-A canonical component's development `composer.json` must not expose symlinked sibling component repositories except for the eleven canonical infrastructure/foundation/helper exceptions:
+This rule applies to canonical components, but not to the root composition host package `smartresponsing/app`.
+
+The App host is the platform aggregator. Its development `composer.json` may expose symlinked sibling repositories for both infrastructure/foundation/helper components and product/capability components that it composes into the runtime.
+
+For every other canonical component, development `composer.json` must not expose symlinked sibling component repositories except for the thirteen canonical infrastructure/foundation/helper exceptions:
 
 - `../Gating`
 - `../Cruding`
@@ -20,8 +24,10 @@ A canonical component's development `composer.json` must not expose symlinked si
 - `../Indexing`
 - `../Discovering`
 - `../Administering`
+- `../Accessing`
+- `../Configuring`
 
-This rule is intentionally negative and atomic. It does not require any exception to be present, does not classify component roles, and does not inspect PHP code, the Symfony container, runtime service graphs, or transitive package semantics.
+This rule is intentionally negative and atomic. Applicability is determined only by the Composer package identity: `smartresponsing/app` is excluded. For all other packages, it does not require any exception to be present, does not classify component roles, and does not inspect PHP code, the Symfony container, runtime service graphs, or transitive package semantics.
 
 ## Prohibited
 
@@ -33,19 +39,21 @@ The local symlink contour is a deterministic representation of direct cross-repo
 
 ## Exceptions
 
-Only `Gating`, `Cruding`, `Viewing`, `Interfacing`, `Collectioning`, `Objecting`, `Tabling`, `Runtime`, `Indexing`, `Discovering`, and `Administering` are exempt. The exception list is deliberately explicit and canonical.
+The package `smartresponsing/app` is exempt from this rule because it is the root composition host.
+
+For every other package, only `Gating`, `Cruding`, `Viewing`, `Interfacing`, `Collectioning`, `Objecting`, `Tabling`, `Runtime`, `Indexing`, `Discovering`, `Administering`, `Accessing`, and `Configuring` are exempt sibling symlinks. The exception list is deliberately explicit and canonical.
 
 This rule does not assert that an exception must exist. Presence/installation requirements belong to their own independent rules.
 
 ## Guardability
 
-Hard. Gating reads only the development `composer.json` repositories section and rejects local sibling `path` repositories whose `options.symlink` value is `true` unless their sibling directory is one of the eleven exceptions.
+Hard. Gating reads the development `composer.json` package name and repositories section. It skips `smartresponsing/app`; for every other package it rejects local sibling `path` repositories whose `options.symlink` value is `true` unless their sibling directory is one of the thirteen exceptions.
 
 ## Evidence Contract
 ```yaml
 evidence_contract:
-  coverage: "composer.json repositories section only"
-  extraction: [repository_type, repository_url, options_symlink]
+  coverage: "composer.json package name and repositories section only"
+  extraction: [package_name, repository_type, repository_url, options_symlink]
   body_read: prohibited
   reasoning: none
   escalation: [noncanonical_local_symlink]
