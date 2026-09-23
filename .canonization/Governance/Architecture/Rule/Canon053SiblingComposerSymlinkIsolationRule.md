@@ -7,7 +7,7 @@ Gating mirror: `Canon053SiblingComposerSymlinkIsolationRule.php`
 
 ## Requirement
 
-A canonical component's development `composer.json` must not expose symlinked sibling component repositories except for the nine canonical infrastructure/foundation/helper exceptions:
+A canonical component's development `composer.json` must not expose symlinked sibling component repositories except for the ten canonical infrastructure/foundation/helper exceptions:
 
 - `../Gating`
 - `../Cruding`
@@ -18,6 +18,7 @@ A canonical component's development `composer.json` must not expose symlinked si
 - `../Tabling`
 - `../Runtime`
 - `../Indexing`
+- `../Discovering`
 
 This rule is intentionally negative and atomic. It does not require any exception to be present, does not classify component roles, and does not inspect PHP code, the Symfony container, runtime service graphs, or transitive package semantics.
 
@@ -31,13 +32,13 @@ The local symlink contour is a deterministic representation of direct cross-repo
 
 ## Exceptions
 
-Only `Gating`, `Cruding`, `Viewing`, `Interfacing`, `Collectioning`, `Objecting`, `Tabling`, `Runtime`, and `Indexing` are exempt. The exception list is deliberately explicit and canonical.
+Only `Gating`, `Cruding`, `Viewing`, `Interfacing`, `Collectioning`, `Objecting`, `Tabling`, `Runtime`, `Indexing`, and `Discovering` are exempt. The exception list is deliberately explicit and canonical.
 
 This rule does not assert that an exception must exist. Presence/installation requirements belong to their own independent rules.
 
 ## Guardability
 
-Hard. Gating reads only the development `composer.json` repositories section and rejects local sibling `path` repositories whose `options.symlink` value is `true` unless their sibling directory is one of the nine exceptions.
+Hard. Gating reads only the development `composer.json` repositories section and rejects local sibling `path` repositories whose `options.symlink` value is `true` unless their sibling directory is one of the ten exceptions.
 
 ## Evidence Contract
 ```yaml
