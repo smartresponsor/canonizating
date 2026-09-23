@@ -2,6 +2,16 @@
 
 This journal records how recurring architecture patterns are consolidated into the SmartResponsor canon. The normative wording itself lives in `Rule/`.
 
+## 2026-09-22 — Doctrine physical identifier naming
+
+Materialized rule: Canon054.
+
+The current Doctrine metadata contract now explicitly separates PHP naming from physical relational naming: PHP properties/methods remain camelCase while tables, columns, join columns, indexes, and unique constraints use lower_snake_case. Standalone persistence owners use `doctrine.orm.naming_strategy.underscore_number_aware`, matching Host behavior and preventing standalone/Host schema drift.
+
+Historical product abbreviations are not database ownership namespaces. The `sr_` table prefix is prohibited for current schema; legacy tables are migrated, re-homed, or removed according to data/ownership evidence rather than mechanically renamed. Historical migrations may still reference legacy identifiers for transition logic, while Canon030 proves convergence to current metadata.
+
+Plurality, SQL reserved-word handling, FK semantics, and identifier-type strategy remain outside Canon054 pending separate evidence/exception contracts.
+
 ## 2026-09-22 — Closed sibling Composer symlink contour
 
 Materialized rule: Canon053.
