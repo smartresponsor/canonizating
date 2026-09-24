@@ -1,5 +1,9 @@
 # Canonical Rules Journal
 
+## 2026-09-23 — Enveloping optional Host composition
+
+Canon022 now explicitly keeps `enveloping/envelope` outside the mandatory standalone application dependency baseline. Enveloping is a cross-cutting Host-composition capability: the Host may envelope objects or operations from consumer components without making those consumers depend on Enveloping. The Enveloping package must remain consumer-agnostic and must not hardcode domain-repository knowledge.
+
 This journal records how recurring architecture patterns are consolidated into the SmartResponsor canon. The normative wording itself lives in `Rule/`.
 
 ## 2026-09-22 — Doctrine physical identifier naming
@@ -66,7 +70,7 @@ The batch was deliberately narrowed before materialization. Earlier proposals fo
 
 Canon018 makes `composer.json:name` an executable identity contract: `<component-token>/<subject-token>` maps the first token to `App\\<ComponentToken>\\ => src/` and the second token to the PHP subject prefix. The subject token is not inferred by trimming `-ing`.
 
-Canon021 keeps generic application CRUD in `cruding/crud`, while explicitly allowing EasyAdmin CRUD controllers/routes for standalone back-office/admin surfaces. Canon022 requires standalone Symfony applications to declare direct runtime dependencies on `cruding/crud`, `viewing/view`, `interfacing/interface`, `objecting/object`, and `easycorp/easyadmin-bundle`; standalone status is detected from Symfony boot surfaces rather than Composer `type`.
+Canon021 keeps generic application CRUD in `cruding/crud`, while explicitly allowing EasyAdmin CRUD controllers/routes for standalone back-office/admin surfaces. Canon022 keeps `enveloping/envelope` explicitly outside the mandatory standalone baseline as an optional Host-composed execution-context capability; consumer components remain valid without it. Canon022 requires standalone Symfony applications to declare direct runtime dependencies on `cruding/crud`, `viewing/view`, `interfacing/interface`, `objecting/object`, and `easycorp/easyadmin-bundle`; standalone status is detected from Symfony boot surfaces rather than Composer `type`.
 
 ## 2026-09-05 — Environment, runtime, version and database stack batch
 

@@ -200,6 +200,8 @@ Cruding, Interfacing и Viewing могут работать:
 - как отдельно установленный component/application;
 - на own site с собственным runtime.
 
+`Enveloping` является отдельной optional cross-cutting capability. Он не входит в обязательный application dependency contour. Host application может подключать `enveloping/envelope` и оборачивать objects/operations consumer-компонентов typed execution context без требования, чтобы сами `Messaging`, `Delivering`, `Notifying`, `Shipping`, `Payment` или другие consumers зависели от Enveloping. Enveloping не должен хардкодить знания о конкретных consumer repositories.
+
 Связь между соседними runtime repositories выражается Composer dependency и публичным контрактом, а не наличием соседней папки.
 
 Canonization и другие non-runtime/tooling repositories следуют собственному `MANIFEST.json` и не обязаны иметь Composer manifests, если их root contract этого не предусматривает.
