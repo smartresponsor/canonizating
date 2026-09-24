@@ -2,7 +2,7 @@
 
 ## 2026-09-23 — Enveloping optional Host composition
 
-Canon022 now explicitly keeps `enveloping/envelope` outside the mandatory standalone application dependency baseline. Enveloping is a cross-cutting Host-composition capability: the Host may envelope objects or operations from consumer components without making those consumers depend on Enveloping. The Enveloping package must remain consumer-agnostic and must not hardcode domain-repository knowledge.
+Canon022 now explicitly keeps `enveloping/envelope` outside the mandatory standalone application dependency baseline. Enveloping is a cross-cutting Host-composition capability: the Host may envelope objects or operations from consumer components without making those consumers depend on Enveloping. The package itself is exempt from the CRUD/UI application baseline so its standalone runtime can exist for debug/container verification without introducing unrelated platform dependencies. Canon041 and Canon042 likewise exclude this headless standalone runtime from browser/UI tooling and behavioral-UI coverage. Enveloping must remain consumer-agnostic and must not hardcode domain-repository knowledge.
 
 This journal records how recurring architecture patterns are consolidated into the SmartResponsor canon. The normative wording itself lives in `Rule/`.
 

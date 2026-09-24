@@ -39,7 +39,7 @@ Script names are not canonical. The executable contract is canonical.
 
 This rule applies to standalone Symfony applications identified by normal Symfony boot/runtime surfaces or by a direct `symfony/framework-bundle` dependency.
 
-Pure non-Symfony PHP libraries and repositories without a Symfony application runtime are outside this rule and are skipped.
+Pure non-Symfony PHP libraries and repositories without a Symfony application runtime are outside this rule and are skipped. Headless foundation packages whose standalone Symfony surface exists only for container verification/debugging are also outside the browser/UI tooling requirement; `enveloping/envelope` is the explicit current exception.
 
 ## Responsibility Boundary
 
