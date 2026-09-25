@@ -1,7 +1,7 @@
 # Canon033ComposerManifestIdentityParityRule — Development and Production Manifests Share Identity
 
 ## Requirement
-`composer.json` and `composer.prod.json` describe the same SmartResponsor component identity.
+`composer.json` and `composer.prod.json` describe the same platform component identity.
 
 Identity parity covers package `name`, package `type`, PSR-4 autoload identity, PHP platform baseline, and Symfony baseline.
 

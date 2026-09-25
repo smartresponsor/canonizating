@@ -7,7 +7,7 @@ Gating mirror: `Canon052GatingIntegrationRule.php`
 
 ## Requirement
 
-Every canonical SmartResponsor PHP consumer installs `gating/gate` as a Composer development dependency. Development `composer.json` exposes the sibling `../Gating` repository with `options.symlink: true`, pins `gating/gate` to `dev-master`, exposes a standard `gate` Composer script, and includes `@gate` in the aggregate `quality` script.
+Every canonical platform PHP consumer installs `gating/gate` as a Composer development dependency. Development `composer.json` exposes the sibling `../Gating` repository with `options.symlink: true`, pins `gating/gate` to `dev-master`, exposes a standard `gate` Composer script, and includes `@gate` in the aggregate `quality` script.
 
 The production manifest `composer.prod.json` declares the same Gating package identity without a filesystem path/symlink repository. Gating itself publishes `bin/gating` and its own `gate` and `quality` self-verification scripts.
 

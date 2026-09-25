@@ -1,7 +1,7 @@
 # Canon036DocumentationProducerOwnershipRule — Components Produce Documentation; Documentating Owns the Antora Site
 
 ## Requirement
-Ordinary SmartResponsor component repositories are documentation producers. They may publish repository-facing Markdown and Antora-compatible AsciiDoc content, but they do not own an independent Antora site.
+Ordinary platform component repositories are documentation producers. They may publish repository-facing Markdown and Antora-compatible AsciiDoc content, but they do not own an independent Antora site.
 
 The platform documentation ownership model is:
 

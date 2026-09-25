@@ -1,10 +1,20 @@
 # Canonical Rules Journal
 
+## 2026-09-24 — Platform/consumer identity boundary
+
+Materialized rule: Canon055.
+
+The platform is explicitly multi-domain. `Smart Responder`, `Smart Responsor`, and `SmartResponsor` identify one consumer/domain and no longer act as umbrella names for the platform, project, architecture canon, repository family, components, or shared services.
+
+Current human-facing documentation and repository/package descriptions use neutral platform vocabulary. Existing machine locators such as a GitHub owner, Composer vendor/package identity, schema identifier, or URL host remain technical identifiers and do not acquire platform-brand authority.
+
+Gating implements Canon055 as a detection-only rule: ambiguous or incorrect prose fails with evidence, while remediation remains an agent/chat responsibility so replacements preserve the actual sentence subject. Explicit consumer/domain references, historical records, and the Canon055 normative alias definition are exempt from the hard failure contour.
+
 ## 2026-09-23 — Enveloping optional Host composition
 
 Canon022 now explicitly keeps `enveloping/envelope` outside the mandatory standalone application dependency baseline. Enveloping is a cross-cutting Host-composition capability: the Host may envelope objects or operations from consumer components without making those consumers depend on Enveloping. The package itself is exempt from the CRUD/UI application baseline so its standalone runtime can exist for debug/container verification without introducing unrelated platform dependencies. Canon041 and Canon042 likewise exclude this headless standalone runtime from browser/UI tooling and behavioral-UI coverage. Enveloping must remain consumer-agnostic and must not hardcode domain-repository knowledge.
 
-This journal records how recurring architecture patterns are consolidated into the SmartResponsor canon. The normative wording itself lives in `Rule/`.
+This journal records how recurring architecture patterns are consolidated into the platform canon. The normative wording itself lives in `Rule/`.
 
 ## 2026-09-22 — Doctrine physical identifier naming
 
@@ -30,7 +40,7 @@ Canon053 is intentionally narrow: it checks only the existence of prohibited sib
 
 Status: accepted for materialization.
 
-Evidence was consolidated from repeated component-repository reviews including Faceting, Facting, Casing, Complying, Cruding, and related SmartResponsor components. The batch also reconciles existing local Canonization guidance with newer cross-repository findings.
+Evidence was consolidated from repeated component-repository reviews including Faceting, Facting, Casing, Complying, Cruding, and related platform components. The batch also reconciles existing local Canonization guidance with newer cross-repository findings.
 
 Materialized rules: Canon000 through Canon010, with `Rule` as the terminal technical-role token on both Canonization and Gating sides.
 
@@ -56,7 +66,7 @@ Closing the first batch also exposed and corrected two existing Gating topology 
 
 Materialized rules: Canon011 through Canon017.
 
-This batch intentionally excludes commodity formatting, ordinary unused-code checks, and standard analyzable type defects that are already owned by PHP-CS-Fixer/PHPCS/PHPStan/Rector-class tooling. Canonization admits a rule only when it defines SmartResponsor-specific architecture, topology, ownership, lifecycle, or semantic behavior beyond those standard tools.
+This batch intentionally excludes commodity formatting, ordinary unused-code checks, and standard analyzable type defects that are already owned by PHP-CS-Fixer/PHPCS/PHPStan/Rector-class tooling. Canonization admits a rule only when it defines platform-specific architecture, topology, ownership, lifecycle, or semantic behavior beyond those standard tools.
 
 The batch covers observable failures, typed internal boundaries, production placeholder readiness, executable responsibility, tooling/runtime separation, compatibility lifecycle, and documentation/runtime consistency.
 
@@ -76,7 +86,7 @@ Canon021 keeps generic application CRUD in `cruding/crud`, while explicitly allo
 
 Materialized rules: Canon023 through Canon028.
 
-Development and production dependency resolution are intentionally different. `composer.json` is the development manifest and local sibling SmartResponsor packages use Composer `path` repositories with `symlink: true`. `composer.prod.json` is the production/container-build manifest and must resolve packaged dependencies without sibling path/symlink repositories.
+Development and production dependency resolution are intentionally different. `composer.json` is the development manifest and local sibling first-party packages use Composer `path` repositories with `symlink: true`. `composer.prod.json` is the production/container-build manifest and must resolve packaged dependencies without sibling path/symlink repositories.
 
 Components remain dual-mode: self-bootable Symfony applications for build, verification, testing and debugging, and reusable Symfony bundles for Host composition.
 

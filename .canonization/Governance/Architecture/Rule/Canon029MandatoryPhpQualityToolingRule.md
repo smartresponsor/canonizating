@@ -6,7 +6,7 @@ Canon: `Canon029`
 Gating mirror: `Canon029MandatoryPhpQualityToolingRule.php`
 
 ## Requirement
-Every canonical SmartResponsor PHP repository declares PHP-CS-Fixer and PHPStan as development dependencies, provides explicit repository-owned configuration for both tools, and exposes reproducible Composer scripts that run formatting checks/fixes and static analysis.
+Every canonical platform PHP repository declares PHP-CS-Fixer and PHPStan as development dependencies, provides explicit repository-owned configuration for both tools, and exposes reproducible Composer scripts that run formatting checks/fixes and static analysis.
 
 ## Required Dependencies
 - `friendsofphp/php-cs-fixer` in `composer.json:require-dev`.

@@ -7,7 +7,7 @@ Gating mirror: `Canon046VendorIdentityRule.php`
 
 ## Requirement
 
-SmartResponsor uses `VendorEntity.id` as the canonical cross-component identifier for user/vendor identity. Active runtime contracts express the scalar identifier as `vendorId` in PHP/API/DTO vocabulary and `vendor_id` in persisted Doctrine/SQL vocabulary.
+The platform uses `VendorEntity.id` as the canonical cross-component identifier for user/vendor identity. Active runtime contracts express the scalar identifier as `vendorId` in PHP/API/DTO vocabulary and `vendor_id` in persisted Doctrine/SQL vocabulary.
 
 `VendorEntity.id` is the PostgreSQL primary key of the Vendor root and is the platform-wide identity key used to relate vendor/user-owned data across components. Components must reference that identity instead of introducing a parallel tenant identity.
 

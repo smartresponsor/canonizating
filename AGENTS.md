@@ -1,6 +1,6 @@
 # AGENTS.md
 
-# SmartResponsor Platform Rules
+# Platform Rules
 
 Этот файл находится в корне репозитория и является agent-facing проекцией платформенного канона для Codex CLI.
 Нормативный смысл принадлежит `.canonization/Governance/Architecture/Rule/`; этот файл не является независимым источником канона и не должен ему противоречить.

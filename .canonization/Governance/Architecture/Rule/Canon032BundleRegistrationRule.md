@@ -1,7 +1,7 @@
 # Canon032BundleRegistrationRule — Reusable Bundle Must Be Registered in Standalone Mode
 
 ## Requirement
-Every dual-mode SmartResponsor Symfony component that exposes a reusable `src/*Bundle.php` surface must register that bundle in its standalone application bundle configuration.
+Every dual-mode platform Symfony component that exposes a reusable `src/*Bundle.php` surface must register that bundle in its standalone application bundle configuration.
 
 The registration surface may be the conventional `config/bundles.php` or a component-owned equivalent loaded by its Kernel. File naming is not canonical; actual registration is.
 

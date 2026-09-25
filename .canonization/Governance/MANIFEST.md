@@ -4,7 +4,7 @@ Source-of-truth area for Governance policies/config/docs. No runtime code.
 
 ## Architecture canon
 
-The authoritative non-executable SmartResponsor architecture canon lives under
+The authoritative non-executable platform architecture canon lives under
 `Architecture/`.
 
 - `Architecture/Rule/` contains normative rules.

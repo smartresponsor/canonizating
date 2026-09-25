@@ -6,7 +6,7 @@ Canon: `Canon027`
 Gating mirror: `Canon027DatabaseEngineBaselineRule.php`
 
 ## Requirement
-SmartResponsor's canonical relational database stack uses PostgreSQL and SQLite. PostgreSQL is the primary/data relational engine; SQLite is the infrastructure/system relational engine and is file-backed by default.
+The canonical platform relational database stack uses PostgreSQL and SQLite. PostgreSQL is the primary/data relational engine; SQLite is the infrastructure/system relational engine and is file-backed by default.
 
 ## Scope
 This rule declares the supported engine stack and high-level connection roles. It does not yet canonize which individual entity families, menus, comments, messages, or other records belong to which engine.

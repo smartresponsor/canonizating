@@ -6,7 +6,7 @@ Canon: `Canon040`
 Gating mirror: `Canon040PhpTestCoverageRule.php`
 
 ## Requirement
-Canonical SmartResponsor PHP repositories maintain independently adequate executable-code coverage across line, method, and branch dimensions.
+Canonical platform PHP repositories maintain independently adequate executable-code coverage across line, method, and branch dimensions.
 
 Test adequacy is measured from PHPUnit/php-code-coverage results for production source. The ratio of test methods, test classes, or test files to production methods, classes, or files is not a canonical quality measure and must not constitute a pass/fail gate.
 
