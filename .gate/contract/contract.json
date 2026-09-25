@@ -8,6 +8,7 @@
     ],
     "allowed_root_files_exact": [
       ".gitignore",
+      "CMCP_CHANGELOG.md",
       "MANIFEST.json",
       "README.md"
     ]
