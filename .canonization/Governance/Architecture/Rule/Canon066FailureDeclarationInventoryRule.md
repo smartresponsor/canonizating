@@ -15,6 +15,8 @@ The deterministic evidence unit is:
 
     HTTP_METHOD + normalized_path + failure_code + HTTP_STATUS
 
+The Failing owner must expose this evidence through a versioned, deterministic machine-readable export surface. Equivalent inventories must serialize in stable ordering independent of consumer/provider registration order.
+
 The central Failing registry may aggregate declarations at runtime but is not itself a source-code catalogue.
 
 Unknown failure codes referenced by an operation inventory are non-canonical.
