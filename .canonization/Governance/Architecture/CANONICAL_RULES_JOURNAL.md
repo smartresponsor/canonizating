@@ -1,12 +1,14 @@
 # Canonical Rules Journal
 
-## 2026-09-26 — Canonical OpenAPI source location
+## 2026-09-26 — Canonical OpenAPI source and contract grammar closure
 
-Materialized rule: Canon058.
+Materialized rules: Canon058, Canon059, Canon060.
 
 Canonical OpenAPI source is now separated from generated/public/documentation artifacts. Current first-party OpenAPI source belongs under `config/openapi/` and must use the Canon038 subject-prefixed YAML filename shape, for example `config/openapi/billing_openapi.yaml` or `config/openapi/crud_openapi.yaml`.
 
 `var/**`, `public/**`, `docs/**`, `legacy/**`, and root `api/**` are not canonical source locations. Multiple current OpenAPI sources under `config/openapi/` require an explicit profile declaration such as `canonical_openapi_path`. Canon056 consumes the resulting canonical source for runtime/OpenAPI parity and must not merge generated or historical OpenAPI artifacts into its denominator.
+
+Canon059 makes that source binding explicit: runtime/OpenAPI parity may only consume the Canon058-compatible canonical source. Canon060 mirrors Canon057 on the OpenAPI side, so versioned paths in the canonical contract also place `vN` immediately after `/api`.
 
 ## 2026-09-26 — External API version prefix placement
 

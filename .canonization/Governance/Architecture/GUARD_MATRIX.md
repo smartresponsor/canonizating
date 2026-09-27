@@ -65,6 +65,8 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon056 | `Canon056ExternalApiOpenApiParityRule.php` | hard + warning + contextual | external Symfony API paths and canonical OpenAPI paths must mirror bidirectionally; method-level drift is reported as evidence/warning |
 | Canon057 | `Canon057ExternalApiVersionPrefixRule.php` | hard + contextual | versioned external API routes place `vN` immediately after `/api`; grammar-backed routes strip `/api/vN` before grammar resolution |
 | Canon058 | `Canon058CanonicalOpenApiSourceRule.php` | hard + contextual | canonical OpenAPI source must live under `config/openapi/` and use Canon038 subject-prefixed YAML filename |
+| Canon059 | `Canon059OpenApiParityCanonicalSourceRule.php` | hard + contextual | external API/OpenAPI parity must consume only the Canon058-compatible canonical OpenAPI source |
+| Canon060 | `Canon060OpenApiVersionPrefixRule.php` | hard + contextual | versioned OpenAPI paths place `vN` immediately after `/api` |
 
 ## Classification
 
