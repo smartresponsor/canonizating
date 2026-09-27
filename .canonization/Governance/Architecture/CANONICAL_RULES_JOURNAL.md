@@ -14,6 +14,8 @@ Canon061 adds the producer dependency contour without expanding Canon022's unive
 
 Canon062 closes profile-level declaration drift. `canonical_openapi_path` is the preferred key; legacy aliases remain compatibility-only. Conflicting values across supported OpenAPI path keys are hard failures, while legacy-only or duplicate same-value aliases are warnings so repositories can converge without hiding semantic drift.
 
+Canon063 closes Level 4 API contract coverage. Canon056 remains path-only; Canon063 independently enforces bidirectional hard parity of explicitly declared `HTTP_METHOD + normalized_path`. Ordinary external API routes without an explicit method set are non-deterministic and fail method parity rather than being guessed as GET. Grammar-backed routes remain contextual until their owner provides a deterministic operation inventory provider.
+
 ## 2026-09-26 — External API version prefix placement
 
 Materialized rule: Canon057.

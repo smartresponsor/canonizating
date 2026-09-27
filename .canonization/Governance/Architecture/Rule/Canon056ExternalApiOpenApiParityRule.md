@@ -15,13 +15,9 @@ The first hard comparison unit is the normalized path:
 normalized_path
 ```
 
-For example, `/api/v1/billing/invoices` is one external API path shape. The method-level operation pair remains collected as evidence:
+For example, `/api/v1/billing/invoices` is one external API path shape. Canon056 is path-only. Method-level operation parity is owned by Canon063 and is not part of this rule's denominator.
 
-```text
-HTTP_METHOD + normalized_path
-```
-
-Method-level drift is reported by this Canon but is not the first hard denominator. Request/response schemas, status-code coverage, parameter-value coverage, behavioral coverage, and test adequacy are outside this Canon.
+Request/response schemas, status-code coverage, parameter-value coverage, behavioral coverage, and test adequacy are outside this Canon.
 
 Generic delivery routes whose path parameter carries an internal grammar, such as Cruding-style `/api/{crudPath}` or tokenized catch-all routing, must not be treated as a single ordinary OpenAPI operation merely because Symfony exposes one route. Such routes require a deterministic operation inventory provider that expands or declares the actual external operations produced by the grammar. If no such provider exists, Gating reports the surface as ambiguous instead of passing or failing by guessing.
 
@@ -46,11 +42,11 @@ Therefore both hard drift directions are non-canonical:
 - runtime path without OpenAPI path: undocumented external API surface;
 - OpenAPI path without runtime path: stale/orphan contract surface.
 
-The rule also records method-level operation parity as evidence. A runtime method missing from OpenAPI, or an OpenAPI method missing from runtime, is reported as method-level drift. This method-level drift is a warning in the first executable version and may become a hard rule after route-method inventories are stable across YAML, attributes, generated routes, and grammar-backed providers.
+Method-level parity is deliberately excluded from Canon056. Canon063 owns bidirectional hard parity of `HTTP_METHOD + normalized_path` once method inventories are deterministic.
 
 ## Canonical OpenAPI document
 
-The repository may generate or maintain its canonical OpenAPI document through NelmioApiDocBundle, swagger-php, API Platform, or another deterministic producer. This Canon does not prescribe one OpenAPI producer or one repository path.
+Canon056 consumes the canonical source selected by Canon058/Canon059. OpenAPI producer ownership and the required Nelmio dependency are governed separately by Canon061; Canon056 does not redefine producer tooling.
 
 When multiple OpenAPI artifacts exist, compatibility, legacy, generated publication copies, or historical specifications must not be silently merged into the denominator. The canonical current contract must be deterministically identifiable by repository configuration/profile or by an unambiguous producer contract.
 
@@ -64,8 +60,6 @@ The report must distinguish at least:
 - canonical OpenAPI paths;
 - runtime paths missing from OpenAPI;
 - OpenAPI paths missing from runtime;
-- runtime external operations collected as method-level evidence;
-- canonical OpenAPI operations collected as method-level evidence;
 - grammar-backed surfaces that require an operation inventory provider;
 - operations that cannot be compared deterministically.
 
@@ -92,8 +86,8 @@ Hard when both the eligible Symfony external route inventory and the canonical O
 ## Evidence Contract
 ```yaml
 evidence_contract:
-  coverage: "eligible first-party Symfony external HTTP paths and method-level evidence against the canonical current OpenAPI inventory"
-  extraction: [runtime_normalized_path, openapi_normalized_path, runtime_method, openapi_method, canonical_openapi_source, exposure_classification, operation_inventory_provider]
+  coverage: "eligible first-party Symfony external HTTP paths against the canonical current OpenAPI inventory"
+  extraction: [runtime_normalized_path, openapi_normalized_path, canonical_openapi_source, exposure_classification, operation_inventory_provider]
   body_read: prohibited
   reasoning: none
   escalation: [ambiguous_external_route_classification, multiple_canonical_openapi_candidates, unbounded_route_method, grammar_backed_route_without_operation_inventory, unsupported_route_or_openapi_source]

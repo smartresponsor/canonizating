@@ -62,13 +62,14 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon053 | `Canon053SiblingComposerSymlinkIsolationRule.php` | hard | `smartresponsing/app` composition host is exempt; all other components may expose only Gating, Cruding, Viewing, Interfacing, Collectioning, Objecting, Tabling, Runtime, Indexing, Discovering, Administering, Accessing, and Configuring as symlinked sibling Composer path repositories |
 | Canon054 | `Canon054DoctrinePhysicalIdentifierNamingRule.php` | hard | Doctrine physical identifiers use lower_snake_case; standalone ORM uses underscore_number_aware; legacy `sr_` table names are prohibited |
 | Canon055 | `Canon055PlatformIdentityTerminologyRule.php` | composite | consumer aliases cannot name the platform/shared ecosystem; explicit consumer/domain references and machine identifiers are exempt |
-| Canon056 | `Canon056ExternalApiOpenApiParityRule.php` | hard + warning + contextual | external Symfony API paths and canonical OpenAPI paths must mirror bidirectionally; method-level drift is reported as evidence/warning |
+| Canon056 | `Canon056ExternalApiOpenApiParityRule.php` | hard + contextual | external Symfony API paths and canonical OpenAPI paths must mirror bidirectionally; method parity is owned by Canon063 |
 | Canon057 | `Canon057ExternalApiVersionPrefixRule.php` | hard + contextual | versioned external API routes place `vN` immediately after `/api`; grammar-backed routes strip `/api/vN` before grammar resolution |
 | Canon058 | `Canon058CanonicalOpenApiSourceRule.php` | hard + contextual | canonical OpenAPI source must live under `config/openapi/` and use Canon038 subject-prefixed YAML filename |
 | Canon059 | `Canon059OpenApiParityCanonicalSourceRule.php` | hard + contextual | external API/OpenAPI parity must consume only the Canon058-compatible canonical OpenAPI source |
 | Canon060 | `Canon060OpenApiVersionPrefixRule.php` | hard + contextual | versioned OpenAPI paths place `vN` immediately after `/api` |
 | Canon061 | `Canon061OpenApiNelmioProducerDependencyRule.php` | hard + contextual | repositories that own OpenAPI sources/config declare direct `nelmio/api-doc-bundle` runtime dependency |
 | Canon062 | `Canon062OpenApiProfileCanonicalPathAliasRule.php` | hard + warning + contextual | OpenAPI profile path aliases must not drift; `canonical_openapi_path` is the preferred declaration key |
+| Canon063 | `Canon063ExternalApiMethodParityRule.php` | hard + contextual | declared runtime `METHOD + path` operations and canonical OpenAPI operations must mirror bidirectionally |
 
 ## Classification
 
