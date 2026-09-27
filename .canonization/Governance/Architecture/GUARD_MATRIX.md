@@ -68,6 +68,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon059 | `Canon059OpenApiParityCanonicalSourceRule.php` | hard + contextual | external API/OpenAPI parity must consume only the Canon058-compatible canonical OpenAPI source |
 | Canon060 | `Canon060OpenApiVersionPrefixRule.php` | hard + contextual | versioned OpenAPI paths place `vN` immediately after `/api` |
 | Canon061 | `Canon061OpenApiNelmioProducerDependencyRule.php` | hard + contextual | repositories that own OpenAPI sources/config declare direct `nelmio/api-doc-bundle` runtime dependency |
+| Canon062 | `Canon062OpenApiProfileCanonicalPathAliasRule.php` | hard + warning + contextual | OpenAPI profile path aliases must not drift; `canonical_openapi_path` is the preferred declaration key |
 
 ## Classification
 

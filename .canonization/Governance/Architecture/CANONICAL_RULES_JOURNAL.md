@@ -12,6 +12,8 @@ Canon059 makes that source binding explicit: runtime/OpenAPI parity may only con
 
 Canon061 adds the producer dependency contour without expanding Canon022's universal baseline: repositories that own OpenAPI sources/config must declare direct `nelmio/api-doc-bundle`, while repositories without OpenAPI responsibility do not need the bundle.
 
+Canon062 closes profile-level declaration drift. `canonical_openapi_path` is the preferred key; legacy aliases remain compatibility-only. Conflicting values across supported OpenAPI path keys are hard failures, while legacy-only or duplicate same-value aliases are warnings so repositories can converge without hiding semantic drift.
+
 ## 2026-09-26 — External API version prefix placement
 
 Materialized rule: Canon057.
