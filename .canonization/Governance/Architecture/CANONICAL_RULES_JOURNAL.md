@@ -10,6 +10,8 @@ Canonical OpenAPI source is now separated from generated/public/documentation ar
 
 Canon059 makes that source binding explicit: runtime/OpenAPI parity may only consume the Canon058-compatible canonical source. Canon060 mirrors Canon057 on the OpenAPI side, so versioned paths in the canonical contract also place `vN` immediately after `/api`.
 
+Canon061 adds the producer dependency contour without expanding Canon022's universal baseline: repositories that own OpenAPI sources/config must declare direct `nelmio/api-doc-bundle`, while repositories without OpenAPI responsibility do not need the bundle.
+
 ## 2026-09-26 — External API version prefix placement
 
 Materialized rule: Canon057.
