@@ -6,12 +6,18 @@ Canon: `Canon004`
 Gating mirror: `Canon004SubjectFolderPlacementRule.php`
 
 ## Requirement
-In ordinary technical trees, a component/subject token such as `Facet`, `Case`, `Cart`, or `Catalog` must not be introduced as a directory before the fourth path level when `src` is level one. The rule applies to directories, not the terminal class name.
+In ordinary technical trees, a configured component subject token must not be introduced as a directory before the fourth path level when `src` is level one. The rule applies to directory tokens, not to a subject prefix carried by the terminal class name.
 
-Good: `src/Service/Management/Facet/...`.
-Bad: `src/Service/Facet/...`, `src/Form/Facet/...`, or redundant `src/Service/Faceting/...`.
+For repository/component `Cruding`, the platform profile declares `Crud` as the subject token. Therefore:
 
-Flat terminal classes outside the Entity technical root, such as `src/Enum/FacetType.php`, remain valid. A terminal persistence class under `src/Entity/` must use the `Entity` suffix, for example `src/Entity/FacetEntity.php`. Do not add meaningless directories merely to reach numeric depth.
+- canonical existing form: `src/Service/Operation/CrudApiCreateOperation.php` — no `Crud` subject directory is introduced;
+- canonical grouped form: `src/Service/Operation/Crud/CrudApiCreateOperation.php` — `Crud` appears at level four after the meaningful `Operation` direction;
+- non-canonical: `src/Service/Crud/CrudApiCreateOperation.php` — `Crud` appears at level three;
+- non-canonical: `src/Crud/Service/CrudApiCreateOperation.php` — the subject precedes the technical role.
+
+For repository/component `Carting`, the same distinction is `Carting` (repository/component identity) versus `Cart` (configured subject token). The rule never derives subject vocabulary by mechanically trimming `-ing`.
+
+Flat terminal classes outside the Entity technical root, such as `src/Enum/CrudOperation.php`, remain valid because `Crud` is part of the terminal class rather than a directory token. A terminal persistence class under `src/Entity/` must use the `Entity` suffix. Do not add meaningless directories merely to reach numeric depth.
 
 ## Rationale
 The repository already supplies component context. Repeating the component too early competes with technical-role-first topology.
