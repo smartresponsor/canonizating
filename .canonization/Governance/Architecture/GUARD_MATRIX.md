@@ -70,6 +70,9 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon061 | `Canon061OpenApiNelmioProducerDependencyRule.php` | hard + contextual | repositories that own OpenAPI sources/config declare direct `nelmio/api-doc-bundle` runtime dependency |
 | Canon062 | `Canon062OpenApiProfileCanonicalPathAliasRule.php` | hard + warning + contextual | OpenAPI profile path aliases must not drift; `canonical_openapi_path` is the preferred declaration key |
 | Canon063 | `Canon063ExternalApiMethodParityRule.php` | hard + contextual | declared runtime `METHOD + path` operations and canonical OpenAPI operations must mirror bidirectionally |
+| Canon064 | `Canon064FailureContractOwnershipRule.php` | hard + semantic | Failing owns generic failure mechanism; consumers own concrete failure vocabulary and operation membership |
+| Canon065 | `Canon065NoFrameworkFailureReimplementationRule.php` | hard + semantic | Failing may integrate Symfony/RFC 9457 but must not replace framework exception, HTTP, response, routing, security, or error-protocol machinery |
+| Canon066 | `Canon066FailureDeclarationInventoryRule.php` | hard + contextual | explicit consumer failure declarations and operation membership produce deterministic METHOD + path + failure code + HTTP status evidence without control-flow guessing |
 
 ## Classification
 

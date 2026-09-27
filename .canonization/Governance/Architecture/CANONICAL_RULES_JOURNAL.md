@@ -1,5 +1,15 @@
 # Canonical Rules Journal
 
+## 2026-09-27 — Failing contract architecture foundation
+
+Materialized rules: Canon064 through Canon066.
+
+Failing is established as a consumer-agnostic failure-contract mechanism rather than a central business-error catalogue. The central component owns declaration grammar, provider aggregation, declared exception lookup, RFC 9457 projection, and deterministic operation failure inventory. Concrete business failure codes, titles, problem types, exception mappings, and operation membership remain owned by each consumer repository.
+
+The architecture explicitly adopts an anti-wheel boundary: Symfony owns exception dispatch and HTTP framework mechanics; HTTP/Symfony own status semantics; RFC 9457 owns Problem Details representation. Failing may integrate those mechanisms but may not replace them with parallel exception dispatch, HttpException hierarchies, private HTTP status catalogues, Response/HttpKernel/Security substitutes, or competing error JSON protocols.
+
+The initial contract deliberately omits a custom FailureCategory-to-status taxonomy. Such a taxonomy is admitted only if consumer calibration demonstrates transport-independent semantic value. Runtime failure evidence is declaration-driven rather than inferred from arbitrary PHP control flow. Canon066 prepares the deterministic denominator for later L5 OpenAPI response parity but does not itself define that parity.
+
 ## 2026-09-26 — Canonical OpenAPI source and contract grammar closure
 
 Materialized rules: Canon058, Canon059, Canon060.
