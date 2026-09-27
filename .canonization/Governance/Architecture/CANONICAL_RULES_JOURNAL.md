@@ -1,5 +1,11 @@
 # Canonical Rules Journal
 
+## 2026-09-27 — Failing consumer calibration and Canon053 admission
+
+Paying is the first real consumer calibration: `payment.payment_not_found` is declared consumer-side and produces deterministic `GET /api/payments/{id} + 404` evidence through the shared Failing contracts without any Payment-specific branch in Failing. Cruding and Billing were inspected read-only because both currently contain parallel dirty work; their existing local exception/problem/error-response machinery confirms the same migration contour but was not modified.
+
+Canon053 is amended narrowly: `Failing` becomes the fourteenth explicit shared sibling symlink exception. The rule remains a closed allow-list; no wildcard or capability-to-capability symlink relaxation is introduced.
+
 ## 2026-09-27 — Failing contract architecture foundation
 
 Materialized rules: Canon064 through Canon066.
