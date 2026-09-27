@@ -62,6 +62,8 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon053 | `Canon053SiblingComposerSymlinkIsolationRule.php` | hard | `smartresponsing/app` composition host is exempt; all other components may expose only Gating, Cruding, Viewing, Interfacing, Collectioning, Objecting, Tabling, Runtime, Indexing, Discovering, Administering, Accessing, and Configuring as symlinked sibling Composer path repositories |
 | Canon054 | `Canon054DoctrinePhysicalIdentifierNamingRule.php` | hard | Doctrine physical identifiers use lower_snake_case; standalone ORM uses underscore_number_aware; legacy `sr_` table names are prohibited |
 | Canon055 | `Canon055PlatformIdentityTerminologyRule.php` | composite | consumer aliases cannot name the platform/shared ecosystem; explicit consumer/domain references and machine identifiers are exempt |
+| Canon056 | `Canon056ExternalApiOpenApiParityRule.php` | hard + warning + contextual | external Symfony API paths and canonical OpenAPI paths must mirror bidirectionally; method-level drift is reported as evidence/warning |
+| Canon057 | `Canon057ExternalApiVersionPrefixRule.php` | hard + contextual | versioned external API routes place `vN` immediately after `/api`; grammar-backed routes strip `/api/vN` before grammar resolution |
 
 ## Classification
 

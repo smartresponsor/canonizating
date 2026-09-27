@@ -1,5 +1,31 @@
 # Canonical Rules Journal
 
+## 2026-09-26 — External API version prefix placement
+
+Materialized rule: Canon057.
+
+Versioned external API routes now reserve the segment immediately after `/api` for the version token. Canonical tokens match `v1` through `v99`; leading-zero, zero, three-digit, numeric-only, and prose version tokens are non-canonical. Therefore `/api/v1/billing/invoices` is canonical while `/api/billing/v1/invoices` is not.
+
+For grammar-backed delivery surfaces such as Cruding, `/api/vN` is a channel/version prefix and is not part of the CRUD grammar input. Cruding receives the remaining `crudPath` after stripping `/api/vN`, so `v1` is never interpreted as a resource, operation, identity, slug, view, subject, or other CRUD token.
+
+Canon057 intentionally does not require immediate removal of all existing unversioned `/api/...` routes. Existing unversioned routes are compatibility/migration surfaces governed by compatibility lifecycle evidence; new versioned routes must use `/api/vN/...`.
+
+## 2026-09-26 — External HTTP API / OpenAPI operation parity
+
+Materialized rule: Canon056.
+
+Canonical API-bearing Symfony applications now treat the external runtime HTTP surface and the canonical current OpenAPI document as two representations of one operation contract. The deterministic comparison key is HTTP method plus normalized path. Runtime operations missing from OpenAPI are undocumented external surface; OpenAPI operations missing from runtime are stale/orphan contract surface.
+
+Canon056 intentionally stops at path-level OpenAPI mirror plus method-level evidence. It does not infer API test coverage, response/status-code coverage, parameter coverage, security coverage, breaking-change policy, or URL version-segment placement. Repositories without an external HTTP API are not required to add OpenAPI merely to satisfy the rule. Where external-route classification, canonical OpenAPI selection, route method inventory, or grammar-backed operation expansion is ambiguous, Gating must report ambiguity instead of guessing.
+
+Cruding clarified the important exception contour: generic delivery routes such as `/api/{crudPath}` and tokenized catch-all routes are not ordinary single OpenAPI operations. Their real external operation inventory is owned by the Cruding grammar/reserved-token model; Gating must consume an explicit operation inventory provider rather than reinterpreting CRUD tokens itself.
+
+## 2026-09-26 — Canon001/Canon004 topology drift correction
+
+Canon001 and Canon004 are explicitly complementary rather than competing topology rules. Canon001 owns only the first semantic token below `src/`: the technical role. Canon004 owns the earliest admissible placement of a configured component subject directory in ordinary technical trees. The former abstract `Invoice` example obscured the distinction between repository identity, subject token, technical direction, and terminal type, so the normative examples now use the real `Cruding` / `Crud` platform vocabulary. `src/Service/Operation/CrudApiCreateOperation.php` is canonical without a subject directory; if a `Crud` grouping directory is genuinely needed, `src/Service/Operation/Crud/CrudApiCreateOperation.php` is canonical while `src/Service/Crud/...` is premature.
+
+This correction does not require ceremonial depth. The intermediate token must add stable technical or semantic meaning; `Common`, `General`, `Misc`, or other filler folders remain non-canonical under Canon005. The existing Entity infrastructure exception in Canon004 remains unchanged.
+
 ## 2026-09-24 — Platform/consumer identity boundary
 
 Materialized rule: Canon055.
