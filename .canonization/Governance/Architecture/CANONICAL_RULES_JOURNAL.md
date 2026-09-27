@@ -10,6 +10,10 @@ Cruding calibration exposed an ownership correction in the central contract: exi
 
 Searching completes the initial cross-consumer calibration with a direct-controller pattern: the existing `search_index_not_found` 404 outcome is declared once and attached to both PATCH and DELETE operation inventories. Together, Paying (outcome-driven), Cruding (exception-driven), and Searching (direct-controller) demonstrate that Canon064-066 do not require consumer-specific branches in Failing.
 
+Shared/framework applicability is now fixed explicitly: registering a failure never attaches it globally to every operation. Security/framework outcomes enter exact runtime inventory only through deterministic operation membership owned by the relevant integration. Unknown throwables are not auto-converted into an implicit public 500 contract; Symfony/runtime handling remains authoritative unless a stable public internal-error failure is intentionally declared.
+
+OpenAPI matching semantics are also fixed for the upcoming L5 failure-status rule: deterministic runtime 4xx/5xx evidence must be represented by the exact OpenAPI response code. `default`, `4XX`, and `5XX` may describe ambient behavior but cannot satisfy or widen exact declared-failure parity. Failing does not own successful 2xx/3xx outcome inventory; success-status parity remains a separate architectural concern.
+
 ## 2026-09-27 — Failing contract architecture foundation
 
 Materialized rules: Canon064 through Canon066.

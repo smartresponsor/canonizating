@@ -21,11 +21,13 @@ The central Failing registry may aggregate declarations at runtime but is not it
 
 Unknown failure codes referenced by an operation inventory are non-canonical.
 
+Registration alone must never imply operation membership. Shared security or framework failures such as 401, 403, or an intentionally public 500 may enter operation evidence only through deterministic explicit applicability owned by the relevant consumer/security/host integration. Unknown throwables remain framework/runtime behavior and must not be auto-promoted into a public operation failure contract.
+
 Duplicate failure codes, duplicate exception mappings, and duplicate operation inventory identities are non-canonical because they make runtime evidence ambiguous.
 
 ## Non-goals
 
-Canon066 does not yet define OpenAPI response parity. That is the later L5 comparison once deterministic runtime inventory has been calibrated across representative consumers.
+Canon066 does not itself define OpenAPI response parity. The later L5 failure-status comparison consumes its deterministic evidence. Known concrete runtime failure statuses require exact OpenAPI response codes; OpenAPI `default` and wildcard ranges such as `4XX`/`5XX` do not satisfy an exact known failure and do not widen the runtime denominator.
 
 Canon066 also does not infer exhaustive failures from throw statements, responder branches, exception subscribers, or arbitrary control-flow analysis.
 
