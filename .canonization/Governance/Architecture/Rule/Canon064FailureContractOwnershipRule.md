@@ -24,7 +24,7 @@ Failing must not import, enumerate, branch on, or otherwise encode named consume
 
 Central mechanism may define:
 
-- FailureCode grammar;
+- a minimal safe machine-token envelope for FailureCode values, without prescribing the consumer's separator or business naming vocabulary;
 - FailureType representation;
 - FailureDefinitionDTO shape;
 - provider contracts;
