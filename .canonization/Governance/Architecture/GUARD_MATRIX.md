@@ -64,6 +64,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon055 | `Canon055PlatformIdentityTerminologyRule.php` | composite | consumer aliases cannot name the platform/shared ecosystem; explicit consumer/domain references and machine identifiers are exempt |
 | Canon056 | `Canon056ExternalApiOpenApiParityRule.php` | hard + warning + contextual | external Symfony API paths and canonical OpenAPI paths must mirror bidirectionally; method-level drift is reported as evidence/warning |
 | Canon057 | `Canon057ExternalApiVersionPrefixRule.php` | hard + contextual | versioned external API routes place `vN` immediately after `/api`; grammar-backed routes strip `/api/vN` before grammar resolution |
+| Canon058 | `Canon058CanonicalOpenApiSourceRule.php` | hard + contextual | canonical OpenAPI source must live under `config/openapi/` and use Canon038 subject-prefixed YAML filename |
 
 ## Classification
 

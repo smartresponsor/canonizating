@@ -1,5 +1,13 @@
 # Canonical Rules Journal
 
+## 2026-09-26 — Canonical OpenAPI source location
+
+Materialized rule: Canon058.
+
+Canonical OpenAPI source is now separated from generated/public/documentation artifacts. Current first-party OpenAPI source belongs under `config/openapi/` and must use the Canon038 subject-prefixed YAML filename shape, for example `config/openapi/billing_openapi.yaml` or `config/openapi/crud_openapi.yaml`.
+
+`var/**`, `public/**`, `docs/**`, `legacy/**`, and root `api/**` are not canonical source locations. Multiple current OpenAPI sources under `config/openapi/` require an explicit profile declaration such as `canonical_openapi_path`. Canon056 consumes the resulting canonical source for runtime/OpenAPI parity and must not merge generated or historical OpenAPI artifacts into its denominator.
+
 ## 2026-09-26 — External API version prefix placement
 
 Materialized rule: Canon057.
