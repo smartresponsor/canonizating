@@ -8,6 +8,8 @@ Canon053 is amended narrowly: `Failing` becomes the fourteenth explicit shared s
 
 Cruding calibration exposed an ownership correction in the central contract: existing public consumer codes include `crud_not_found` while Paying exposes `payment-not-found`. Therefore Failing must not prescribe dotted code vocabulary. Canon064 is clarified so the shared component may enforce only a minimal safe machine-token envelope; exact separator and business naming remain consumer-owned.
 
+Searching completes the initial cross-consumer calibration with a direct-controller pattern: the existing `search_index_not_found` 404 outcome is declared once and attached to both PATCH and DELETE operation inventories. Together, Paying (outcome-driven), Cruding (exception-driven), and Searching (direct-controller) demonstrate that Canon064-066 do not require consumer-specific branches in Failing.
+
 ## 2026-09-27 — Failing contract architecture foundation
 
 Materialized rules: Canon064 through Canon066.
