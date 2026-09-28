@@ -1,5 +1,9 @@
 # Canonical Rules Journal
 
+## 2026-09-27 — Failing mandatory standalone adoption
+
+Failing is promoted from an optional shared package to a mandatory standalone runtime baseline dependency. Canon022 now requires `failing/failure` in both development and production runtime manifests for standalone platform applications and requires `App\\Failing\\FailingBundle` activation in `config/bundles.php`. Development path/symlink/version/closure semantics remain owned by Canon023/043/045; production path prohibition remains owned by Canon024. The Failing owner now exposes a real reusable Symfony bundle that autoconfigures consumer failure providers without enumerating consumers.
+
 ## 2026-09-27 — Failing consumer calibration and Canon053 admission
 
 Paying is the first real consumer calibration: `payment.payment_not_found` is declared consumer-side and produces deterministic `GET /api/payments/{id} + 404` evidence through the shared Failing contracts without any Payment-specific branch in Failing. Cruding and Billing were inspected read-only because both currently contain parallel dirty work; their existing local exception/problem/error-response machinery confirms the same migration contour but was not modified.

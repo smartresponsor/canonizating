@@ -6,13 +6,15 @@ Canon: `Canon022`
 Gating mirror: `Canon022StandaloneApplicationDependencyBaselineRule.php`
 
 ## Requirement
-Every standalone platform Symfony application declares the platform baseline as direct runtime Composer dependencies: `cruding/crud`, `collectioning/collection`, `tabling/table`, `viewing/view`, `interfacing/interface`, `objecting/object`, and `easycorp/easyadmin-bundle`.
+Every standalone platform Symfony application declares the platform baseline as direct runtime Composer dependencies in both `composer.json` and `composer.prod.json`: `cruding/crud`, `collectioning/collection`, `tabling/table`, `viewing/view`, `interfacing/interface`, `objecting/object`, `failing/failure`, and `easycorp/easyadmin-bundle`.
+
+Because Failing owns executable Symfony runtime integration, standalone consumers also register `App\\Failing\\FailingBundle` in `config/bundles.php`. Development resolution remains governed by Canon023/043/045 (`../Failing`, `symlink: true`, `dev-master`, and repository closure); production resolution remains governed by Canon024 and therefore must not use a local path/symlink repository.
 
 ## Prohibited
 Do not rely on these platform capabilities only transitively through another package, and do not omit one merely because the current application has not yet exercised the corresponding surface.
 
 ## Rationale
-The baseline makes standalone applications structurally predictable: Cruding provides generic application CRUD; Collectioning provides provider-neutral collection query semantics; Tabling provides backend table-definition contracts and security-aware actions; Viewing provides the view boundary; Interfacing provides shared contracts; Objecting provides shared object identity/infrastructure; and EasyAdmin provides the permitted back-office CRUD surface.
+The baseline makes standalone applications structurally predictable: Cruding provides generic application CRUD; Collectioning provides provider-neutral collection query semantics; Tabling provides backend table-definition contracts and security-aware actions; Viewing provides the view boundary; Interfacing provides shared contracts; Objecting provides shared object identity/infrastructure; Failing provides the shared public-failure declaration, resolution, and deterministic operation-inventory runtime; and EasyAdmin provides the permitted back-office CRUD surface.
 
 ## Standalone Detection
 A repository is treated as a standalone Symfony application when it has Symfony application entry/configuration surfaces such as `bin/console` and `config/bundles.php`. Composer `type` alone is not authoritative because platform standalone repositories may also identify as Symfony bundles.
@@ -27,8 +29,8 @@ Pure libraries, infrastructure tooling, and non-standalone component packages wi
 ## Evidence Contract
 ```yaml
 evidence_contract:
-  coverage: "composer.json plus standalone Symfony boot-surface presence"
-  extraction: [composer_require_packages, bin_console_presence, bundles_config_presence]
+  coverage: "composer.json, composer.prod.json, and standalone Symfony boot/bundle-registration surfaces"
+  extraction: [development_require_packages, production_require_packages, bin_console_presence, bundles_config_presence, failing_bundle_registration]
   body_read: prohibited
   reasoning: none
   escalation: [custom_symfony_bootstrap, standalone_applicability_ambiguous]
