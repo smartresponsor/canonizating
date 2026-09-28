@@ -17,6 +17,8 @@ The deterministic evidence unit is:
 
 The Failing owner must expose this evidence through a versioned, deterministic machine-readable export surface. Equivalent inventories must serialize in stable ordering independent of consumer/provider registration order.
 
+Each operation inventory must declare whether its failure membership is complete. Completeness defaults to false. A complete operation must remain visible in exported coverage even when it declares zero failures, so downstream parity consumers can distinguish "no known failures" from "inventory not yet exhaustive".
+
 The central Failing registry may aggregate declarations at runtime but is not itself a source-code catalogue.
 
 Unknown failure codes referenced by an operation inventory are non-canonical.
