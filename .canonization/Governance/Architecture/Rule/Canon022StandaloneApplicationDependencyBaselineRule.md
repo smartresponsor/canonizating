@@ -8,6 +8,8 @@ Gating mirror: `Canon022StandaloneApplicationDependencyBaselineRule.php`
 ## Requirement
 Every standalone platform Symfony application declares the platform baseline as direct runtime Composer dependencies in both `composer.json` and `composer.prod.json`: `cruding/crud`, `collectioning/collection`, `tabling/table`, `viewing/view`, `interfacing/interface`, `objecting/object`, `failing/failure`, and `easycorp/easyadmin-bundle`.
 
+When the standalone application is itself one of those first-party baseline packages, its own Composer package name is excluded from the required dependency set. A package MUST NOT require itself merely to satisfy the baseline.
+
 Because Failing owns executable Symfony runtime integration, standalone consumers also register `App\\Failing\\FailingBundle` in `config/bundles.php`. Development resolution remains governed by Canon023/043/045 (`../Failing`, `symlink: true`, `dev-master`, and repository closure); production resolution remains governed by Canon024 and therefore must not use a local path/symlink repository.
 
 ## Prohibited
