@@ -33,7 +33,7 @@ This rule governs the **current Doctrine metadata contract**, not every historic
 
 Historical migrations may legitimately mention non-canonical identifiers in order to detect, rename, copy, or drop them. Canon030 remains responsible for proving that the complete migration chain converges to current Entity metadata.
 
-Component/domain table-prefix requirements remain profile-owned by the existing database-prefix rule and are not duplicated here.
+Component/domain table-prefix requirements remain profile-owned by the existing database-prefix rule and are not duplicated here. A declared database ownership prefix MUST be applied exactly once at the start of a current Doctrine table name. The ownership stem MUST NOT be repeated immediately after the prefix: for `database_prefix: message_`, `message`, `message_thread`, and `message_attachment` are canonical shapes while `message_message` and `message_message_attachment` are non-canonical ownership-token duplication. A semantic qualifier may follow the single ownership prefix when it adds real meaning.
 
 Singular/plural table vocabulary, reserved SQL words, foreign-key semantics, and identifier type strategy are intentionally outside this atomic rule.
 

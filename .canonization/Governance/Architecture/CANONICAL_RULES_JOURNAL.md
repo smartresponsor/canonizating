@@ -1,5 +1,23 @@
 # Canonical Rules Journal
 
+## 2026-10-04 — Canonical local runtime endpoint topology
+
+Materialized rule: Canon068.
+
+Local host/IP/port assignments are architecture rather than launch-script convention. Windows and Ubuntu share the same numeric authority: App Host `127.0.0.1:8000`; Mobiling Mobile Edge `127.0.0.1:8080`; Android emulator access `10.0.2.2:8080`; iOS/local access `localhost:8080`; Console MCP ChatGPT OAuth/public Cloudflare upstream `127.0.0.1:3333`; local-only Codex bearer `127.0.0.1:3334`; primary managed browser CDP `127.0.0.1:9223`; reserved standby/compatibility CDP `127.0.0.1:9222`.
+
+The OS-specific distinction is orchestration only: Windows uses watchdog/Scheduled Task/interactive browser supervision while Ubuntu uses systemd-managed services. These mechanisms may not redefine endpoint ownership. Gating owns deterministic source/configuration parity; Console MCP/CanonScanning owns contextual live listener/process verification during nightly and autonomous RC execution.
+
+## 2026-09-30 — Repository root Entity ownership with infrastructure exceptions
+
+Materialized rule: Canon067.
+
+Every canonical Symfony component repository participating in application composition owns a repository root Entity derived from its Composer package subject token. The canonical shape is `src/Entity/<SubjectToken>/<SubjectToken>Entity.php`; Host composition does not transfer that Entity ownership to the Host.
+
+`interfacing/interface`, `viewing/view`, and `gating/gate` are explicit exceptions. They may remain entirely persistence-free in standalone and Host-composed modes, and no synthetic Entity is required merely to satisfy architecture tooling. The exception is permissive rather than prohibitive: a real future persistence responsibility may still justify an Entity.
+
+The stale code-memory draft that reused the already-occupied Canon047 identity is superseded by Canon067 and is non-normative; it must not be promoted or interpreted as a second Canon047.
+
 ## 2026-09-27 — Failing mandatory standalone adoption
 
 Failing is promoted from an optional shared package to a mandatory standalone runtime baseline dependency. Canon022 now requires `failing/failure` in both development and production runtime manifests for standalone platform applications and requires `App\\Failing\\FailingBundle` activation in `config/bundles.php`. Development path/symlink/version/closure semantics remain owned by Canon023/043/045; production path prohibition remains owned by Canon024. The Failing owner now exposes a real reusable Symfony bundle that autoconfigures consumer failure providers without enumerating consumers.

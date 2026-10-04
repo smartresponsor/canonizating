@@ -35,7 +35,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon026 | `Canon026PlatformVersionBaselineRule.php` | hard | implemented; PHP 8.4+ and Symfony 8.1+ within Symfony 8.x |
 | Canon027 | `Canon027DatabaseEngineBaselineRule.php` | hard + contextual | implemented; rejects known non-canonical Doctrine relational drivers |
 | Canon028 | `Canon028DualDoctrineConnectionRule.php` | hard + semantic | implemented; checks `data`/PostgreSQL and `infra`/SQLite roles when persistence is present |
-| Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard | implemented; requires PHP-CS-Fixer + PHPStan dependencies, configs, and Composer execution scripts |
+| Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard local + orchestration external | local Gating requires PHP-CS-Fixer + PHPStan dependencies/config/scripts; autonomous RC/nightly verification additionally consumes external Inspecting evidence without making Inspecting a consumer dependency |
 | Canon030 | `Canon030DoctrineSchemaParityRule.php` | hard + runtime | implemented; requires an executable Doctrine schema-parity contract for ORM+migrations repositories |
 | Canon031 | `Canon031PhpDocCoverageRule.php` | warning | meaningful class + contract-method PHPDoc coverage >=70%; private helpers, magic methods, constructors/destructors, and conventional accessors excluded and reported separately |
 | Canon032 | `Canon032BundleRegistrationRule.php` | hard | implemented; requires reusable component bundle registration in standalone mode |
@@ -73,6 +73,8 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon064 | `Canon064FailureContractOwnershipRule.php` | hard + semantic | Failing owns generic failure mechanism; consumers own concrete failure vocabulary and operation membership |
 | Canon065 | `Canon065NoFrameworkFailureReimplementationRule.php` | hard + semantic | Failing may integrate Symfony/RFC 9457 but must not replace framework exception, HTTP, response, routing, security, or error-protocol machinery |
 | Canon066 | `Canon066FailureDeclarationInventoryRule.php` | hard + contextual | explicit consumer failure declarations and operation membership produce deterministic METHOD + path + failure code + HTTP status evidence without control-flow guessing |
+| Canon067 | `Canon067RepositoryRootEntityRule.php` | hard + contextual | canonical Symfony component repositories own a Composer-subject root Entity; Interfacing, Viewing, and Gating are explicitly exempt |
+| Canon068 | `Canon068LocalRuntimeEndpointTopologyRule.php` | hard repository + runtime orchestration | Windows/Ubuntu share App `127.0.0.1:8000`, Mobile Edge `127.0.0.1:8080`, OAuth/public tunnel `3333`, local Codex bearer `3334`, primary CDP `9223`, reserved standby CDP `9222`; substitutions/collisions are non-canonical |
 
 ## Classification
 
