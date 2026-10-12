@@ -75,6 +75,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon066 | `Canon066FailureDeclarationInventoryRule.php` | hard + contextual | explicit consumer failure declarations and operation membership produce deterministic METHOD + path + failure code + HTTP status evidence without control-flow guessing |
 | Canon067 | `Canon067RepositoryRootEntityRule.php` | hard + contextual | canonical Symfony component repositories own a Composer-subject root Entity; Interfacing, Viewing, and Gating are explicitly exempt |
 | Canon068 | `Canon068LocalRuntimeEndpointTopologyRule.php` | hard repository + runtime orchestration | Windows/Ubuntu share App `127.0.0.1:8000`, Mobile Edge `127.0.0.1:8080`, OAuth/public tunnel `3333`, local Codex bearer `3334`, primary CDP `9223`, reserved standby CDP `9222`; substitutions/collisions are non-canonical |
+| Canon069 | `Canon069MergedMasterBranchIntegrityRule.php` | hard Git ancestry + orchestration freshness | unmerged local/fetched remote commits block GREEN; final certification requires fresh remotes, clean master and quality checks |
 
 ## Classification
 
