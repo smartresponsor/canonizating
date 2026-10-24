@@ -17,7 +17,7 @@ For repository/component `Cruding`, the platform profile declares `Crud` as the 
 
 For repository/component `Carting`, the same distinction is `Carting` (repository/component identity) versus `Cart` (configured subject token). The rule never derives subject vocabulary by mechanically trimming `-ing`.
 
-Flat terminal classes outside the Entity technical root, such as `src/Enum/CrudOperation.php`, remain valid because `Crud` is part of the terminal class rather than a directory token. A terminal persistence class under `src/Entity/` must use the `Entity` suffix. Do not add meaningless directories merely to reach numeric depth.
+Flat terminal classes outside the Entity technical root, such as `src/Enum/CrudOperation.php`, remain valid because `Crud` is part of the terminal class rather than a directory token. A terminal persistence class under `src/Entity/` must use the `Entity` suffix, for example `src/Entity/FacetEntity.php`. Do not add meaningless directories merely to reach numeric depth.
 
 ## Rationale
 The repository already supplies component context. Repeating the component too early competes with technical-role-first topology.
