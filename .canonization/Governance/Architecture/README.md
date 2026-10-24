@@ -1,6 +1,6 @@
-# SmartResponsor Architecture Canon
+# Platform Architecture Canon
 
-This directory is the authoritative non-executable architecture canon for the SmartResponsor platform.
+This directory is the authoritative non-executable architecture canon for the multi-domain SaaS platform.
 
 The platform baseline is Symfony 8 and PHP 8.4. `App\\` is the platform namespace root; canonical component code is scoped beneath it as `App\\<ComponentToken>\\...`, where `<ComponentToken>` is the component identity from the first token of `composer.json:name` (for example, `ordering/order` maps to `App\\Ordering\\...`). Bare `App\\...` component code is not the component identity model, except for framework bootstrap types explicitly exempted by the canon. Alternative domain namespace roots are not part of the canon. `src/Domain/` and Port/Adapter/Adaptor taxonomies are not default platform structures.
 
@@ -29,7 +29,7 @@ The shared foreign key is `Canon003`; the mirrored semantic name makes human nav
 
 ## Canon admission boundary
 
-Canonization does not duplicate stable commodity checks already owned by standard ecosystem tooling. Formatting/style belongs to tools such as PHP-CS-Fixer or PHPCS; analyzable type/code defects belong to PHPStan/Rector-class tooling. A SmartResponsor Canon rule is justified when it defines platform-specific architecture, topology, ownership, lifecycle, or semantic behavior that ordinary tooling cannot determine from language syntax/types alone.
+Canonization does not duplicate stable commodity checks already owned by standard ecosystem tooling. Formatting/style belongs to tools such as PHP-CS-Fixer or PHPCS; analyzable type/code defects belong to PHPStan/Rector-class tooling. A platform Canon rule is justified when it defines platform-specific architecture, topology, ownership, lifecycle, or semantic behavior that ordinary tooling cannot determine from language syntax/types alone.
 
 ## Evidence and read contour contract
 

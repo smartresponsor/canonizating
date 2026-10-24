@@ -12,6 +12,8 @@ allowed_files=(
   ".editorconfig"
   ".gitattributes"
   ".gitignore"
+  "AGENTS.md"
+  "CMCP_CHANGELOG.md"
   "composer.json"
   "composer.lock"
   "MANIFEST.json"

@@ -6,7 +6,7 @@ Canon: `Canon043`
 Gating mirror: `Canon043DevelopmentComposerDependencyVersionRule.php`
 
 ## Requirement
-When a development `composer.json` connects sibling SmartResponsor components through local Composer `path` repositories, the root manifest uses `"minimum-stability": "dev"` with `"prefer-stable": true`. Any matching package dependency in `require` or `require-dev` must use the exact constraint `dev-master`. Each local first-party path repository must declare `options.versions[<package-name>] = "dev-master"` so Composer keeps the canonical package identity even when the sibling working tree is checked out on a feature branch.
+When a development `composer.json` connects sibling first-party components through local Composer `path` repositories, the root manifest uses `"minimum-stability": "dev"` with `"prefer-stable": true`. Any matching package dependency in `require` or `require-dev` must use the exact constraint `dev-master`. Each local first-party path repository must declare `options.versions[<package-name>] = "dev-master"` so Composer keeps the canonical package identity even when the sibling working tree is checked out on a feature branch.
 
 This is the canonical development branch contract for first-party sibling components. The local `path` repository provides the working tree, `options.symlink=true` provides live source linkage under Canon023, and `dev-master` provides a bounded, explicit Composer branch identity instead of an unbounded development constraint.
 

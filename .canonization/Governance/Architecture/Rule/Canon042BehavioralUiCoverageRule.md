@@ -6,7 +6,7 @@ Canon: `Canon042`
 Gating mirror: `Canon042BehavioralUiCoverageRule.php`
 
 ## Requirement
-Canonical standalone Symfony applications maintain measurable coverage of application behavior in addition to executable PHP code coverage.
+Canonical standalone Symfony applications maintain measurable coverage of application behavior in addition to executable PHP code coverage. Repositories explicitly exempt from Canon041 because they expose no user-visible functional/browser/UI surface, including `enveloping/envelope`, are outside Canon042 as well.
 
 This rule does not reinterpret Playwright test counts, Panther test counts, PHPUnit class counts, or raw route counts as coverage. A coverage percentage is valid only when both the tested numerator and the eligible application-surface denominator are explicitly inventoried by a reproducible test-evidence producer.
 

@@ -6,7 +6,7 @@ Canon: `Canon039`
 Gating mirror: `Canon039PhpTestToolingRule.php`
 
 ## Requirement
-Every canonical SmartResponsor PHP repository containing executable production PHP code provides an executable PHPUnit testing and code-coverage contract.
+Every canonical platform PHP repository containing executable production PHP code provides an executable PHPUnit testing and code-coverage contract.
 
 The repository declares PHPUnit as a development dependency, owns its PHPUnit configuration, explicitly identifies the production source tree considered for coverage, and exposes reproducible Composer scripts for ordinary test execution and persistent coverage-summary execution.
 

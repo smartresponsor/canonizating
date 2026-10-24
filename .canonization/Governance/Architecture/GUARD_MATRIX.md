@@ -35,7 +35,7 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon026 | `Canon026PlatformVersionBaselineRule.php` | hard | implemented; PHP 8.4+ and Symfony 8.1+ within Symfony 8.x |
 | Canon027 | `Canon027DatabaseEngineBaselineRule.php` | hard + contextual | implemented; rejects known non-canonical Doctrine relational drivers |
 | Canon028 | `Canon028DualDoctrineConnectionRule.php` | hard + semantic | implemented; checks `data`/PostgreSQL and `infra`/SQLite roles when persistence is present |
-| Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard | implemented; requires PHP-CS-Fixer + PHPStan dependencies, configs, and Composer execution scripts |
+| Canon029 | `Canon029MandatoryPhpQualityToolingRule.php` | hard local + orchestration external | local Gating requires PHP-CS-Fixer + PHPStan dependencies/config/scripts; autonomous RC/nightly verification additionally consumes external Inspecting evidence without making Inspecting a consumer dependency |
 | Canon030 | `Canon030DoctrineSchemaParityRule.php` | hard + runtime | implemented; requires an executable Doctrine schema-parity contract for ORM+migrations repositories |
 | Canon031 | `Canon031PhpDocCoverageRule.php` | warning | meaningful class + contract-method PHPDoc coverage >=70%; private helpers, magic methods, constructors/destructors, and conventional accessors excluded and reported separately |
 | Canon032 | `Canon032BundleRegistrationRule.php` | hard | implemented; requires reusable component bundle registration in standalone mode |
@@ -52,6 +52,30 @@ Repository-reading automation must also use the inline `## Evidence Contract` in
 | Canon043 | `Canon043DevelopmentComposerDependencyVersionRule.php` | hard | local sibling Composer path dependencies must use exact `dev-master` constraints and path-version identity |
 | Canon044 | `Canon044ObjectingSystemFieldNamingRule.php` | hard | Objecting system fields use entity-native Doctrine field/column names without `object` or `objecting` ownership prefixes |
 | Canon045 | `Canon045DevelopmentComposerRepositoryClosureRule.php` | hard | root development Composer manifest must expose the complete reachable local first-party path-repository closure |
+| Canon046 | `Canon046VendorIdentityRule.php` | hard + semantic | active platform identity uses `VendorEntity.id`, `vendorId`, and `vendor_id`; tenant identity aliases are non-canonical |
+| Canon047 | `Canon047RepositoryOwnsDoctrineManagerRule.php` | hard | direct Doctrine manager infrastructure is repository-owned |
+| Canon048 | `Canon048EntityDoesNotCrossAsyncBoundaryRule.php` | hard | project Entity types do not cross asynchronous Message transport boundaries; Symfony Console Command is not transport |
+| Canon049 | `Canon049EntityHasNoOrchestrationDependencyRule.php` | hard | Entity classes do not depend on orchestration/runtime side-effect roles |
+| Canon050 | `Canon050NoRuntimeContainerAccessRule.php` | hard | runtime container/service-locator access is restricted to bootstrap integration |
+| Canon051 | `Canon051RepositoryHasNoOrchestrationDependencyRule.php` | hard | Repository classes do not depend on application orchestration roles |
+| Canon052 | `Canon052GatingIntegrationRule.php` | hard | canonical consumers install Gating, symlink it in development, package it in production metadata, and include it in aggregate quality verification |
+| Canon053 | `Canon053SiblingComposerSymlinkIsolationRule.php` | hard | `smartresponsing/app` composition host is exempt; all other components may expose only Gating, Cruding, Viewing, Interfacing, Collectioning, Objecting, Tabling, Runtime, Indexing, Discovering, Administering, Accessing, and Configuring as symlinked sibling Composer path repositories |
+| Canon054 | `Canon054DoctrinePhysicalIdentifierNamingRule.php` | hard | Doctrine physical identifiers use lower_snake_case; standalone ORM uses underscore_number_aware; legacy `sr_` table names are prohibited |
+| Canon055 | `Canon055PlatformIdentityTerminologyRule.php` | composite | consumer aliases cannot name the platform/shared ecosystem; explicit consumer/domain references and machine identifiers are exempt |
+| Canon056 | `Canon056ExternalApiOpenApiParityRule.php` | hard + contextual | external Symfony API paths and canonical OpenAPI paths must mirror bidirectionally; method parity is owned by Canon063 |
+| Canon057 | `Canon057ExternalApiVersionPrefixRule.php` | hard + contextual | versioned external API routes place `vN` immediately after `/api`; grammar-backed routes strip `/api/vN` before grammar resolution |
+| Canon058 | `Canon058CanonicalOpenApiSourceRule.php` | hard + contextual | canonical OpenAPI source must live under `config/openapi/` and use Canon038 subject-prefixed YAML filename |
+| Canon059 | `Canon059OpenApiParityCanonicalSourceRule.php` | hard + contextual | external API/OpenAPI parity must consume only the Canon058-compatible canonical OpenAPI source |
+| Canon060 | `Canon060OpenApiVersionPrefixRule.php` | hard + contextual | versioned OpenAPI paths place `vN` immediately after `/api` |
+| Canon061 | `Canon061OpenApiNelmioProducerDependencyRule.php` | hard + contextual | repositories that own OpenAPI sources/config declare direct `nelmio/api-doc-bundle` runtime dependency |
+| Canon062 | `Canon062OpenApiProfileCanonicalPathAliasRule.php` | hard + warning + contextual | OpenAPI profile path aliases must not drift; `canonical_openapi_path` is the preferred declaration key |
+| Canon063 | `Canon063ExternalApiMethodParityRule.php` | hard + contextual | declared runtime `METHOD + path` operations and canonical OpenAPI operations must mirror bidirectionally |
+| Canon064 | `Canon064FailureContractOwnershipRule.php` | hard + semantic | Failing owns generic failure mechanism; consumers own concrete failure vocabulary and operation membership |
+| Canon065 | `Canon065NoFrameworkFailureReimplementationRule.php` | hard + semantic | Failing may integrate Symfony/RFC 9457 but must not replace framework exception, HTTP, response, routing, security, or error-protocol machinery |
+| Canon066 | `Canon066FailureDeclarationInventoryRule.php` | hard + contextual | explicit consumer failure declarations and operation membership produce deterministic METHOD + path + failure code + HTTP status evidence without control-flow guessing |
+| Canon067 | `Canon067RepositoryRootEntityRule.php` | hard + contextual | canonical Symfony component repositories own a Composer-subject root Entity; Interfacing, Viewing, and Gating are explicitly exempt |
+| Canon068 | `Canon068LocalRuntimeEndpointTopologyRule.php` | hard repository + runtime orchestration | Windows/Ubuntu share App `127.0.0.1:8000`, Mobile Edge `127.0.0.1:8080`, OAuth/public tunnel `3333`, local Codex bearer `3334`, primary CDP `9223`, reserved standby CDP `9222`; substitutions/collisions are non-canonical |
+| Canon069 | `Canon069MergedMasterBranchIntegrityRule.php` | hard Git ancestry + orchestration freshness | unmerged local/fetched remote commits block GREEN; final certification requires fresh remotes, clean master and quality checks |
 
 ## Classification
 

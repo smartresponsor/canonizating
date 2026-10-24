@@ -6,7 +6,7 @@ param(
 $RepoRoot = $RepoRoot.TrimEnd('\','/')
 
 $requiredFiles = @(".gitignore","MANIFEST.json","README.md")
-$allowedFiles = @(".gitignore","MANIFEST.json","README.md",".gitattributes")
+$allowedFiles = @(".editorconfig",".gitattributes",".gitignore","AGENTS.md","CMCP_CHANGELOG.md","composer.json","composer.lock","MANIFEST.json","README.md")
 
 function IsAllowedRootFile([string]$name) {
   return $allowedFiles -contains $name

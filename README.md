@@ -1,6 +1,6 @@
 # Canonization
 
-Owner-side canonical tooling and policy pack for SmartResponsor repositories.
+Owner-side canonical tooling and policy pack for repositories in the multi-domain SaaS platform.
 
 ## Repository contract
 

@@ -8,7 +8,7 @@ Gating mirror: `Canon038ConfigYamlSubjectPrefixRule.php`
 ## Requirement
 Component-owned YAML configuration under `config/**` must use a collision-safe filename namespace derived from Canon018.
 
-For a canonical SmartResponsor component package named `<component-token>/<subject-token>`, every component-owned `.yaml` or `.yml` filename under `config/**` must begin with the normalized subject token followed by `_`.
+For a canonical platform component package named `<component-token>/<subject-token>`, every component-owned `.yaml` or `.yml` filename under `config/**` must begin with the normalized subject token followed by `_`.
 
 The YAML filename prefix is derived from the second token of `composer.json:name`; no independent component-to-prefix mapping is allowed.
 

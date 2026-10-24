@@ -1,6 +1,6 @@
 # AGENTS.md
 
-# SmartResponsor Platform Rules
+# Platform Rules
 
 Этот файл находится в корне репозитория и является agent-facing проекцией платформенного канона для Codex CLI.
 Нормативный смысл принадлежит `.canonization/Governance/Architecture/Rule/`; этот файл не является независимым источником канона и не должен ему противоречить.
@@ -101,14 +101,20 @@
 - Владеет полной общей документацией платформы.
 - Каждый компонент хранит только документацию своей ответственности.
 
-## 5. Zero CRUD controllers и zero CRUD routes YAML
+## 5. Generic application CRUD ownership и EasyAdmin exception
 
-Целевое состояние обычного приложения:
+Целевое состояние обычного приложения относится к generic application CRUD, которым владеет Cruding:
 
 ```text
-zero CRUD controllers
-zero CRUD routes YAML
+zero generic application CRUD controllers outside Cruding
+zero generic application CRUD routes YAML outside Cruding
 ```
+
+EasyAdmin CRUD controllers and routes used for administrative/back-office surfaces are explicitly allowed by Canon021. They are an admin UI surface and do not compete with Cruding's generic application CRUD ownership.
+
+`Generated` in an EasyAdmin controller name or path does not by itself make that controller a disposable generated artifact. Do not delete or untrack an EasyAdmin CRUD controller merely because it is named `Generated`, `Crud`, or `CrudController`. Removal requires a separate explicit canonical rule plus runtime/admin-behavior evidence that the source is reproducible and behaviorally replaced.
+
+Canonization textual rules are authoritative. If an `AGENTS.md` projection disagrees with them, the Canonization rule wins and the projection must be synchronized.
 
 Generic операции принадлежат Cruding:
 
@@ -199,6 +205,8 @@ Cruding, Interfacing и Viewing могут работать:
 - внутри host application;
 - как отдельно установленный component/application;
 - на own site с собственным runtime.
+
+`Enveloping` является отдельной optional cross-cutting capability. Он не входит в обязательный application dependency contour. Host application может подключать `enveloping/envelope` и оборачивать objects/operations consumer-компонентов typed execution context без требования, чтобы сами `Messaging`, `Delivering`, `Notifying`, `Shipping`, `Payment` или другие consumers зависели от Enveloping. Enveloping не должен хардкодить знания о конкретных consumer repositories.
 
 Связь между соседними runtime repositories выражается Composer dependency и публичным контрактом, а не наличием соседней папки.
 
@@ -415,7 +423,7 @@ Generated `.codebase-memory/` artifacts являются локальным cach
 - Use `cf-ai-verify` to verify auth and `cf-ai-test` for a smoke request.
 - Prefer `curl.exe` from PowerShell when validating Cloudflare endpoints.
 - Use `codex-cf-review -Scope Changed` as the default daily review path.
-- Keep the policy layer in `.gating/` when you need scope, prompt, schema, or exit-code changes.
+- Consumer `.gating/` is artifact-only. Gating policy, profiles, schemas, severity configuration, and executable rules are owned by the installed `gating/gate` package; development resolves that package through the canonical sibling symlink.
 
 ## Codex Usage
 
@@ -429,6 +437,8 @@ prod composer.prod.json
 dev composer.json
 
 For development `composer.json`, roots that use first-party sibling Composer `path` repositories declare `"minimum-stability": "dev"` and `"prefer-stable": true`. First-party sibling components use the exact dependency constraint `dev-master`. Each such path repository also pins `options.versions[package]` to `dev-master`, so feature-branch checkouts do not change Composer package identity. Unbounded `*@dev`/`*`, `dev-main`, arbitrary feature-branch constraints, and invented semver ranges are non-canonical for these local sibling dependencies. Because Composer ignores dependency-owned `repositories`, the root development manifest also exposes the complete reachable first-party local path-repository closure. Transitive repository visibility does not by itself make the transitive package a direct root dependency. Third-party dependency versioning is outside these rules.
+
+The sibling Composer symlink contour is closed: only `../Gating`, `../Cruding`, `../Viewing`, and `../Interfacing` may use `type: path` with `options.symlink: true`. This is an absence rule only; it does not require any of those four repositories to be present.
 
 ## App Runtime
 

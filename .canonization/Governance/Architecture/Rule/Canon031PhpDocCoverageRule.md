@@ -6,7 +6,7 @@ Canon: `Canon031`
 Gating mirror: `Canon031PhpDocCoverageRule.php`
 
 ## Requirement
-Canonical SmartResponsor PHP repositories maintain at least 70% meaningful PHPDoc coverage for classes and contract-significant methods separately. Canon031 MUST NOT create documentation debt from implementation noise such as private helpers, PHP magic methods, constructors/destructors, or conventional `get*`/`set*`/`is*`/`has*` accessors.
+Canonical platform PHP repositories maintain at least 70% meaningful PHPDoc coverage for classes and contract-significant methods separately. Canon031 MUST NOT create documentation debt from implementation noise such as private helpers, PHP magic methods, constructors/destructors, or conventional `get*`/`set*`/`is*`/`has*` accessors.
 
 ## Meaningful Coverage
 A declaration is covered only when it has an immediately preceding PHPDoc block with a human-readable description. Tags such as `@param`, `@return`, `@throws`, `@deprecated`, and similar metadata do not count as a description by themselves.

@@ -9,7 +9,7 @@ Gating mirror: `Canon026PlatformVersionBaselineRule.php`
 The platform baseline is PHP 8.4 or newer and Symfony 8.1 or newer within the Symfony 8 major line. Repositories should track the current maintained Symfony 8.x branch rather than remain on an unmaintained minor.
 
 ## Prohibited
-Do not declare PHP constraints that permit versions below 8.4 or Symfony runtime/framework constraints that permit Symfony below 8.1 for canonical platform components.
+Do not declare PHP constraints that permit versions below 8.4 or Symfony runtime/framework component constraints that permit Symfony below 8.1 for canonical platform components. Independently versioned ecosystem packages under the `symfony/*` vendor, such as Symfony UX packages, are governed by their own package major versions and are not interpreted as Symfony Framework version constraints.
 
 ## Rationale
 Symfony 8 requires PHP 8.4+, and the platform intentionally targets the modern Symfony 8 line rather than compatibility with older majors.

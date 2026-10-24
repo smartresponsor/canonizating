@@ -12,6 +12,8 @@ Composer reads repository definitions only from the root package. Repository dec
 
 The transitive package does not become a direct root `require` dependency solely because its repository must be visible. Direct dependency ownership remains governed by the actual runtime coupling and other canon rules.
 
+When a transitive local dependency edge points back to the root package itself, that edge is excluded from the required repository closure. The root repository MUST NOT declare a sibling `path` repository to itself.
+
 ## Prohibited
 Do not rely on a dependency package's own `repositories` section to make its transitive first-party dependencies discoverable from a root consumer. Do not duplicate a transitive package into `require` merely to work around repository discovery when there is no direct runtime dependency.
 
