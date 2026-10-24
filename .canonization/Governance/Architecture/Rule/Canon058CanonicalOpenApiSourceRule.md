@@ -100,3 +100,18 @@ Canon058 does not define:
 - OpenAPI generation tooling;
 - publication of rendered API docs.
 
+## Guardability
+
+Hard for repositories with first-party OpenAPI artifacts and an identifiable Canon018 component subject. Repositories without OpenAPI ownership are not applicable; multiple current canonical candidates require an explicit profile declaration.
+
+## Evidence Contract
+```yaml
+evidence_contract:
+  coverage: "first-party OpenAPI-looking artifacts, config/openapi canonical candidates, and repository profile declarations"
+  extraction: [composer_subject_identity, openapi_artifact_paths, canonical_openapi_source_candidates, declared_canonical_openapi_path, canonical_file_format, canonical_filename_prefix]
+  body_read: prohibited
+  reasoning: none
+  escalation: [published_or_legacy_artifact_without_canonical_source, invalid_canonical_path_or_format, ambiguous_multiple_canonical_sources, invalid_subject_prefix]
+  executable_evidence: ["Gating Canon058 canonical OpenAPI source findings"]
+```
+
