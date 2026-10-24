@@ -7,8 +7,13 @@
       "README.md"
     ],
     "allowed_root_files_exact": [
+      ".editorconfig",
+      ".gitattributes",
       ".gitignore",
+      "AGENTS.md",
       "CMCP_CHANGELOG.md",
+      "composer.json",
+      "composer.lock",
       "MANIFEST.json",
       "README.md"
     ]
