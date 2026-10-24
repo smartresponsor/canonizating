@@ -227,7 +227,7 @@ function DownloadAssets([string]$Owner, [string]$Repo, [string]$Tag, [string]$Zi
   $dlKey = if ([string]::IsNullOrWhiteSpace($Tag)) { ("branch-" + $useBranch) } else { $Tag.Replace("/","_") }
 
   $dlDir = Join-Path $WorkDir ("dl-" + $Owner + "-" + $Repo + "-" + $dlKey)
-  if (Test-Path -LiteralPath $dlDir) { Remove-Item -Recurse -Force -LiteralPath $dlDir }
+  if (Test-Path -LiteralPath $dlDir) { RemoveScopedWorkDirectory $dlDir }
   New-Item -ItemType Directory -Path $dlDir | Out-Null
   # Preferred path: download release assets
   if (-not [string]::IsNullOrWhiteSpace($Tag)) {
@@ -273,8 +273,25 @@ function VerifySha([string]$ShaPath, [string]$ZipPath) {
   return $actual
 }
 
+function RemoveScopedWorkDirectory([string]$Path) {
+  $root = [System.IO.Path]::GetFullPath($WorkDir).TrimEnd([System.IO.Path]::DirectorySeparatorChar)
+  $candidate = [System.IO.Path]::GetFullPath($Path)
+  $prefix = $root + [System.IO.Path]::DirectorySeparatorChar
+  if (-not $candidate.StartsWith($prefix, [System.StringComparison]::Ordinal)) {
+    throw "Refusing to delete outside configured work directory: $candidate"
+  }
+  if ($candidate -eq $root -or -not (Test-Path -LiteralPath $candidate -PathType Container)) {
+    throw "Refusing to delete work root or non-directory: $candidate"
+  }
+  $item = Get-Item -LiteralPath $candidate -Force
+  if ($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
+    throw "Refusing to delete a linked work directory: $candidate"
+  }
+  [System.IO.Directory]::Delete($candidate, $true)
+}
+
 function ExtractZip([string]$ZipPath, [string]$ToDir) {
-  if (Test-Path -LiteralPath $ToDir) { Remove-Item -Recurse -Force -LiteralPath $ToDir }
+  if (Test-Path -LiteralPath $ToDir) { RemoveScopedWorkDirectory $ToDir }
   New-Item -ItemType Directory -Path $ToDir | Out-Null
   Add-Type -AssemblyName System.IO.Compression.FileSystem
   [System.IO.Compression.ZipFile]::ExtractToDirectory($ZipPath, $ToDir)
